@@ -1,0 +1,35 @@
+.climbing-stats {
+    margin-top: 80px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.stats {
+  background-color: #666;
+  color: white;
+  width: 75%;
+  margin: auto;
+  padding: 2px;
+  margin-bottom: 10px;
+}
+
+.grade {
+  font-size: 40px;
+  background: #aaa;
+  width: 100px;
+  margin: auto;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.graph {
+  width: 75%;
+  height: 200px;
+  background-color: #444;
+  color: white;
+  padding: 70px 0;
+  text-align: center;
+  vertical-align: center;
+  margin: auto;
+  margin-bottom: 50px;
+}
