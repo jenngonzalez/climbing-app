@@ -1,0 +1,43 @@
+p {
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+p + p {
+  margin-top: 15px;
+}
+
+.climbing-plan {
+    margin-top: 80px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.weather {
+  background-color: #666;
+  color: white;
+  width: 75%;
+  height: 80px;
+  margin: auto;
+  padding: 2px;
+  margin-bottom: 10px;
+}
+
+.map {
+  font-size: 40px;
+  background: #aaa;
+  width: 75%;
+  height: 200px;
+  margin: auto;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.list {
+  background-color: #666;
+  color: white;
+  width: 75%;
+  height: 100px;
+  margin: auto;
+  padding: 2px;
+}
