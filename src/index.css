@@ -2,6 +2,21 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'TheyPerished';
+  src: local('TheyPerished'), url(./assets/fonts/TheyPerished.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'HimalayanSalt-Regular';
+  src: local('HimalayanSalt-Regular'), url(./assets/fonts/HimalayanSalt-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'BeKindToTheEarth';
+  src: local('BeKindToTheEarth'), url(./assets/fonts/BeKindToTheEarth.woff) format('woff');
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -9,6 +24,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #EFE7D1;
 }
 
 code {

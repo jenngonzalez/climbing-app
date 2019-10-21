@@ -1,17 +1,23 @@
 header {
-    text-align: center;
-    position: fixed;
-    top: 0;
-    margin: auto;
-    height: 75px;
-    width: 100%;
-    background-color: #666;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  margin: auto;
+  height: 75px;
+  width: 100%;
+  background-color: #EFE7D1;
+  font-family: 'TheyPerished';
+  font-size: 16px;
+  color: #2781FF;
 }
 
 header h1 {
-    position: fixed center;
-    /* left: 38vw;
-    margin: auto; */
+  position: fixed center;
+  font-family: 'TheyPerished', regular;
+}
+
+.mountains {
+  font-family: 'HimalayanSalt-Regular', regular;
 }
 
 .app {
@@ -62,8 +68,10 @@ footer a:visited {
 .nav-menu {
     width: 100%;
     height: 100%;
-    font-family: 'Londrina Outline', cursive;
+    /* font-family: 'Londrina Outline', cursive; */
+    font-family: 'BeKindToTheEarth', regular;
     display: block;
+    text-transform: uppercase;
 }
 
 /* .nav-menu {
@@ -75,7 +83,7 @@ footer a:visited {
 .nav-menu a {
     display: block;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 25px;
     color: #fff;
 }
 
@@ -121,7 +129,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* General sidebar styles */
 .bm-menu {
   /* background: #373a47; */
-  background: #123456;
+  background: #2781FF;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }
@@ -133,7 +141,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Wrapper for item list */
 .bm-item-list {
-  background-color: #123456;
+  background-color: #2781FF;
   padding: 0.8em;
   display: block;
 }

@@ -45,7 +45,7 @@ export default class App extends Component {
       <div className='app'>
         {/* <AuthContext.Provider value={contextValue}> */}
         <header className='app-header'>
-          <h1>Approach // Ascend</h1>
+          <h1>Approach <span className='mountains'>AA</span> Ascend</h1>
         </header>               
         <Menu className={ 'nav-menu' }>
           {/* <nav className='nav-menu'> */}
