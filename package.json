@@ -13,8 +13,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-skycons": "^0.7.0",
-    "typescript": "^3.6.4",
-    "vue-weather-widget": "^2.1.7"
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "start": "react-scripts start",

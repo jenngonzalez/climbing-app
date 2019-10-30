@@ -41,6 +41,10 @@ p + p {
   width: 150px;
 }
 
+.forecast {
+  margin-top: 50px;
+}
+
 .map {
   font-size: 40px;
   background: #aaa;
