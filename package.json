@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
     "react": "^16.10.2",
     "react-burger-menu": "^2.6.11",
     "react-dom": "^16.10.2",
+    "react-moment": "^0.9.6",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "typescript": "^3.6.4",
-    "vue-weather-widget": "^2.1.7"
+    "react-skycons": "^0.7.0",
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "start": "react-scripts start",

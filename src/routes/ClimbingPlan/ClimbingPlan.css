@@ -17,10 +17,28 @@ p + p {
   background-color: #666;
   color: white;
   width: 75%;
-  height: 80px;
+  height: auto;
   margin: auto;
   padding: 2px;
   margin-bottom: 10px;
+  text-align: center;
+}
+
+.forecast {
+  margin-top: 50px;
+}
+
+#weather-icon {
+  height: 128;
+  width: 128;
+  margin: auto;
+}
+
+.skycon {
+  margin: auto;
+  text-align: center;
+  height: 100px;
+  width: 150px;
 }
 
 .forecast {
