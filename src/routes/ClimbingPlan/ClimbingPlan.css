@@ -29,14 +29,16 @@ p + p {
 }
 
 #weather-icon {
-  height: 128;
-  width: 128;
+  max-height: 128;
+  max-width: 128;
   margin: auto;
 }
 
 .skycon {
   margin: auto;
   text-align: center;
+  max-height: 40vw;
+  max-width: 40vw;
   /* height: 64px;
   width: 64px; */
 }
