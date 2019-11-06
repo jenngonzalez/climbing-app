@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import Skycons from 'react-skycons';
@@ -17,12 +16,9 @@ export default class ClimbingPlan extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            lat: null,
-            lng: null,
-            error: null,
-            weather: null,
-            climbs: null,
-            nearbyLocations: []
+            seeDetails: false,
+            location: null,
+            error: null
         }
     }
 
@@ -85,11 +81,27 @@ export default class ClimbingPlan extends Component {
     }
 
 
+    seeDetails = (climbArea) => {
+        console.log('climbArea in seeDetails', climbArea)
+        this.setState({
+            seeDetails: !this.state.seeDetails,
+            location: climbArea
+        })
+        // only where location matches
+    }
 
+    // hideDetails = () => {
+    //     this.setState({
+    //         seeDetails: false,
+    //         location: null
+    //     })
+    //     console.log('this.state.location', this.state.location)
+    // }
 
 
     renderLocations = () => {
-
+        const visible = this.state.seeDetails
+        const location = this.state.location
         const climbs = this.context.climbs
         
         const sortedClimbs = Object.keys(climbs).map(key => ({location: key, climbs: climbs[key]}));
@@ -98,18 +110,26 @@ export default class ClimbingPlan extends Component {
             const climbArea = climb.location
             const climbData = climb.climbs.map(c => {
                 return (
-                    <ul key={c.id}>
+                    <ul key={c.id} className='climb-list'>
                         <li key={c.name}>Name: {c.name}</li>
                         <li key={c.type}>Type: {c.type}</li>
-                        <li> key={c.grade} Grade: {c.rating}</li>
+                        <li key={c.grade}> Grade: {c.rating}</li>
                     </ul>
                 )
+ 
             })
             return (
                 <div key={i}>
-                    <h2>{climbArea}</h2>
-                    turn into a link -- > onClick - change state from 'hidden' to 'visible'
-                    <span className='hidden'>{climbData}</span>
+                    <button
+                        className='climb-location'
+                        onClick={() => this.seeDetails(climbArea)}
+                    >
+                        {climbArea}
+                    </button>
+                    <span>
+                        {/* working but can only have one menu open at a time */}
+                        {(visible && location === climbArea) && <div>{climbData}</div>}
+                    </span>
                 </div>
             )
         })
@@ -120,29 +140,11 @@ export default class ClimbingPlan extends Component {
         )
     }
 
-    // renderClimbs = () => {
-    //     const listClimbs = this.state.climbs.map(climb =>
-
-    //         <ul key={climb.id}>
-    //             <li>{climb.name}</li>
-    //             <li>{climb.location[3]}</li>
-    //             <li>{climb.rating}</li>
-    //         </ul>
-    //     )
-    //     return (
-    //         <>
-    //             {listClimbs}
-    //         </>
-    //     )
-    // }
-
     render() {
         const unixTimestamp = this.context.weather.time
         const tz = this.context.weather.timezone
         const icon = this.context.weather.weatherIcon
-        console.log('this.context.weather', this.context.weather)
-        console.log('this.context.climbs', this.context.climbs)
-        console.log('this.state', this.state)
+        // console.log('this.state', this.state)
 
         return (
             <div className='climbing-plan'>
