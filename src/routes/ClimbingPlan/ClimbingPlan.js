@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import Skycons from 'react-skycons';
+import MapsContainer from '../../components/MapsContainer/MapsContainer';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import GetWeatherApiService from '../../services/getWeather-api-service';
 import GetClimbsApiService from '../../services/getClimbs-api-service';
@@ -16,6 +17,8 @@ export default class ClimbingPlan extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            lat: null,
+            lng: null,
             seeDetails: false,
             location: null,
             error: null
@@ -33,6 +36,10 @@ export default class ClimbingPlan extends Component {
             .then((position) => {
                 const lat = position.coords.latitude
                 const lng = position.coords.longitude
+                this.setState({
+                    lat: lat,
+                    lng: lng
+                })
                 GetWeatherApiService.getWeather(lat, lng)
                     .then(weatherData=> {
                         const { timezone } = weatherData
@@ -82,7 +89,6 @@ export default class ClimbingPlan extends Component {
 
 
     seeDetails = (climbArea) => {
-        console.log('climbArea in seeDetails', climbArea)
         this.setState({
             seeDetails: !this.state.seeDetails,
             location: climbArea
@@ -144,7 +150,7 @@ export default class ClimbingPlan extends Component {
         const unixTimestamp = this.context.weather.time
         const tz = this.context.weather.timezone
         const icon = this.context.weather.weatherIcon
-        // console.log('this.state', this.state)
+        console.log('this.state', this.state)
 
         return (
             <div className='climbing-plan'>
@@ -164,7 +170,15 @@ export default class ClimbingPlan extends Component {
                         />
                     </div>
                 </section>
-                <section className='map'>MAP</section>
+                <section className='map'>MAP
+                {/* {!this.state.location
+                    ? <div>click a location to see it on the map</div>
+                    : <MapsContainer
+                        selectedPlace={this.state.location}
+                        lat={this.state.lat}
+                        lng={this.state.lng}
+                    />} */}
+                </section>
                 <section className='list'>
                     LIST OF ROUTES
                     {this.renderLocations()}
