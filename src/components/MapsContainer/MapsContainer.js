@@ -35,76 +35,56 @@ export class MapContainer extends Component {
 //     });
 //   }
 
-  fetchPlaces(mapProps, map) {
-    const {google} = mapProps;
-    const service = new google.maps.places.PlacesService(map);
+   renderMarkers = () => {
+        const locationName = this.props.selectedPlace
 
-    const infowindow = new google.maps.InfoWindow();
+        this.props.climbLocs.map(loc => {
+            const latLng =  {
+                lat: loc.climbLat,
+                lng: loc.climbLng
+            }
 
-    const request = {
-        query: this.props.selectedPlace,
-        fields: ['name', 'geometry'],
-      };
-    
-    
-    service.findPlaceFromQuery(request, function(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
-          map.setCenter(results[0].geometry.location);
-        }
-    })
+            return (
+                <Marker
+                    position={latLng}
+                    name={locationName}
+                />
+            )
+        })
+   }
 
-    function createMarker(place) {
+   render() {
 
-        const placeLoc = place.geometry.location;
-        const marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location,
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name, place.website);
-          infowindow.open(map, this);
-        });
-      } 
-  }
-   
-
-  render() {
-
-    // if (!this.props.google) {
-    //     return <div>Loading...</div>;
-    //   }
+    if (!this.props.google) {
+        return <div>Loading...</div>;
+      }
     const style = {
-        width: '300px',
-        height: '150px'
+        width: '50vw',
+        height: '25vh'
     }
-    // const lat = this.props.lat
-    // const lng = this.props.lng
-    console.log('maps prop lat', this.props.lat)
+
+    console.log('maps props', this.props)
+ 
+    // this.renderMarkers()
+
     return (
         <Map
-            // google={this.props.selectedPlace}
             google={this.props.google}
-            onReady={this.fetchPlaces}
-            visible={false}
             style={style}
             initialCenter={{
                 lat: this.props.lat,
                 lng: this.props.lng
             }}
-            zoom={14}
+            zoom={8}
             onClick={this.onMapClicked}
         >
 
-
-        <Listing places={this.state.place} />
-
+        {this.renderMarkers()}
  
-        <Marker onClick={this.onMarkerClick}
+        <Marker position={{lat: 47.574, lng: -122.295}} name="test"/>
+        {/* <Marker onClick={this.onMarkerClick}
                 name={'Current location'} />
+                // geocode each location then map through creating Markers for each */}
  
         <InfoWindow>
             <div>
@@ -116,6 +96,15 @@ export class MapContainer extends Component {
   }
 }
  
+
+// API key is set to restricted, GitHub still notifies vulnerability
 export default GoogleApiWrapper({
   apiKey: (config.MAPS_KEY)
 })(MapContainer)
+
+MapContainer.defaultProps = {
+    selectedPlace: '',
+    climbLocs: [{}, {}, {}],
+    lat: null,
+    lng: null
+} 
