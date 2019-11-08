@@ -1,45 +1,55 @@
 import React, { Component } from 'react';
-import {Map, InfoWindow, Marker, Listing, GoogleApiWrapper} from 'google-maps-react';
+import { Map, InfoWindow, Marker, Listing, GoogleApiWrapper } from 'google-maps-react';
 import config from '../../config';
- 
+import { relative } from 'path';
+
 export class MapContainer extends Component {
 
-  state = {
+    state = {
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
-        place: {}
-      };
+        place: {},
+        currentMarkers: []
+    };
 
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
- 
-  onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
+    componentDidMount() {
+       this.setState({
+            currentMarkers: this.renderMarkers()
+        })
+        
     }
-  };
 
-//   createMarker = (map, maps) => {
-//     let marker = new maps.Marker({
-//       position: myLatLng,
-//       map,
-//       title: 'Hello World!'
-//     });
-//   }
+    componentDidUpdate(prevProps) {
+        if(this.props.climbLocs.length !== prevProps.climbLocs.length) {
+            this.setState({
+                currentMarkers: this.renderMarkers()
+            })
+        }
+    }
 
-   renderMarkers = () => {
-        const locationName = this.props.selectedPlace
+    onMarkerClick = (props, marker, e) =>
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+        });
 
-        this.props.climbLocs.map(loc => {
-            const latLng =  {
+    onMapClicked = (props) => {
+        if (this.state.showingInfoWindow) {
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            })
+        }
+    };
+
+
+    renderMarkers = () => {
+        // should we center map over locationName general latLng?
+
+        return this.props.climbLocs.map((loc, i) => {
+            const latLng = {
                 lat: loc.climbLat,
                 lng: loc.climbLng
             }
@@ -47,59 +57,58 @@ export class MapContainer extends Component {
             return (
                 <Marker
                     position={latLng}
-                    name={locationName}
+                    name={loc.climbName}
+                    key={i}
+                    onClick={this.onMarkerClick}
                 />
             )
         })
-   }
-
-   render() {
-
-    if (!this.props.google) {
-        return <div>Loading...</div>;
-      }
-    const style = {
-        width: '50vw',
-        height: '25vh'
     }
 
-    console.log('maps props', this.props)
- 
-    // this.renderMarkers()
+    render() {
 
-    return (
-        <Map
-            google={this.props.google}
-            style={style}
-            initialCenter={{
-                lat: this.props.lat,
-                lng: this.props.lng
-            }}
-            zoom={8}
-            onClick={this.onMapClicked}
-        >
+        if (!this.props.google) {
+            return <div>Loading...</div>;
+        }
+        const style = {
+            width: '400px',
+            height: '400px',
+            position: 'relative'
+        }
 
-        {this.renderMarkers()}
- 
-        <Marker position={{lat: 47.574, lng: -122.295}} name="test"/>
-        {/* <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
-                // geocode each location then map through creating Markers for each */}
- 
-        <InfoWindow>
-            <div>
-              <h1>{this.props.selectedPlace}</h1>
-            </div>
-        </InfoWindow>
-      </Map>
-    );
-  }
+        console.log('maps props', this.props)
+
+        return (
+            <Map
+                google={this.props.google}
+                style={style}
+                initialCenter={{
+                    lat: this.props.lat,
+                    lng: this.props.lng
+                }}
+                zoom={8}
+                onClick={this.onMapClicked}
+            >
+
+                {this.state.currentMarkers}
+
+                <InfoWindow
+                        marker={this.state.activeMarker}
+                        visible={this.state.showingInfoWindow}
+                >
+                        <div className='infoWindow'>
+                            <h1>{this.state.selectedPlace.name}</h1>
+                        </div>
+                </InfoWindow>
+            </Map>
+        );
+    }
 }
- 
+
 
 // API key is set to restricted, GitHub still notifies vulnerability
 export default GoogleApiWrapper({
-  apiKey: (config.MAPS_KEY)
+    apiKey: (config.MAPS_KEY)
 })(MapContainer)
 
 MapContainer.defaultProps = {

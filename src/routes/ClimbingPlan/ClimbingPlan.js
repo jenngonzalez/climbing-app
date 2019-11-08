@@ -7,8 +7,6 @@ import ClimbingContext from '../../contexts/ClimbingContext';
 import GetWeatherApiService from '../../services/getWeather-api-service';
 import GetClimbsApiService from '../../services/getClimbs-api-service';
 import './ClimbingPlan.css';
-import GeocodeService from '../../services/geocode-service';
-
 
 
 export default class ClimbingPlan extends Component {
@@ -46,7 +44,7 @@ export default class ClimbingPlan extends Component {
                     .then(weatherData=> {
                         const { timezone } = weatherData
                         const { temperature, summary, humidity, time } = weatherData.currently
-                        // format icon string so react-skycons understands
+                        // format icon string so react-skycons recognizes it
                         const weatherIcon = weatherData.currently.icon.toUpperCase().replace(/-/g, '_')
                         const currentWeather = { temperature, summary, humidity, time, timezone, weatherIcon }
 
@@ -125,6 +123,7 @@ export default class ClimbingPlan extends Component {
             const climbLatLng = []
             climb.climbs.forEach(c => {
                 climbLatLng.push({
+                    climbName: c.name,
                     climbLat: c.climbLat,
                     climbLng: c.climbLng
                 })
@@ -136,8 +135,6 @@ export default class ClimbingPlan extends Component {
                         <li key={c.name}>Name: {c.name}</li>
                         <li key={c.type}>Type: {c.type}</li>
                         <li key={c.grade}> Grade: {c.rating}</li>
-                        {/* <li>Lat: {c.climbLat}</li>
-                        <li>Lng: {c.climbLng}</li> */}
                     </ul>
                 )
  
@@ -191,7 +188,7 @@ export default class ClimbingPlan extends Component {
                 </div>
                 <div className='map'>MAP
                 {!this.state.location
-                    ? <div>click a location to see climbs on the map</div>
+                    ? <div className='clickMessage'>click a location to see climbs on the map</div>
                     : <MapsContainer
                         selectedPlace={this.state.location}
                         climbLocs={this.state.climbLocs}
