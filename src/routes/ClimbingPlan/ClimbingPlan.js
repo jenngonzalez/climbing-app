@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import Skycons from 'react-skycons';
+import MapsContainer from '../../components/MapsContainer/MapsContainer';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import GetWeatherApiService from '../../services/getWeather-api-service';
 import GetClimbsApiService from '../../services/getClimbs-api-service';
 import './ClimbingPlan.css';
-
 
 
 export default class ClimbingPlan extends Component {
@@ -16,7 +16,10 @@ export default class ClimbingPlan extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            lat: null,
+            lng: null,
             seeDetails: false,
+            climbLocs: [],
             location: null,
             error: null
         }
@@ -33,11 +36,15 @@ export default class ClimbingPlan extends Component {
             .then((position) => {
                 const lat = position.coords.latitude
                 const lng = position.coords.longitude
+                this.setState({
+                    lat: lat,
+                    lng: lng
+                })
                 GetWeatherApiService.getWeather(lat, lng)
                     .then(weatherData=> {
                         const { timezone } = weatherData
                         const { temperature, summary, humidity, time } = weatherData.currently
-                        // format icon string so react-skycons understands
+                        // format icon string so react-skycons recognizes it
                         const weatherIcon = weatherData.currently.icon.toUpperCase().replace(/-/g, '_')
                         const currentWeather = { temperature, summary, humidity, time, timezone, weatherIcon }
 
@@ -46,7 +53,6 @@ export default class ClimbingPlan extends Component {
                 GetClimbsApiService.getClimbs(lat, lng)
                 .then(climbData => {
                     // create an array of the unique locations so we can sort them for the user
-                    console.log('climbData', climbData)
                     const climbLocations = []
                     climbData.routes.forEach(climb => {
                         if(!climbLocations.includes(climb.location[3])) {
@@ -68,7 +74,10 @@ export default class ClimbingPlan extends Component {
                             type: climb.type,
                             rating: climb.rating,
                             location: climb.location,
-                            image: climb.image
+                            image: climb.imgSmall,
+                            url: climb.url,
+                            climbLat: climb.latitude,
+                            climbLng: climb.longitude
                         })
                         return climbsObj
                     })
@@ -81,11 +90,11 @@ export default class ClimbingPlan extends Component {
     }
 
 
-    seeDetails = (climbArea) => {
-        console.log('climbArea in seeDetails', climbArea)
+    seeDetails = (climbArea, climbLatLng) => {
         this.setState({
             seeDetails: !this.state.seeDetails,
-            location: climbArea
+            location: climbArea,
+            climbLocs: climbLatLng
         })
         // only where location matches
     }
@@ -98,6 +107,8 @@ export default class ClimbingPlan extends Component {
     //     console.log('this.state.location', this.state.location)
     // }
 
+    
+
 
     renderLocations = () => {
         const visible = this.state.seeDetails
@@ -108,6 +119,22 @@ export default class ClimbingPlan extends Component {
 
         const displayClimbs = sortedClimbs.map((climb, i) => {
             const climbArea = climb.location
+    
+            const climbLatLng = []
+            climb.climbs.forEach(c => {
+                climbLatLng.push({
+                    climbName: c.name,
+                    climbLat: c.climbLat,
+                    climbLng: c.climbLng,
+                    climbLoc: c.location[3],
+                    climbArea: c.location[2],
+                    climbGrade: c.rating,
+                    climbType: c.type,
+                    climbImage: c.image,
+                    climbUrl: c.url
+                })
+            })
+
             const climbData = climb.climbs.map(c => {
                 return (
                     <ul key={c.id} className='climb-list'>
@@ -122,7 +149,7 @@ export default class ClimbingPlan extends Component {
                 <div key={i}>
                     <button
                         className='climb-location'
-                        onClick={() => this.seeDetails(climbArea)}
+                        onClick={() => this.seeDetails(climbArea, climbLatLng)}
                     >
                         {climbArea}
                     </button>
@@ -140,15 +167,16 @@ export default class ClimbingPlan extends Component {
         )
     }
 
+
+
     render() {
         const unixTimestamp = this.context.weather.time
         const tz = this.context.weather.timezone
         const icon = this.context.weather.weatherIcon
-        // console.log('this.state', this.state)
 
         return (
             <div className='climbing-plan'>
-                <section className='weather'>
+                <div className='weather'>
                     WEATHER
                     <p>Current Time: <Moment unix tz={tz} format="MMM Do YYYY hh:mm a">{unixTimestamp}</Moment></p>
                     <p>Current Temp: {this.context.weather.temperature} &deg;</p>
@@ -163,12 +191,21 @@ export default class ClimbingPlan extends Component {
                             height= {64}
                         />
                     </div>
-                </section>
-                <section className='map'>MAP</section>
-                <section className='list'>
+                </div>
+                <div className='map'>MAP
+                {!this.state.location
+                    ? <div className='clickMessage'>click a location to see climbs on the map</div>
+                    : <MapsContainer
+                        selectedPlace={this.state.location}
+                        climbLocs={this.state.climbLocs}
+                        lat={this.state.lat}
+                        lng={this.state.lng}
+                    />}
+                </div>
+                <div className='list'>
                     LIST OF ROUTES
                     {this.renderLocations()}
-                </section>
+                </div>
             </div>
         )
     }
