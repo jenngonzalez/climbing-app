@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Map, InfoWindow, Marker, Listing, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import config from '../../config';
-import { relative } from 'path';
+
+
+// TODO - add marker clusters to group climbs by location
 
 export class MapContainer extends Component {
 
@@ -10,7 +12,11 @@ export class MapContainer extends Component {
         activeMarker: {},
         selectedPlace: {},
         place: {},
-        currentMarkers: []
+        currentMarkers: [],
+        initialCenter: {
+            lat: null,
+            lng: null
+        }
     };
 
     componentDidMount() {
@@ -46,8 +52,6 @@ export class MapContainer extends Component {
 
 
     renderMarkers = () => {
-        // should we center map over locationName general latLng?
-
         return this.props.climbLocs.map((loc, i) => {
             const latLng = {
                 lat: loc.climbLat,
@@ -58,6 +62,11 @@ export class MapContainer extends Component {
                 <Marker
                     position={latLng}
                     name={loc.climbName}
+                    location={loc.climbLoc}
+                    area={loc.climbArea}
+                    type={loc.climbType}
+                    grade={loc.climbGrade}
+                    image={loc.climbImage}
                     key={i}
                     onClick={this.onMarkerClick}
                 />
@@ -76,15 +85,13 @@ export class MapContainer extends Component {
             position: 'relative'
         }
 
-        console.log('maps props', this.props)
-
         return (
             <Map
                 google={this.props.google}
                 style={style}
                 initialCenter={{
-                    lat: this.props.lat,
-                    lng: this.props.lng
+                    lat: this.props.climbLocs[0].climbLat,
+                    lng: this.props.climbLocs[0].climbLng
                 }}
                 zoom={8}
                 onClick={this.onMapClicked}
@@ -98,6 +105,9 @@ export class MapContainer extends Component {
                 >
                         <div className='infoWindow'>
                             <h1>{this.state.selectedPlace.name}</h1>
+                            <h2>{this.state.selectedPlace.location}, {this.state.selectedPlace.area}</h2>
+                            <h3>{this.state.selectedPlace.type} - {this.state.selectedPlace.grade}</h3>
+                            <img src={this.state.selectedPlace.image} alt={this.state.selectedPlace.name} />
                         </div>
                 </InfoWindow>
             </Map>
@@ -106,14 +116,24 @@ export class MapContainer extends Component {
 }
 
 
-// API key is set to restricted, GitHub still notifies vulnerability
+// API key is set to restricted, GitHub still notifies vulnerability?
 export default GoogleApiWrapper({
     apiKey: (config.MAPS_KEY)
 })(MapContainer)
 
 MapContainer.defaultProps = {
     selectedPlace: '',
-    climbLocs: [{}, {}, {}],
+    climbLocs: [{
+        climbName: '',
+        climbLat: null,
+        climbLng: null,
+        climbLoc: '',
+        climbArea: '',
+        climbGrade: '',
+        climbType: '',
+        climbImage: '',
+        climbUrl: ''
+    }],
     lat: null,
     lng: null
 } 

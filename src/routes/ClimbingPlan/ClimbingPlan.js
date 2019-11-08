@@ -125,7 +125,13 @@ export default class ClimbingPlan extends Component {
                 climbLatLng.push({
                     climbName: c.name,
                     climbLat: c.climbLat,
-                    climbLng: c.climbLng
+                    climbLng: c.climbLng,
+                    climbLoc: c.location[3],
+                    climbArea: c.location[2],
+                    climbGrade: c.rating,
+                    climbType: c.type,
+                    climbImage: c.image,
+                    climbUrl: c.url
                 })
             })
 
