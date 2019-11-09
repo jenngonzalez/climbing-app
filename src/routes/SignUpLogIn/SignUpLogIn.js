@@ -1,73 +1,53 @@
 import React, { Component } from 'react';
+import SignUpForm from '../../components/SignUpLoginForms/SignUpForm';
+import LoginForm from '../../components/SignUpLoginForms/LoginForm';
+// import TokenService from '../../services/token-service';
+import AuthContext from '../../contexts/AuthContext';
 import './SignUpLogIn.css';
 
 export default class SignUpLogIn extends Component {
+
+    state = {
+        signUpSuccess: false
+    }
+
+    static defaultProps = {
+        location: {},
+        history: {
+            push: () => {}
+        }
+    }
+
+    static contextType = AuthContext
+
+    handleSignUpSuccess = () => {
+        this.props.history.push('/signuplogin')
+        this.setState({
+            signUpSuccess: true
+        })
+    }
+
+    handleLoginSuccess = () => {
+        this.context.loggedIn()
+        this.props.history.push('/stats')
+    }
+
     render() {
         return (
             <div className='signuplogin-forms'>
                 <div className='signup'>
                     <h2>Sign Up</h2>
-                    <form className='signup-form'>
-                        <label htmlFor='new-email'>Email:</label>
-                        <input
-                        type='email'
-                        name='new-email'
-                        id='new-email'
-                        placeholder='Email'
-                        aria-label='your email address'
-                        aria-required='true'
-                        autoComplete='email'
-                        required
-                        />
-                        {/* <label htmlFor='new-username'>Username:</label>
-                        <input
-                        type='text'
-                        name='new-username'
-                        id='new-username'
-                        placeholder='Username'
-                        /> */}
-                        <label htmlFor='new-password'>Password:</label>
-                        <input
-                        type='password'
-                        name='new-password'
-                        id='new-password'
-                        placeholder='Password'
-                        aria-label='create a password'
-                        aria-required=
-                        'true'
-                        autoComplete='password'
-                        required
-                        />
-                        <button type='submit' className='signup-button'>Sign Up</button>
-                    </form>
+                    <SignUpForm
+                        onSignUpSuccess={this.handleSignUpSuccess}
+                    />
+                    {this.state.signUpSuccess && <div className='signup-success'>Sign Up Successful! You are free to log in &#9786;</div>}
                 </div>
                 <div className='login'>
                     <span className='exists'>Already have an account?</span>
                     <h2>Log In</h2>
-                    <form className='login-form'>
-                        <label htmlFor='user-email'>Email:</label>
-                        <input
-                        type='text'
-                        name='user-email'
-                        id='user-email' placeholder='Email'
-                        aria-label='your email address'
-                        aria-required='true'
-                        autoComplete='email'
-                        required
-                        />
-                        <label htmlFor='user-password'>Password:</label>
-                        <input
-                        type='password'
-                        name='user-password'
-                        id='user-password'
-                        placeholder='Password'
-                        aria-label='your password'
-                        aria-required='true'
-                        autoComplete='password'
-                        required
-                        />
-                        <button type='submit' className='login-button'>Log In</button>
-                    </form>
+                    <LoginForm
+                        onLoginSuccess={this.handleLoginSuccess}
+                    />     
                 </div>
             </div>
         )

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Menu from 'react-burger-menu/lib/menus/slide';
 import { Link } from 'react-router-dom';
-import NavBar from './components/NavBar/NavBar';
+// import NavBar from './components/NavBar/NavBar';
 import LandingPage from './routes/LandingPage/LandingPage';
 import ClimbingPlan from './routes/ClimbingPlan/ClimbingPlan';
 import ClimbingTrack from './routes/ClimbingTrack/ClimbingTrack';
 import ClimbingStats from './routes/ClimbingStats/ClimbingStats';
 import SignUpLogIn from './routes/SignUpLogIn/SignUpLogIn';
+import NotFoundPage from './routes/NotFoundPage/NotFoundPage';
+import AuthContext from './contexts/AuthContext';
 import './App.css';
 
 
@@ -44,7 +46,7 @@ export default class App extends Component {
 
     return (
       <div className='app'>
-        {/* <AuthContext.Provider value={contextValue}> */}
+        <AuthContext.Provider value={contextValue}>
         <header className='app-header'>
           <h1>Approach <span className='mountains'>AA</span> Ascend</h1>
         </header>               
@@ -81,12 +83,15 @@ export default class App extends Component {
               path='/signuplogin'
               component={SignUpLogIn}
             />
+            <Route
+              component={NotFoundPage}
+            />
           </Switch>
         </main>
         <footer>
           <p className='copyright'>&copy; Jennifer Gonzalez 2019</p>
         </footer>
-        {/* </AuthContext.Provider> */}
+        </AuthContext.Provider>
       </div>
     )
   }
