@@ -32,7 +32,7 @@ export default class LoginForm extends Component {
                 loginEmail.value=''
                 loginPassword.value=''
                 TokenService.saveAuthToken(res.authToken)
-                // TokenService.saveUserName(res.user_name)
+                TokenService.saveEmail(res.email)
                 this.setState({ loading: false })
                 this.props.onLoginSuccess()
             })

@@ -29,6 +29,7 @@ export default class SignUpLogIn extends Component {
 
     handleLoginSuccess = () => {
         this.context.loggedIn()
+        // const email = TokenService.getEmail()
         this.props.history.push('/stats')
     }
 

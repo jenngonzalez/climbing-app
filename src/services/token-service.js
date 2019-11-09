@@ -4,15 +4,15 @@ const TokenService = {
     saveAuthToken(token) {
         window.sessionStorage.setItem(config.TOKEN_KEY, token)
     },
-    // saveUserName(username) {
-    //     window.sessionStorage.setItem(config.USERNAME, username)
-    // },
-    // getUserName() {
-    //     return window.sessionStorage.getItem(config.USERNAME)
-    // },
-    // clearUserName() {
-    //     window.sessionStorage.removeItem(config.USERNAME)
-    // },
+    saveEmail(email) {
+        window.sessionStorage.setItem(config.USER_EMAIL, email)
+    },
+    getEmail() {
+        return window.sessionStorage.getItem(config.USER_EMAIL)
+    },
+    clearEmail() {
+        window.sessionStorage.removeItem(config.USER_EMAIL)
+    },
     getAuthToken() {
         return window.sessionStorage.getItem(config.TOKEN_KEY)
     },
