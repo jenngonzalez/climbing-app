@@ -25,6 +25,10 @@ export default class ClimbingTrack extends Component {
     }
 
     handleSubmitSuccess = () => {
+        this.setState({
+            showAddForm: false
+        })
+        alert('Climb successfully added')
         // TODO:
         // communicate success to user
         // update the "climbs" section to show the new climb (sort by date?)
@@ -39,7 +43,7 @@ export default class ClimbingTrack extends Component {
                     </button>
                     {this.state.showAddForm && <AddClimbsForm onAddSuccess={this.handleSubmitSuccess} onCancel={this.handleCancel}  />}
                 </div>
-                <div className='climbs'>
+                <div className='user-climbs-container'>
                     SHOW (get) CLIMBS
                 </div>
             </div>
