@@ -17,13 +17,16 @@ export default class App extends Component {
 
   state = {
     hasError: false,
-    loggedIn: false
+    loggedIn: TokenService.hasAuthToken() ? true : false
   }
+
+  static contextType = AuthContext
 
   static getDerivedStateFromError(error) {
     console.error(error)
     return { hasError: true }
   }
+
 
   loggedIn = () => {
     this.setState({
@@ -82,7 +85,7 @@ export default class App extends Component {
       loggedIn: this.loggedIn
     }
 
-    console.log(this.state.loggedIn)
+    console.log('app state', this.state)
 
     return (
       <div className='app'>
@@ -95,10 +98,9 @@ export default class App extends Component {
             <Link id='track' className='menu-item' to='/track'>Track</Link>
             <Link id='stats' className='menu-item' to='/stats'>Stats</Link>
             <Link id='home' className='menu-item' to='/'>Home</Link>
-
             {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
+                ? this.renderLogoutLink()
+                : this.renderLoginLink()}
         </Menu>
         <main className='app-main' id='page-wrap'>
           {this.state.hasError && <p className='error'>Error - please go back to the previous page and try again</p>}

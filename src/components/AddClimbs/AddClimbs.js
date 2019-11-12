@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
+// import Moment from 'react-moment';
+// import 'moment-timezone';
 import "react-datepicker/dist/react-datepicker.css";
 import AddClimbApiService from '../../services/add-climb-api-service';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import TokenService from '../../services/token-service';
 import './AddClimbs.css';
+
+
+
+
+// TODO - DatePicker has an issue with daylight savings? - date is off by a day
+// look for fix
+
+
 
 export default class AddClimbsForm extends Component {
 
@@ -43,7 +53,7 @@ export default class AddClimbsForm extends Component {
             }
             console.log('newClimb', newClimb)
             AddClimbApiService.postClimb(newClimb)
-                .then(this.context.addClimb)
+                .then(this.context.addUserClimb)
                 .then(this.props.onAddSuccess)
                 .then(this.setState({ loading: false }))
                 .catch(this.context.setError)
@@ -61,6 +71,7 @@ export default class AddClimbsForm extends Component {
                 </div>
                 <label htmlFor='climbDate'>Date:</label>
                 <DatePicker
+                    utcOffset={0}
                     selected={this.state.climbDate}
                     onChange={this.handleDateChange}
                     id='climbDate'

@@ -81,7 +81,7 @@ export default class ClimbingPlan extends Component {
                         })
                         return climbsObj
                     })
-                    this.context.addClimbs(climbsObj)
+                    this.context.addNearbyClimbs(climbsObj)
                 })
             })
             .catch((err) => {
@@ -113,7 +113,7 @@ export default class ClimbingPlan extends Component {
     renderLocations = () => {
         const visible = this.state.seeDetails
         const location = this.state.location
-        const climbs = this.context.climbs
+        const climbs = this.context.nearbyClimbs
         
         const sortedClimbs = Object.keys(climbs).map(key => ({location: key, climbs: climbs[key]}));
 
