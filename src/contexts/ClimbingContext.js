@@ -3,10 +3,13 @@ import React from 'react';
 const ClimbingContext = React.createContext({
     weather: null,
     locations: [],
-    climbs: [],
+    nearbyClimbs: [],
+    userClimbs: [],
     addWeather: () => {},
     addLocations: () => {},
-    addClimbs: () => {}
+    addNearbyClimbs: () => {},
+    addUserClimbs: () => {},
+    addUserClimb: () => {}
 })
 
 export default ClimbingContext
@@ -18,7 +21,8 @@ export class ClimbingProvider extends React.Component {
         this.state = {
             weather: [],
             locations: [],
-            climbs: []
+            nearbyClimbs: [],
+            userClimbs: []
         }
     }
 
@@ -30,8 +34,16 @@ export class ClimbingProvider extends React.Component {
         this.setState({ locations })
     }
 
-    addClimbs = climbs => {
-        this.setState({ climbs })
+    addNearbyClimbs = nearbyClimbs => {
+        this.setState({ nearbyClimbs })
+    }
+
+    addUserClimbs = userClimbs => {
+        this.setState({ userClimbs })
+    }
+
+    addUserClimb = userClimb => {
+        this.setState({userClimbs: [...this.state.userClimbs, userClimb]})
     }
 
 
@@ -39,10 +51,13 @@ export class ClimbingProvider extends React.Component {
         const value = {
             weather: this.state.weather,
             locations: this.state.locations,
-            climbs: this.state.climbs,
+            nearbyClimbs: this.state.nearbyClimbs,
+            userClimbs: this.state.userClimbs,
             addWeather: this.addWeather,
             addLocations: this.addLocations,
-            addClimbs: this.addClimbs
+            addNearbyClimbs: this.addNearbyClimbs,
+            addUserClimbs: this.addUserClimbs,
+            addUserClimb: this.addUserClimb
         }
 
         return (
