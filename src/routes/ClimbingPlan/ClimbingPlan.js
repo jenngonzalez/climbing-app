@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
+import { Link } from 'react-router-dom';
 import Skycons from 'react-skycons';
 import MapsContainer from '../../components/MapsContainer/MapsContainer';
+import GoogleMaps from '../../components/MapsContainer/GoogleMaps';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import GetWeatherApiService from '../../services/getWeather-api-service';
 import GetClimbsApiService from '../../services/getClimbs-api-service';
@@ -96,6 +98,7 @@ export default class ClimbingPlan extends Component {
             location: climbArea,
             climbLocs: climbLatLng
         })
+        // TODO : add specific climb info to state, where it can be sent to 'track' component to prepopulate 'add climb' form
         // only where location matches
     }
 
@@ -107,6 +110,9 @@ export default class ClimbingPlan extends Component {
     //     console.log('this.state.location', this.state.location)
     // }
 
+    addClimb = () => {
+
+    }
     
 
 
@@ -137,11 +143,15 @@ export default class ClimbingPlan extends Component {
 
             const climbData = climb.climbs.map(c => {
                 return (
-                    <ul key={c.id} className='climb-list'>
-                        <li key={c.name}>Name: {c.name}</li>
-                        <li key={c.type}>Type: {c.type}</li>
-                        <li key={c.grade}> Grade: {c.rating}</li>
-                    </ul>
+                    // <ul key={c.id} className='climb-list'>
+                    //     <li key={c.name}>{c.name}</li>
+                    //     <button>+ Track This Climb</button>
+                    //     {/* <li key={c.type}>Type: {c.type}</li>
+                    //     <li key={c.grade}> Grade: {c.rating}</li> */}
+                    // </ul>
+                    <div key={c.id} className='climb-list'>
+                        <p>{c.name}</p>
+                    </div>
                 )
  
             })
@@ -153,17 +163,17 @@ export default class ClimbingPlan extends Component {
                     >
                         {climbArea}
                     </button>
-                    <span>
+                    <div className='location-details'>
                         {/* working but can only have one menu open at a time */}
                         {(visible && location === climbArea) && <div>{climbData}</div>}
-                    </span>
+                    </div>
                 </div>
             )
         })
         return (
-            <section>
+            <>
                 {displayClimbs}
-            </section>
+            </>
         )
     }
 
@@ -174,15 +184,20 @@ export default class ClimbingPlan extends Component {
         const tz = this.context.weather.timezone
         const icon = this.context.weather.weatherIcon
 
+        console.log('context selectedClimb', this.context.selectedClimb)
+
         return (
             <div className='climbing-plan'>
                 <div className='weather'>
-                    WEATHER
-                    <p>Current Time: <Moment unix tz={tz} format="MMM Do YYYY hh:mm a">{unixTimestamp}</Moment></p>
-                    <p>Current Temp: {this.context.weather.temperature} &deg;</p>
-                    <p>Current Humidity: {this.context.weather.humidity}</p>
-                    <p>Summary: {this.context.weather.summary}</p>
+                    Current Weather
+                    {/* <p>Current Time: <Moment unix tz={tz} format="MMM Do YYYY hh:mm a">{unixTimestamp}</Moment></p> */}
+                    <div className='forecast'>
+                        <p>{this.context.weather.temperature} &deg;F</p>
+                        {/* <p>Current Humidity: {this.context.weather.humidity}</p> */}
+                        {/* need to multiply by 100 and put a % after */}
+                    </div>
                     <div className='skycon'>
+                        <p>{this.context.weather.summary}</p>
                         <Skycons 
                             color='white' 
                             icon={icon}
@@ -192,19 +207,30 @@ export default class ClimbingPlan extends Component {
                         />
                     </div>
                 </div>
-                <div className='map'>MAP
-                {!this.state.location
-                    ? <div className='clickMessage'>click a location to see climbs on the map</div>
-                    : <MapsContainer
-                        selectedPlace={this.state.location}
-                        climbLocs={this.state.climbLocs}
-                        lat={this.state.lat}
-                        lng={this.state.lng}
-                    />}
-                </div>
-                <div className='list'>
-                    LIST OF ROUTES
-                    {this.renderLocations()}
+                {this.context.selectedClimb &&
+                    <div className='selected-climb'>
+                        {this.context.selectedClimb.name}
+                        {/* why is the link still showing when selectedClimb is null */}
+                        <Link to='/track'>Track This Climb</Link>
+                    </div>
+                }
+                <div className='map-and-list'>
+                    <div className='map'>
+                    {!this.state.location
+                        ? <p className='clickMessage'>click a location to see climbs on the map</p>
+                        : <MapsContainer
+                            selectedPlace={this.state.location}
+                            climbLocs={this.state.climbLocs}
+                            lat={this.state.lat}
+                            lng={this.state.lng}
+                            // className='MapsContainer'
+                        />
+                    }
+                    </div>
+                    <div className='list'>
+                        Nearby Climbing Areas
+                        {this.renderLocations()}
+                    </div>
                 </div>
             </div>
         )

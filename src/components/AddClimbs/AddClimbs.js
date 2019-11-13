@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-// import Moment from 'react-moment';
-// import 'moment-timezone';
+import Moment from 'react-moment';
+import 'moment-timezone';
 import "react-datepicker/dist/react-datepicker.css";
 import AddClimbApiService from '../../services/add-climb-api-service';
 import ClimbingContext from '../../contexts/ClimbingContext';
@@ -23,6 +23,7 @@ export default class AddClimbsForm extends Component {
         this.state = {
             loading: false,
             error: null,
+            // climbDate: Moment.globalMoment().format()
             climbDate: new Date()
         }
     }
@@ -62,6 +63,7 @@ export default class AddClimbsForm extends Component {
 
 
     render() {
+        console.log(this.state.climbDate)
         const { error } = this.state
         return (
             <form className='add-climbs-form' onSubmit={this.handleSubmit}>
@@ -71,7 +73,6 @@ export default class AddClimbsForm extends Component {
                 </div>
                 <label htmlFor='climbDate'>Date:</label>
                 <DatePicker
-                    utcOffset={0}
                     selected={this.state.climbDate}
                     onChange={this.handleDateChange}
                     id='climbDate'

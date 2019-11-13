@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
+// import { PropTypes } from ''
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import config from '../../config';
-
+import './MapsContainer.css';
+import { isPropertyAccessExpression } from 'typescript';
+import ClimbingContext from '../../contexts/ClimbingContext';
 
 // TODO - add marker clusters to group climbs by location
 
+// TODO - add PropTypes
+
 export class MapContainer extends Component {
 
-    state = {
-        showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {},
-        place: {},
-        currentMarkers: [],
-        initialCenter: {
-            lat: null,
-            lng: null
+    static contextType = ClimbingContext
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
+            place: {},
+            currentMarkers: [],
+            initialCenter: {
+                lat: null,
+                lng: null
+            }
         }
-    };
+    }
+
 
     componentDidMount() {
        this.setState({
@@ -34,12 +46,24 @@ export class MapContainer extends Component {
         }
     }
 
-    onMarkerClick = (props, marker, e) =>
+
+    // addFromInfo = () => {
+    //     console.log('does this even trigger?')
+    //     history.push('/track');
+    // }
+
+
+    onMarkerClick = (props, marker, e) => {
+    console.log('onMarkerClick props', props)
+    console.log('onMarkerClick marker', marker)
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
-        });
+        })
+        this.context.selectClimb(props)
+        // set context -> ClimbingPlan component will use that context to render that specific climb with a button to add it
+    }
 
     onMapClicked = (props) => {
         if (this.state.showingInfoWindow) {
@@ -48,6 +72,7 @@ export class MapContainer extends Component {
                 activeMarker: null
             })
         }
+        this.context.selectClimb(null)
     };
 
 
@@ -80,9 +105,8 @@ export class MapContainer extends Component {
             return <div>Loading...</div>;
         }
         const style = {
-            width: '400px',
-            height: '400px',
-            position: 'relative'
+            width: '100%',
+            height: '100%',
         }
 
         return (
@@ -93,7 +117,7 @@ export class MapContainer extends Component {
                     lat: this.props.climbLocs[0].climbLat,
                     lng: this.props.climbLocs[0].climbLng
                 }}
-                zoom={8}
+                zoom={7}
                 onClick={this.onMapClicked}
             >
 
@@ -103,20 +127,24 @@ export class MapContainer extends Component {
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
                 >
+
                         <div className='infoWindow'>
-                            <h1>{this.state.selectedPlace.name}</h1>
+                            <h1>"{this.state.selectedPlace.name}"</h1>
                             <h2>{this.state.selectedPlace.location}, {this.state.selectedPlace.area}</h2>
                             <h3>{this.state.selectedPlace.type} - {this.state.selectedPlace.grade}</h3>
                             <img src={this.state.selectedPlace.image} alt={this.state.selectedPlace.name} />
+                            {/* Climbed this? <Link to='/track'>Add</Link> to your tracked climbs. */}
+                            {/* Climbed this? Add to your tracked climbs.
+                            <button onClick={() => this.addFromInfo} type="button">Add</button> */}
+                            {/* create Link or button, "Climbed this? Add to your tracked climbs" onClick -> redirect to AddClimbs form on Track page, prepopulate with data from the specific climb's info window */}
                         </div>
                 </InfoWindow>
             </Map>
-        );
+        )
     }
 }
 
 
-// API key is set to restricted, GitHub still notifies vulnerability?
 export default GoogleApiWrapper({
     apiKey: (config.MAPS_KEY)
 })(MapContainer)
@@ -135,5 +163,5 @@ MapContainer.defaultProps = {
         climbUrl: ''
     }],
     lat: null,
-    lng: null
+    lng: null,
 } 
