@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import LandingPage from './routes/LandingPage/LandingPage';
 import ClimbingPlan from './routes/ClimbingPlan/ClimbingPlan';
 import ClimbingTrack from './routes/ClimbingTrack/ClimbingTrack';
+import AddClimb from './routes/AddClimb/AddClimb';
 import ClimbingStats from './routes/ClimbingStats/ClimbingStats';
 import SignUpLogIn from './routes/SignUpLogIn/SignUpLogIn';
 import NotFoundPage from './routes/NotFoundPage/NotFoundPage';
@@ -96,6 +97,7 @@ export default class App extends Component {
         <Menu className={ 'nav-menu' }>
             <Link id='plan' className='menu-item' to='/plan'>Plan</Link>
             <Link id='track' className='menu-item' to='/track'>Track</Link>
+            <Link id='add' className='menu-item' to='/add'>Add</Link>
             <Link id='stats' className='menu-item' to='/stats'>Stats</Link>
             <Link id='home' className='menu-item' to='/'>Home</Link>
             {TokenService.hasAuthToken()
@@ -116,6 +118,10 @@ export default class App extends Component {
             <Route
               path='/track'
               component={ClimbingTrack}
+            />
+            <Route
+              path='/add'
+              component={AddClimb}
             />
             <Route
               path='/stats'

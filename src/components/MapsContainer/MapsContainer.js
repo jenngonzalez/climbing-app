@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-// import { PropTypes } from ''
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import config from '../../config';
-import './MapsContainer.css';
-import { isPropertyAccessExpression } from 'typescript';
 import ClimbingContext from '../../contexts/ClimbingContext';
 
 // TODO - add marker clusters to group climbs by location
@@ -46,13 +42,6 @@ export class MapContainer extends Component {
         }
     }
 
-
-    // addFromInfo = () => {
-    //     console.log('does this even trigger?')
-    //     history.push('/track');
-    // }
-
-
     onMarkerClick = (props, marker, e) => {
     console.log('onMarkerClick props', props)
     console.log('onMarkerClick marker', marker)
@@ -62,7 +51,6 @@ export class MapContainer extends Component {
             showingInfoWindow: true
         })
         this.context.selectClimb(props)
-        // set context -> ClimbingPlan component will use that context to render that specific climb with a button to add it
     }
 
     onMapClicked = (props) => {
@@ -133,10 +121,6 @@ export class MapContainer extends Component {
                             <h2>{this.state.selectedPlace.location}, {this.state.selectedPlace.area}</h2>
                             <h3>{this.state.selectedPlace.type} - {this.state.selectedPlace.grade}</h3>
                             <img src={this.state.selectedPlace.image} alt={this.state.selectedPlace.name} />
-                            {/* Climbed this? <Link to='/track'>Add</Link> to your tracked climbs. */}
-                            {/* Climbed this? Add to your tracked climbs.
-                            <button onClick={() => this.addFromInfo} type="button">Add</button> */}
-                            {/* create Link or button, "Climbed this? Add to your tracked climbs" onClick -> redirect to AddClimbs form on Track page, prepopulate with data from the specific climb's info window */}
                         </div>
                 </InfoWindow>
             </Map>

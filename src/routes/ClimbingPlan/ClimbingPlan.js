@@ -4,7 +4,6 @@ import 'moment-timezone';
 import { Link } from 'react-router-dom';
 import Skycons from 'react-skycons';
 import MapsContainer from '../../components/MapsContainer/MapsContainer';
-import GoogleMaps from '../../components/MapsContainer/GoogleMaps';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import GetWeatherApiService from '../../services/getWeather-api-service';
 import GetClimbsApiService from '../../services/getClimbs-api-service';
@@ -209,9 +208,19 @@ export default class ClimbingPlan extends Component {
                 </div>
                 {this.context.selectedClimb &&
                     <div className='selected-climb'>
-                        {this.context.selectedClimb.name}
-                        {/* why is the link still showing when selectedClimb is null */}
-                        <Link to='/track'>Track This Climb</Link>
+                        {this.context.selectedClimb.name} - 
+                        <Link to={{
+                            pathname: '/add',
+                            state: {
+                                location: this.context.selectedClimb.location,
+                                name: this.context.selectedClimb.name,
+                                type: this.context.selectedClimb.type,
+                                grade: this.context.selectedClimb.grade,
+                                image: this.context.selectedClimb.image
+                            }
+                        }}>
+                            Track This Climb
+                        </Link>
                     </div>
                 }
                 <div className='map-and-list'>
@@ -223,7 +232,6 @@ export default class ClimbingPlan extends Component {
                             climbLocs={this.state.climbLocs}
                             lat={this.state.lat}
                             lng={this.state.lng}
-                            // className='MapsContainer'
                         />
                     }
                     </div>

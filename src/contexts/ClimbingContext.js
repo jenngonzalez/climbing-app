@@ -24,7 +24,7 @@ export class ClimbingProvider extends React.Component {
             locations: [],
             nearbyClimbs: [],
             userClimbs: [],
-            selectedClimb: []
+            selectedClimb: null
         }
     }
 
