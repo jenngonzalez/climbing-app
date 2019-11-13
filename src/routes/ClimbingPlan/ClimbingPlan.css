@@ -1,11 +1,11 @@
-p {
+/* p {
   margin: 0 auto;
   max-width: 650px;
 }
 
 p + p {
   margin-top: 15px;
-}
+} */
 
 .climbing-plan {
     margin-top: 80px;
@@ -20,26 +20,24 @@ p + p {
 .climb-location {
   background: none;
   border: none;
-  font-size: 20px;
-}
-
-.climb-list {
-  list-style: none;
+  font-size: 14px;
 }
 
 .weather {
   background-color: #666;
   color: white;
-  width: 75%;
+  width: 90%;
   height: auto;
   margin: auto;
   padding: 2px;
   margin-bottom: 10px;
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  flex-direction: row
 }
 
 .forecast {
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 #weather-icon {
@@ -57,25 +55,40 @@ p + p {
   width: 64px; */
 }
 
-.forecast {
-  margin-top: 50px;
+.map-and-list {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .map {
   font-size: 40px;
   background: #aaa;
-  width: 75%;
-  height: 500px;
+  width: 90%;
+  height: 400px;
   margin: auto;
-  margin-bottom: 15px;
-  padding: 10px;
+  border: 1px solid black;
+  /* margin-bottom: 15px;
+  padding: 10px; */
 }
 
 .list {
   background-color: #666;
   color: white;
-  width: 75%;
-  height: auto;
+  width: 90%;
+  height: 200px;
   margin: auto;
   padding: 2px;
+  margin-bottom: 10px;
+  /* font-size: 12px; */
 }
+
+.climb-list {
+  list-style: none;
+  font-size: 12px;
+  line-height: 0.75;
+}
+
+/* .location-details {
+  display: flex;
+  flex-direction: row
+} */

@@ -9,7 +9,8 @@ const ClimbingContext = React.createContext({
     addLocations: () => {},
     addNearbyClimbs: () => {},
     addUserClimbs: () => {},
-    addUserClimb: () => {}
+    addUserClimb: () => {},
+    selectClimb: () => {}
 })
 
 export default ClimbingContext
@@ -22,7 +23,8 @@ export class ClimbingProvider extends React.Component {
             weather: [],
             locations: [],
             nearbyClimbs: [],
-            userClimbs: []
+            userClimbs: [],
+            selectedClimb: null
         }
     }
 
@@ -46,6 +48,10 @@ export class ClimbingProvider extends React.Component {
         this.setState({userClimbs: [...this.state.userClimbs, userClimb]})
     }
 
+    selectClimb = selectedClimb => {
+        this.setState({ selectedClimb })
+    }
+
 
     render() {
         const value = {
@@ -53,11 +59,13 @@ export class ClimbingProvider extends React.Component {
             locations: this.state.locations,
             nearbyClimbs: this.state.nearbyClimbs,
             userClimbs: this.state.userClimbs,
+            selectedClimb: this.state.selectedClimb,
             addWeather: this.addWeather,
             addLocations: this.addLocations,
             addNearbyClimbs: this.addNearbyClimbs,
             addUserClimbs: this.addUserClimbs,
-            addUserClimb: this.addUserClimb
+            addUserClimb: this.addUserClimb,
+            selectClimb: this.selectClimb
         }
 
         return (

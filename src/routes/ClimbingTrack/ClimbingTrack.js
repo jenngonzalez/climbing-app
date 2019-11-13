@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import GetUserClimbs from '../../services/get-user-climbs-api-service';
-import AddClimbsForm from '../../components/AddClimbs/AddClimbs';
+import AddClimbForm from '../../components/AddClimbForm/AddClimbForm';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import './ClimbingTrack.css';
 
@@ -86,7 +86,7 @@ export default class ClimbingTrack extends Component {
                     <button onClick={this.showAddForm}>
                         Click to Add a Climb!
                     </button>
-                    {this.state.showAddForm && <AddClimbsForm onAddSuccess={this.handleSubmitSuccess} onCancel={this.handleCancel}  />}
+                    {this.state.showAddForm && <AddClimbForm onAddSuccess={this.handleSubmitSuccess} onCancel={this.handleCancel}  />}
                 </div>
                 <div className='user-climbs-container'>
                     SHOW (get) CLIMBS
