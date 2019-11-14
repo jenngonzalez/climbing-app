@@ -108,7 +108,7 @@ export default class AddClimbForm extends Component {
             user_status: climbStatus.value,
             image: climbImage.value,
             }
-            console.log('newClimb', newClimb)
+            // console.log('newClimb', newClimb)
             AddClimbApiService.postClimb(newClimb)
                 .then(this.context.addUserClimb)
                 .then(this.props.onAddSuccess)
@@ -121,10 +121,10 @@ export default class AddClimbForm extends Component {
 
 
     render() {
-        console.log('climb date in state', this.state.climbDate)
-        console.log('context', this.context)
-        console.log('selectedClimb from context', this.context.selectedClimb)
-        console.log('this.props.climbDetails', this.props.climbDetails)
+        // console.log('climb date in state', this.state.climbDate)
+        // console.log('context', this.context)
+        // console.log('selectedClimb from context', this.context.selectedClimb)
+        // console.log('this.props.climbDetails', this.props.climbDetails)
         const { error } = this.state
         return (
             <form className='add-climbs-form' onSubmit={this.handleSubmit}>
