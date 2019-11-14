@@ -10,7 +10,8 @@ const ClimbingContext = React.createContext({
     addNearbyClimbs: () => {},
     addUserClimbs: () => {},
     addUserClimb: () => {},
-    selectClimb: () => {}
+    selectClimb: () => {},
+    deleteClimb: () => {}
 })
 
 export default ClimbingContext
@@ -53,6 +54,15 @@ export class ClimbingProvider extends React.Component {
         this.setState({ selectedClimb })
     }
 
+    deleteClimb = climbId => {
+        const newUserClimbs = this.state.userClimbs.filter(climb => {
+            // return climb.id !== parseInt(plant)
+            return climb.id !== climbId
+        })
+        this.setState({ userClimbs: [...newUserClimbs] }, () => {
+        })
+    }
+
 
     render() {
         const value = {
@@ -66,7 +76,8 @@ export class ClimbingProvider extends React.Component {
             addNearbyClimbs: this.addNearbyClimbs,
             addUserClimbs: this.addUserClimbs,
             addUserClimb: this.addUserClimb,
-            selectClimb: this.selectClimb
+            selectClimb: this.selectClimb,
+            deleteClimb: this.deleteClimb
         }
 
         return (

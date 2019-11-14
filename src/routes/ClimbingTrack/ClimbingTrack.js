@@ -4,6 +4,7 @@ import 'moment-timezone';
 import GetUserClimbs from '../../services/get-user-climbs-api-service';
 import AddClimbForm from '../../components/AddClimbForm/AddClimbForm';
 import ClimbingContext from '../../contexts/ClimbingContext';
+import DeleteClimbApiService from '../../services/delete-climb-api-service';
 import './ClimbingTrack.css';
 
 export default class ClimbingTrack extends Component {
@@ -46,27 +47,13 @@ export default class ClimbingTrack extends Component {
         }
     }
 
-    // showAddForm = () => {
-    //     this.setState({
-    //         showAddForm: true
-    //     })
-    // }
+    deleteClimb = (climbId) => {
+        DeleteClimbApiService.deleteClimb(climbId)
+            .then(() => {
+                this.context.deleteClimb(climbId)
+            })
+    }
 
-    // handleCancel = () => {
-    //     this.setState({
-    //         showAddForm: false
-    //     })
-    // }
-
-    // handleSubmitSuccess = () => {
-    //     this.setState({
-    //         showAddForm: false
-    //     })
-    //     alert('Climb successfully added')
-
-    //     // TODO:
-    //     // GET RID OF ADD FORM IN THIS COMPONENT AND JUST USE ADD PAGE?
-    // }
 
     renderUserClimbs = () => {
         
@@ -76,10 +63,14 @@ export default class ClimbingTrack extends Component {
             return dateB - dateA;
           });
 
+
         return this.context.userClimbs.map(climb =>
             <div className='user-climbs' key={climb.id}>
                 <h3><Moment utc local format="MM/DD/YY">{climb.date}</Moment></h3>
                 <p>{climb.climb_name} - {climb.climb_grade}</p>
+                <p>Your Status: {climb.user_status}</p>
+                <img src={climb.image} alt={climb.name} />
+                <button type='button' onClick={() => {this.deleteClimb(climb.id)}}>Delete Climb</button>
             </div>
         )
     }
