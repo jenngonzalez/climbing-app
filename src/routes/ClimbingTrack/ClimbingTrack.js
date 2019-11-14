@@ -30,9 +30,10 @@ export default class ClimbingTrack extends Component {
                             id: climb.id,
                             date: climb.date,
                             location: climb.location,
-                            name: climb.climb_name,
-                            grade: climb.climb_grade,
-                            status: climb.user_status,
+                            climb_name: climb.climb_name,
+                            climb_type: climb.climb_type,
+                            climb_grade: climb.climb_grade,
+                            user_status: climb.user_status,
                             image: climb.image
                         }
                     })
@@ -74,7 +75,7 @@ export default class ClimbingTrack extends Component {
         return this.context.userClimbs.map(climb =>
             <div className='user-climbs' key={climb.id}>
                 <h3><Moment utc local format="MM/DD/YY">{climb.date}</Moment></h3>
-                <p>{climb.name} - {climb.grade}</p>
+                <p>{climb.climb_name} - {climb.climb_grade}</p>
             </div>
         )
     }
