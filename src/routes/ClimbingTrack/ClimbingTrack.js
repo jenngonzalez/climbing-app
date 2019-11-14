@@ -46,31 +46,29 @@ export default class ClimbingTrack extends Component {
         }
     }
 
-    showAddForm = () => {
-        this.setState({
-            showAddForm: true
-        })
-    }
+    // showAddForm = () => {
+    //     this.setState({
+    //         showAddForm: true
+    //     })
+    // }
 
-    handleCancel = () => {
-        this.setState({
-            showAddForm: false
-        })
-    }
+    // handleCancel = () => {
+    //     this.setState({
+    //         showAddForm: false
+    //     })
+    // }
 
-    handleSubmitSuccess = () => {
-        this.setState({
-            showAddForm: false
-        })
-        alert('Climb successfully added')
-        // TODO:
-        // communicate success to user
-        // climbs section uses context to show climbs - update context?
-    }
+    // handleSubmitSuccess = () => {
+    //     this.setState({
+    //         showAddForm: false
+    //     })
+    //     alert('Climb successfully added')
+
+    //     // TODO:
+    //     // GET RID OF ADD FORM IN THIS COMPONENT AND JUST USE ADD PAGE?
+    // }
 
     renderUserClimbs = () => {
-        // should we put this in a componentDidUpdate in order to get the updated context?
-        // why is context updating and component is updating but just showing date?
         console.log('context.userClimbs', this.context.userClimbs)
         return this.context.userClimbs.map(climb =>
             <div className='user-climbs' key={climb.id}>
@@ -83,12 +81,12 @@ export default class ClimbingTrack extends Component {
     render() {
         return (
             <div className='climbing-track'>
-                <div className='add-form-container'>
+                {/* <div className='add-form-container'>
                     <button onClick={this.showAddForm}>
                         Click to Add a Climb!
                     </button>
                     {this.state.showAddForm && <AddClimbForm onAddSuccess={this.handleSubmitSuccess} onCancel={this.handleCancel}  />}
-                </div>
+                </div> */}
                 <div className='user-climbs-container'>
                     SHOW (get) CLIMBS
                     {this.renderUserClimbs()}
