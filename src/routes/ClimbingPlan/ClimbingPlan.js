@@ -22,11 +22,13 @@ export default class ClimbingPlan extends Component {
             seeDetails: false,
             climbLocs: [],
             location: null,
-            error: null
+            error: null,
+            loading: false
         }
     }
 
     componentDidMount() {
+        this.setState({ loading: true })
         const getPosition = function (options) {
             return new Promise(function (resolve, reject) {
               navigator.geolocation.getCurrentPosition(resolve, reject, options);
@@ -83,6 +85,7 @@ export default class ClimbingPlan extends Component {
                         return climbsObj
                     })
                     this.context.addNearbyClimbs(climbsObj)
+                    this.setState({ loading: false })
                 })
             })
             .catch((err) => {
@@ -177,6 +180,7 @@ export default class ClimbingPlan extends Component {
 
         return (
             <div className='climbing-plan'>
+                {this.state.loading && <p className='loading'>Loading ...</p>}
                 <div className='weather'>
                     Current Weather
                     {/* <p>Current Time: <Moment unix tz={tz} format="MMM Do YYYY hh:mm a">{unixTimestamp}</Moment></p> */}
