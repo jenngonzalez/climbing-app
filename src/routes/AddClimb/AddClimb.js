@@ -15,7 +15,19 @@ export default class AddClimb extends Component {
     }
 
     static defaultProps = {
-        location: {}
+        location: {},
+        history: {
+            push: () => {}
+        }
+    }
+
+    handleAddClimbSuccess = () => {
+        const { history } = this.props
+        history.push('/track')
+    }
+
+    handleCancel = () => {
+        this.props.history.goBack()
     }
 
     render() {
@@ -28,7 +40,7 @@ export default class AddClimb extends Component {
         }
         console.log('props from link', this.props.location.state)
         return (
-            <AddClimbForm climbDetails={climbDetails} />
+            <AddClimbForm climbDetails={climbDetails} onAddSuccess={this.handleAddClimbSuccess} onCancel={this.handleCancel}/>
         )
     }
 }
