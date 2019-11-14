@@ -69,7 +69,13 @@ export default class ClimbingTrack extends Component {
     // }
 
     renderUserClimbs = () => {
-        console.log('context.userClimbs', this.context.userClimbs)
+        
+        this.context.userClimbs.sort(function compare(a, b) {
+            var dateA = new Date(a.date);
+            var dateB = new Date(b.date);
+            return dateB - dateA;
+          });
+
         return this.context.userClimbs.map(climb =>
             <div className='user-climbs' key={climb.id}>
                 <h3><Moment utc local format="MM/DD/YY">{climb.date}</Moment></h3>
