@@ -101,7 +101,9 @@ export default class ClimbingPlan extends Component {
         // only where location matches
     }
 
+    // TO DO :
     // hideDetails = () => {
+        // if already open and clicked --->
     //     this.setState({
     //         seeDetails: false,
     //         location: null
@@ -109,9 +111,9 @@ export default class ClimbingPlan extends Component {
     //     console.log('this.state.location', this.state.location)
     // }
 
-    addClimb = () => {
+    // addClimb = () => {
 
-    }
+    // }
     
 
 

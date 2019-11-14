@@ -9,8 +9,6 @@ import TokenService from '../../services/token-service';
 import './AddClimbForm.css';
 
 
-
-
 // TODO - DatePicker has an issue with daylight savings? - date is off by a day
 // look for fix
 
@@ -93,6 +91,10 @@ export default class AddClimbForm extends Component {
         e.preventDefault()
         this.setState({ loading: true })
         const { climbLocation, climbName, climbType, climbGrade, climbStatus, climbImage } = e.target
+
+        // if setting in state, would it be better to use what's in state to submit? or does it even matter?
+        // const { climbLocation, climbName, climbType, climbGrade, climbStatus, climbImage } = this.state
+
         const hasToken = TokenService.hasAuthToken()
         if(!hasToken) {
             alert('You must be logged in to save a climb')
@@ -110,8 +112,10 @@ export default class AddClimbForm extends Component {
             AddClimbApiService.postClimb(newClimb)
                 .then(this.context.addUserClimb)
                 .then(this.props.onAddSuccess)
-                .then(this.setState({ loading: false }))
-                .catch(this.context.setError)
+                // .catch(this.context.setError)
+                .catch(res => {
+                    this.setState({ loading: false, error: res.error })
+                })
         }
     }
 
