@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import SignUpForm from '../../components/SignUpLoginForms/SignUpForm';
 import LoginForm from '../../components/SignUpLoginForms/LoginForm';
-// import TokenService from '../../services/token-service';
 import AuthContext from '../../contexts/AuthContext';
 import './SignUpLogIn.css';
 
 export default class SignUpLogIn extends Component {
 
-    state = {
-        signUpSuccess: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            signUpSuccess: false
+        }
     }
-
+    
     static defaultProps = {
         location: {},
         history: {
@@ -29,7 +31,6 @@ export default class SignUpLogIn extends Component {
 
     handleLoginSuccess = () => {
         this.context.loggedIn()
-        // const email = TokenService.getEmail()
         this.props.history.push('/stats')
     }
 
