@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Menu from 'react-burger-menu/lib/menus/slide';
 import { Link } from 'react-router-dom';
+import PrivateRoute from './components/Utils/PrivateRoute';
 import LandingPage from './routes/LandingPage/LandingPage';
 import ClimbingPlan from './routes/ClimbingPlan/ClimbingPlan';
 import ClimbingTrack from './routes/ClimbingTrack/ClimbingTrack';
@@ -72,6 +73,12 @@ export default class App extends Component {
 
   }
 
+  renderPrivateLinks = () => {
+    return (
+      <div />
+    )
+  }
+
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
     TokenService.clearEmail()
@@ -115,15 +122,15 @@ export default class App extends Component {
               path='/plan'
               component={ClimbingPlan}
             />
-            <Route
+            <PrivateRoute
               path='/track'
               component={ClimbingTrack}
             />
-            <Route
+            <PrivateRoute
               path='/add'
               component={AddClimb}
             />
-            <Route
+            <PrivateRoute
               path='/stats'
               component={ClimbingStats}
             />
