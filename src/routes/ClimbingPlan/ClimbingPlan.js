@@ -97,8 +97,6 @@ export default class ClimbingPlan extends Component {
             location: climbArea,
             climbLocs: climbLatLng
         })
-        // TODO : add specific climb info to state, where it can be sent to 'track' component to prepopulate 'add climb' form
-        // only where location matches
     }
 
     // TO DO :
@@ -110,11 +108,6 @@ export default class ClimbingPlan extends Component {
     //     })
     //     console.log('this.state.location', this.state.location)
     // }
-
-    // addClimb = () => {
-
-    // }
-    
 
 
     renderLocations = () => {
@@ -142,39 +135,34 @@ export default class ClimbingPlan extends Component {
                 })
             })
 
-            const climbData = climb.climbs.map(c => {
-                return (
-                    // <ul key={c.id} className='climb-list'>
-                    //     <li key={c.name}>{c.name}</li>
-                    //     <button>+ Track This Climb</button>
-                    //     {/* <li key={c.type}>Type: {c.type}</li>
-                    //     <li key={c.grade}> Grade: {c.rating}</li> */}
-                    // </ul>
-                    <div key={c.id} className='climb-list'>
-                        <p>{c.name}</p>
-                    </div>
-                )
- 
-            })
             return (
-                <div key={i}>
+                <div key={i} className='location-and-link'>
                     <button
                         className='climb-location'
                         onClick={() => this.seeDetails(climbArea, climbLatLng)}
                     >
                         {climbArea}
                     </button>
-                    <div className='location-details'>
-                        {/* working but can only have one menu open at a time */}
-                        {(visible && location === climbArea) && <div>{climbData}</div>}
-                    </div>
+                    <Link to={{
+                        pathname: '/climbdetails',
+                        state: {
+                            climbArea: climbArea,
+                            climbLatLng: climbLatLng
+                        }
+                    }}>
+                        See Location Info ->
+                    </Link>
+                    {/* <div className='location-details'> */}
+                        {/* working but can only have one menu open at a time
+                        {(visible && location === climbArea) && <div>climbData</div>}
+                    </div> */}
                 </div>
             )
         })
         return (
-            <>
+            <div className='area-list'>
                 {displayClimbs}
-            </>
+            </div>
         )
     }
 
@@ -185,7 +173,7 @@ export default class ClimbingPlan extends Component {
         const tz = this.context.weather.timezone
         const icon = this.context.weather.weatherIcon
 
-        console.log('context selectedClimb', this.context.selectedClimb)
+        // console.log('context selectedClimb', this.context.selectedClimb)
 
         return (
             <div className='climbing-plan'>
@@ -210,7 +198,7 @@ export default class ClimbingPlan extends Component {
                 </div>
                 {this.context.selectedClimb &&
                     <div className='selected-climb'>
-                        {this.context.selectedClimb.name} - 
+                        {this.context.selectedClimb.name} -
                         <Link to={{
                             pathname: '/add',
                             state: {
@@ -225,7 +213,12 @@ export default class ClimbingPlan extends Component {
                         </Link>
                     </div>
                 }
-                <div className='map-and-list'>
+                {/* <div className='map-and-list'> */}
+                {/* TODO: need this container for flex to desktop to work?? */}
+                    <div className='list'>
+                        Nearby Climbing Areas
+                        {this.renderLocations()}
+                    </div>
                     <div className='map'>
                     {!this.state.location
                         ? <p className='clickMessage'>click a location to see climbs on the map</p>
@@ -237,11 +230,11 @@ export default class ClimbingPlan extends Component {
                         />
                     }
                     </div>
-                    <div className='list'>
+                    {/* <div className='list'>
                         Nearby Climbing Areas
                         {this.renderLocations()}
-                    </div>
-                </div>
+                    </div> */}
+                {/* </div> */}
             </div>
         )
     }

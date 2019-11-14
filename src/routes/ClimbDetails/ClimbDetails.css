@@ -1,0 +1,19 @@
+.selected-location-details {
+    text-align: center;
+    margin: auto;
+}
+
+.location-details {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.details-image {
+    margin-right: 50px;
+}

@@ -8,6 +8,7 @@ import ClimbingPlan from './routes/ClimbingPlan/ClimbingPlan';
 import ClimbingTrack from './routes/ClimbingTrack/ClimbingTrack';
 import AddClimb from './routes/AddClimb/AddClimb';
 import ClimbingStats from './routes/ClimbingStats/ClimbingStats';
+import ClimbDetails from './routes/ClimbDetails/ClimbDetails';
 import SignUpLogIn from './routes/SignUpLogIn/SignUpLogIn';
 import NotFoundPage from './routes/NotFoundPage/NotFoundPage';
 import AuthContext from './contexts/AuthContext';
@@ -133,6 +134,10 @@ export default class App extends Component {
             <PrivateRoute
               path='/stats'
               component={ClimbingStats}
+            />
+            <Route
+              path='/climbdetails'
+              component={ClimbDetails}
             />
             <Route
               path='/signuplogin'
