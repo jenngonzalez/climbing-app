@@ -5,13 +5,36 @@ export default class AddClimb extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            location: this.props.location.state.location || '',
-            name: this.props.location.state.name || '',
-            type: this.props.location.state.type || '',
-            grade: this.props.location.state.grade || '',
-            image: this.props.location.state.image || ''
+        if(this.props.location.state) {
+            this.state = {
+                location: this.props.location.state.location,
+                name: this.props.location.state.name,
+                type: this.props.location.state.type,
+                grade: this.props.location.state.grade,
+                image: this.props.location.state.image,
+            }
+        } else {
+            this.state = {
+                location: '',
+                name: '',
+                type: '',
+                grade: '',
+                image: ''
+            }
         }
+    }
+
+    componentDidMount() {
+        // setState from context after mounting?
+        // logical OR not working if this.props.location.state DNE
+
+        // this.setState({
+        //     location: this.props.location.state.location || '',
+        //     name: this.props.location.state.name || '',
+        //     type: this.props.location.state.type || '',
+        //     grade: this.props.location.state.grade || '',
+        //     image: this.props.location.state.image || ''
+        // })
     }
 
     static defaultProps = {
