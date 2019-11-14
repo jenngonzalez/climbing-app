@@ -9,8 +9,6 @@ import TokenService from '../../services/token-service';
 import './AddClimbForm.css';
 
 
-
-
 // TODO - DatePicker has an issue with daylight savings? - date is off by a day
 // look for fix
 
