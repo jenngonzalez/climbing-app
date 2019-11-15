@@ -153,7 +153,7 @@ export default class ClimbingPlan extends Component {
                             climbLatLng: climbLatLng
                         }
                     }}>
-                        See Location Info ->
+                        See Location Info
                     </Link>
                     {/* <div className='location-details'> */}
                         {/* working but can only have one menu open at a time

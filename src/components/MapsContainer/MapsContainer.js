@@ -43,8 +43,6 @@ export class MapContainer extends Component {
     }
 
     onMarkerClick = (props, marker, e) => {
-    console.log('onMarkerClick props', props)
-    console.log('onMarkerClick marker', marker)
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
@@ -61,7 +59,7 @@ export class MapContainer extends Component {
             })
         }
         this.context.selectClimb(null)
-    };
+    }
 
 
     renderMarkers = () => {
@@ -86,6 +84,7 @@ export class MapContainer extends Component {
             )
         })
     }
+  
 
     render() {
 
@@ -101,11 +100,11 @@ export class MapContainer extends Component {
             <Map
                 google={this.props.google}
                 style={style}
-                initialCenter={{
+                center={{
                     lat: this.props.climbLocs[0].climbLat,
                     lng: this.props.climbLocs[0].climbLng
                 }}
-                zoom={7}
+                zoom={8}
                 onClick={this.onMapClicked}
             >
 
