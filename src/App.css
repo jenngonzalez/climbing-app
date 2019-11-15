@@ -1,18 +1,20 @@
 header {
   text-align: center;
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
   top: 0;
   margin: auto;
   height: 75px;
   width: 100%;
-  background-color: #EFE7D1;
+  /* background-color: rgb(193, 179, 179); */
   font-family: 'TheyPerished';
-  font-size: 16px;
-  color: #2781FF;
+  font-size: 14px;
+  color: rgb(4, 42, 53)
 }
 
 header h1 {
   position: fixed center;
+  /* float: right; */
   font-family: 'TheyPerished', regular;
 }
 
@@ -89,16 +91,18 @@ footer a:visited {
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: fixed;
-  width: 25px;
-  height: 25px;
-  left: 36px;
+  /* position: fixed; */
+  position: absolute;
+  /* float: left; */
+  width: 20px;
+  height: 20px;
+  left: 2vw;
   top: 25px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #2781FF;
+  background: rgb(4, 42, 53);
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -129,7 +133,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* General sidebar styles */
 .bm-menu {
   /* background: #373a47; */
-  background: #2781FF;
+  background: rgb(4, 42, 53);
+  opacity: 0.85;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }
@@ -141,7 +146,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Wrapper for item list */
 .bm-item-list {
-  background-color: #2781FF;
+  background-color: rgb(4, 42, 53);
+  /* opacity: 0.9; */
   padding: 0.8em;
   display: block;
 }

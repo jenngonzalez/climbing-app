@@ -7,11 +7,11 @@
 section {
   min-height: 200px;
   padding: 30px 15px;
-  background-color: #bbb;
+  background-color: rgb(4, 42, 53);
 }
 
 section:nth-child(even) {
-  background-color: #ddd;
+  background-color: rgb(4, 42, 53)
 }
 
 p {
@@ -21,4 +21,22 @@ p {
 
 p + p {
   margin-top: 15px;
+}
+
+.info-section {
+  height: 40vh;
+  text-align: center;
+  /* line-height: 70vh; */
+  color: white;
+  font-size: 22px;
+  /* background-image: url(./el-capitan-922758_1920.jpg);
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+.landing-info {
+  width: 85%;
+  border-bottom: 1px solid black;
+  margin: auto;
+  padding: 10px;
 }

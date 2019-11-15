@@ -24,7 +24,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #EFE7D1;
+  background-image: url(./el-capitan-mobile.jpg);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center top;
+  background-color: rgb(208, 188, 188); /* Used if the image is unavailable */
+  background-size: 100% auto;
 }
 
 code {
