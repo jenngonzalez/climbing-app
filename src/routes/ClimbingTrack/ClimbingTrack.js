@@ -7,6 +7,9 @@ import ClimbingContext from '../../contexts/ClimbingContext';
 import DeleteClimbApiService from '../../services/delete-climb-api-service';
 import './ClimbingTrack.css';
 
+const moment = require('moment');
+moment().format();
+
 export default class ClimbingTrack extends Component {
 
     constructor(props) {
@@ -23,7 +26,7 @@ export default class ClimbingTrack extends Component {
         // if(!this.context.userClimbs.length) {
             // how else to conditionally make the server request?
             // length doesn't work, after adding a climb the context has a length
-            
+
             this.setState({
                 loading: true
             })
@@ -69,7 +72,8 @@ export default class ClimbingTrack extends Component {
 
         return this.context.userClimbs.map(climb =>
             <div className='user-climbs' key={climb.id}>
-                <h3><Moment utc local format="MM/DD/YY">{climb.date}</Moment></h3>
+                <h3><Moment local format="MM/DD/YY">{climb.date}</Moment></h3>
+                <p>Location: {climb.location}</p>
                 <p>{climb.climb_name} - {climb.climb_grade}</p>
                 <p>Your Status: {climb.user_status}</p>
                 <img src={climb.image} alt={climb.name} />
@@ -79,6 +83,7 @@ export default class ClimbingTrack extends Component {
     }
 
     render() {
+        console.log('context userClimbs', this.context.userClimbs)
         return (
             <div className='climbing-track'>
                 {/* <div className='add-form-container'>

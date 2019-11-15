@@ -56,7 +56,6 @@ export class ClimbingProvider extends React.Component {
 
     deleteClimb = climbId => {
         const newUserClimbs = this.state.userClimbs.filter(climb => {
-            // return climb.id !== parseInt(plant)
             return climb.id !== climbId
         })
         this.setState({ userClimbs: [...newUserClimbs] }, () => {

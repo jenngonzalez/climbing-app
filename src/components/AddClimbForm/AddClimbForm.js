@@ -45,7 +45,7 @@ export default class AddClimbForm extends Component {
     }
 
 
-    handleDateChange = (date) => {
+    handleChangeDate = (date) => {
         this.setState({
             climbDate: date
         });
@@ -92,15 +92,20 @@ export default class AddClimbForm extends Component {
         this.setState({ loading: true })
         const { climbLocation, climbName, climbType, climbGrade, climbStatus, climbImage } = e.target
 
-        // if setting in state, would it be better to use what's in state to submit? or does it even matter?
         // const { climbLocation, climbName, climbType, climbGrade, climbStatus, climbImage } = this.state
+     
+        // const climbDateToString = this.state.climbDate.toString()
+        // formatting to include time not working, .toString() throws an error
+
+        const climbDateToDateString = this.state.climbDate.toDateString()
+   
 
         const hasToken = TokenService.hasAuthToken()
         if(!hasToken) {
             alert('You must be logged in to save a climb')
         } else {
             const newClimb = {
-            date: this.state.climbDate,
+            date: climbDateToDateString,
             location: climbLocation.value,
             climb_name: climbName.value,
             climb_type: climbType.value,
@@ -108,11 +113,9 @@ export default class AddClimbForm extends Component {
             user_status: climbStatus.value,
             image: climbImage.value,
             }
-            // console.log('newClimb', newClimb)
             AddClimbApiService.postClimb(newClimb)
                 .then(this.context.addUserClimb)
                 .then(this.props.onAddSuccess)
-                // .catch(this.context.setError)
                 .catch(res => {
                     this.setState({ loading: false, error: res.error })
                 })
@@ -121,10 +124,6 @@ export default class AddClimbForm extends Component {
 
 
     render() {
-        // console.log('climb date in state', this.state.climbDate)
-        // console.log('context', this.context)
-        // console.log('selectedClimb from context', this.context.selectedClimb)
-        // console.log('this.props.climbDetails', this.props.climbDetails)
         const { error } = this.state
         return (
             <form className='add-climbs-form' onSubmit={this.handleSubmit}>
@@ -135,7 +134,7 @@ export default class AddClimbForm extends Component {
                 <label htmlFor='climbDate'>Date:</label>
                 <DatePicker
                     selected={this.state.climbDate}
-                    onChange={this.handleDateChange}
+                    onChange={this.handleChangeDate}
                     id='climbDate'
                     aria-label='date of your accomplished climb'
                     aria-required='true'
