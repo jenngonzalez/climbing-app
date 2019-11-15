@@ -20,7 +20,10 @@ export default class ClimbingTrack extends Component {
     static contextType = ClimbingContext
 
     componentDidMount() {
-        if(!this.context.userClimbs.length) {
+        // if(!this.context.userClimbs.length) {
+            // how else to conditionally make the server request?
+            // length doesn't work, after adding a climb the context has a length
+            
             this.setState({
                 loading: true
             })
@@ -44,7 +47,7 @@ export default class ClimbingTrack extends Component {
                     console.log(err)
                     throw err
                 })
-        }
+        // }
     }
 
     deleteClimb = (climbId) => {
