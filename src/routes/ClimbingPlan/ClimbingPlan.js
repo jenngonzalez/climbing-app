@@ -175,6 +175,7 @@ export default class ClimbingPlan extends Component {
         const unixTimestamp = this.context.weather.time
         const tz = this.context.weather.timezone
         const icon = this.context.weather.weatherIcon
+        const humidity = (this.context.weather.humidity)*100
 
         // console.log('context selectedClimb', this.context.selectedClimb)
 
@@ -185,8 +186,8 @@ export default class ClimbingPlan extends Component {
                     Current Weather
                     {/* <p>Current Time: <Moment unix tz={tz} format="MMM Do YYYY hh:mm a">{unixTimestamp}</Moment></p> */}
                     <div className='forecast'>
-                        <p>{this.context.weather.temperature} &deg;F</p>
-                        {/* <p>Current Humidity: {this.context.weather.humidity}</p> */}
+                        <p>Temp: {this.context.weather.temperature} &deg;F</p>
+                        <p>Humidity: {humidity}%</p>
                         {/* need to multiply by 100 and put a % after */}
                     </div>
                     <div className='skycon'>
