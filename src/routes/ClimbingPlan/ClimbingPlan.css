@@ -1,34 +1,44 @@
 .climbing-plan {
-    margin-top: 80px;
+    margin-top: 90px;
     text-align: center;
-    line-height: 1.5;
+    /* line-height: 1.5; */
 }
 
-.hidden {
-  display: none
-}
-
-.climb-location {
-  background: none;
-  border: none;
-  font-size: 14px;
-}
-
-.weather {
-  background-color: #666;
-  color: white;
-  width: 90%;
-  height: auto;
-  margin: auto;
-  padding: 2px;
-  margin-bottom: 10px;
-  /* text-align: center; */
+.weather-container {
   display: flex;
-  flex-direction: row
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+  background-color: rgb(4, 42, 53, 0.75);
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 
-.forecast {
-  /* margin-top: 50px; */
+.weather-container p {
+  font-size: 12px;
+  padding: 2px;
+}
+
+.daily-weather {
+  display: flex;
+  flex-direction: column;
+  width: 12.5%;
+  /* margin-bottom: 10px; */
+}
+
+.weekday {
+  margin-bottom: 10px;
+}
+
+.temp-high {
+  font-weight: bold;
+  color: #00FFC4;
+}
+
+.temp-low {
+  color: gray;
 }
 
 #weather-icon {
@@ -42,6 +52,7 @@
   text-align: center;
   max-height: 40vw;
   max-width: 40vw;
+  margin-top: 10px;
   /* height: 64px;
   width: 64px; */
 }
@@ -53,34 +64,56 @@
 
 .map {
   font-size: 40px;
-  background: #aaa;
-  width: 90%;
   height: 400px;
   margin: auto;
-  border: 1px solid black;
-  /* margin-bottom: 15px;
-  padding: 10px; */
 }
 
 .list {
-  background-color: #666;
+  background-color: rgb(4, 42, 53, 0.75);
   color: white;
-  width: 90%;
-  height: 200px;
+  /* height: 200px; */
   margin: auto;
   padding: 2px;
-  margin-bottom: 10px;
+}
+
+.list h2 {
+  font-family: 'BeKindToTheEarth';
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: normal;
 }
 
 .area-list {
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
+  margin: auto;
 }
 
 .location-and-link {
-  text-decoration: none;
+  color: white;
+  /* text-decoration: none; */
   font-size: 10px;
+  width: 30%;
+  margin: auto;
+  padding: 2px;
+}
+
+.location-and-link a {
+  text-decoration: none;
+  color: white;
+}
+
+.location-and-link p {
+  font-size: 12px;
+  color: #00FFC4;
+}
+
+.location-and-link button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: white;
 }
 
 .climb-list {

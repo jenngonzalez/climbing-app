@@ -23,7 +23,8 @@ export default class ClimbingPlan extends Component {
             climbLocs: [],
             location: null,
             error: null,
-            loading: false
+            loading: false,
+            dailyData: null
         }
     }
 
@@ -44,14 +45,24 @@ export default class ClimbingPlan extends Component {
                     lng: lng
                 })
                 GetWeatherApiService.getWeather(lat, lng)
-                    .then(weatherData=> {
+                    .then(weatherData => {
                         const { timezone } = weatherData
-                        const { temperature, summary, humidity, time } = weatherData.currently
-                        // format icon string so react-skycons recognizes it
-                        const weatherIcon = weatherData.currently.icon.toUpperCase().replace(/-/g, '_')
-                        const currentWeather = { temperature, summary, humidity, time, timezone, weatherIcon }
-
-                        this.context.addWeather(currentWeather)
+                        const { time, temperature, summary, humidity } = weatherData.currently
+                        const currentIcon = weatherData.currently.icon.toUpperCase().replace(/-/g, '_')
+                        const currentData = { timezone, time, temperature, summary, humidity, currentIcon}
+                        const dailyData = weatherData.daily.data.map(day => {
+                            return {
+                                timezone: timezone,
+                                date: day.time,
+                                dailySummary: day.summary,
+                                dailyIcon: day.icon.toUpperCase().replace(/-/g, '_'),
+                                dailyTempHigh: day.temperatureHigh,
+                                dailyTempLow: day.temperatureLow,
+                                dailyHumidity: day.humidity
+                            }
+                        })
+                        this.context.addCurrentWeather(currentData)
+                        this.context.addDailyWeather(dailyData)
                     })
                 GetClimbsApiService.getClimbs(lat, lng)
                 .then(climbData => {
@@ -112,6 +123,25 @@ export default class ClimbingPlan extends Component {
     //     console.log('this.state.location', this.state.location)
     // }
 
+    renderWeather = () => {
+        return this.context.dailyWeather.map((day, i) => 
+            <div className='daily-weather' key={i}>
+                <Moment unix tz={day.timezone} format='ddd' className='weekday'>{day.date}</Moment>
+                {/* {day.dailySummary} */}
+                <p className='temp-high'>{Math.round(day.dailyTempHigh)}&deg;</p>
+                <p className='temp-low'>{Math.round(day.dailyTempLow)}&deg;</p>
+                <div className='skycon'>
+                    <Skycons 
+                        color='white' 
+                        icon={day.dailyIcon}
+                        autoplay={true}
+                        id='weather-icon'
+                        height= {128}
+                    />
+                </div>
+            </div>
+        )
+    }
 
     renderLocations = () => {
         const visible = this.state.seeDetails
@@ -121,7 +151,7 @@ export default class ClimbingPlan extends Component {
         const sortedClimbs = Object.keys(climbs).map(key => ({location: key, climbs: climbs[key]}));
 
         const displayClimbs = sortedClimbs.map((climb, i) => {
-            const climbArea = climb.location
+            const climbArea = climb.location.toUpperCase()
     
             const climbLatLng = []
             climb.climbs.forEach(c => {
@@ -140,11 +170,12 @@ export default class ClimbingPlan extends Component {
 
             return (
                 <div key={i} className='location-and-link'>
+                    <p>{climbArea}</p>
                     <button
                         className='climb-location'
                         onClick={() => this.seeDetails(climbArea, climbLatLng)}
                     >
-                        {climbArea}
+                        See On Map
                     </button>
                     <Link to={{
                         pathname: '/climbdetails',
@@ -172,35 +203,15 @@ export default class ClimbingPlan extends Component {
 
 
     render() {
-        const unixTimestamp = this.context.weather.time
-        const tz = this.context.weather.timezone
-        const icon = this.context.weather.weatherIcon
-        const humidity = (this.context.weather.humidity)*100
-
-        // console.log('context selectedClimb', this.context.selectedClimb)
-
+        // const humidity = (this.context.weather.humidity)*100
         return (
             <div className='climbing-plan'>
                 {this.state.loading && <p className='loading'>Loading ...</p>}
-                <div className='weather'>
-                    Current Weather
-                    {/* <p>Current Time: <Moment unix tz={tz} format="MMM Do YYYY hh:mm a">{unixTimestamp}</Moment></p> */}
-                    <div className='forecast'>
-                        <p>Temp: {this.context.weather.temperature} &deg;F</p>
-                        <p>Humidity: {humidity}%</p>
-                        {/* need to multiply by 100 and put a % after */}
-                    </div>
-                    <div className='skycon'>
-                        <p>{this.context.weather.summary}</p>
-                        <Skycons 
-                            color='white' 
-                            icon={icon}
-                            autoplay={true}
-                            id='weather-icon'
-                            height= {64}
-                        />
-                    </div>
+               
+                <div className='weather-container'>
+                    {this.renderWeather()}
                 </div>
+
                 {this.context.selectedClimb &&
                     <div className='selected-climb'>
                         {this.context.selectedClimb.name} -
@@ -221,24 +232,19 @@ export default class ClimbingPlan extends Component {
                 {/* <div className='map-and-list'> */}
                 {/* TODO: need this container for flex to desktop to work?? */}
                     <div className='list'>
-                        Nearby Climbing Areas
+                        <h2>Nearby Climbing Areas</h2>
                         {this.renderLocations()}
                     </div>
                     <div className='map'>
-                    {!this.state.location
-                        ? <p className='clickMessage'>click a location to see climbs on the map</p>
-                        : <MapsContainer
-                            selectedPlace={this.state.location}
-                            climbLocs={this.state.climbLocs}
-                            lat={this.state.lat}
-                            lng={this.state.lng}
-                        />
-                    }
+                        {this.state.location &&
+                            <MapsContainer
+                                selectedPlace={this.state.location}
+                                climbLocs={this.state.climbLocs}
+                                lat={this.state.lat}
+                                lng={this.state.lng}
+                            />
+                        }
                     </div>
-                    {/* <div className='list'>
-                        Nearby Climbing Areas
-                        {this.renderLocations()}
-                    </div> */}
                 {/* </div> */}
             </div>
         )

@@ -1,11 +1,13 @@
 import React from 'react';
 
 const ClimbingContext = React.createContext({
-    weather: null,
+    currentWeather: [],
+    dailyWeather: [],
     locations: [],
     nearbyClimbs: [],
     userClimbs: [],
-    addWeather: () => {},
+    addCurrentWeather: () => {},
+    addDailyWeather: () => {},
     addLocations: () => {},
     addNearbyClimbs: () => {},
     addUserClimbs: () => {},
@@ -22,7 +24,8 @@ export class ClimbingProvider extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            weather: [],
+            currentWeather: [],
+            dailyWeather: [],
             locations: [],
             nearbyClimbs: [],
             userClimbs: [],
@@ -30,8 +33,12 @@ export class ClimbingProvider extends React.Component {
         }
     }
 
-    addWeather = weather => {
-        this.setState({ weather })
+    addCurrentWeather = currentWeather => {
+        this.setState({ currentWeather })
+    }
+
+    addDailyWeather = dailyWeather => {
+        this.setState({ dailyWeather })
     }
 
     addLocations = locations => {
@@ -65,12 +72,14 @@ export class ClimbingProvider extends React.Component {
 
     render() {
         const value = {
-            weather: this.state.weather,
+            currentWeather: this.state.currentWeather,
+            dailyWeather: this.state.dailyWeather,
             locations: this.state.locations,
             nearbyClimbs: this.state.nearbyClimbs,
             userClimbs: this.state.userClimbs,
             selectedClimb: this.state.selectedClimb,
-            addWeather: this.addWeather,
+            addCurrentWeather: this.addCurrentWeather,
+            addDailyWeather: this.addDailyWeather,
             addLocations: this.addLocations,
             addNearbyClimbs: this.addNearbyClimbs,
             addUserClimbs: this.addUserClimbs,
