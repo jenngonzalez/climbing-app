@@ -28,7 +28,7 @@
 }
 
 .graph {
-  width: 75%;
+  width: 80%;
   height: 200px;
   background-color: rgb(4, 42, 53, 0.75);
   color: white;
@@ -37,4 +37,14 @@
   vertical-align: center;
   margin: auto;
   margin-bottom: 50px;
+}
+
+.add-message {
+  font-family: 'BeKindToTheEarth';
+  font-size: 20px;
+  text-transform: uppercase;
+  color: white;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 10px; 
 }

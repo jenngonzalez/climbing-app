@@ -7,6 +7,13 @@ export default class ClimbingStats extends Component {
 
     static contextType = ClimbingContext
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: false
+        }
+    }
+
     componentDidMount() {
         if(!this.context.userClimbs.length) {
             this.setState({
@@ -49,18 +56,20 @@ export default class ClimbingStats extends Component {
 
         return (
             <div className='climbing-stats'>
+                {this.state.loading && <p className='loading'>Loading ...</p>}
+                {!this.context.userClimbs.length && <p className='add-message'>Add a few of your completed climbs to see your stats!</p>}
                 <div className='stats'>
                     <h3>YOUR OVERALL &#9660;</h3>
                     <section className='best'>
                         BEST
                         <span className='grade'>
-                            V{maxGrade}
+                            V{!this.context.userClimbs.length ? '?' : {maxGrade}}
                         </span>
                     </section>
                     <section className='average'>
                         AVERAGE
                         <span className='grade'>
-                            V{avgGrade}
+                            V{!this.context.userClimbs.length ? '?' : {avgGrade}}
                         </span>
                     </section>
                 </div>
