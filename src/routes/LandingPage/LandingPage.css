@@ -4,16 +4,6 @@
     line-height: 1.5;
 }
 
-section {
-  min-height: 200px;
-  padding: 30px 15px;
-  background-color: rgb(4, 42, 53);
-}
-
-section:nth-child(even) {
-  background-color: rgb(4, 42, 53)
-}
-
 p {
   margin: 0 auto;
   max-width: 650px;
@@ -28,7 +18,10 @@ p + p {
   text-align: center;
   /* line-height: 70vh; */
   color: white;
-  font-size: 22px;
+  font-size: 26px;
+  font-family: 'Angeline_Vintage';
+  /* position: fixed;
+  right: 12px; */
   /* background-image: url(./el-capitan-922758_1920.jpg);
   background-repeat: no-repeat;
   background-size: cover; */
@@ -39,4 +32,10 @@ p + p {
   border-bottom: 1px solid black;
   margin: auto;
   padding: 10px;
+  background: rgb(4, 42, 53, 0.5)
+}
+
+.landing-info h3 {
+  font-family: 'BeKindToTheEarth';
+  text-transform: uppercase;
 }

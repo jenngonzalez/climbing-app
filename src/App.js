@@ -13,6 +13,7 @@ import SignUpLogIn from './routes/SignUpLogIn/SignUpLogIn';
 import NotFoundPage from './routes/NotFoundPage/NotFoundPage';
 import AuthContext from './contexts/AuthContext';
 import TokenService from './services/token-service';
+import mountains from './mountains-white.png';
 import './App.css';
 
 
@@ -46,8 +47,7 @@ export default class App extends Component {
   renderLogoutLink = () => {
     const email = TokenService.getEmail()
     return (
-      <div className='menu-logged-in'>
-        Logged In As {email}
+      <>
         <Link
           to='/signuplogin'
           id='logout'
@@ -55,7 +55,9 @@ export default class App extends Component {
           onClick={this.handleLogoutClick}>
           Logout
         </Link>
-      </div>
+        <br /><br />
+        Logged In As {email}
+      </>
     )
   }
 
@@ -99,58 +101,60 @@ export default class App extends Component {
     return (
       <div className='app'>
         <AuthContext.Provider value={contextValue}>
-        <header className='app-header'>
-          <h1>Approach <span className='mountains'>AA</span> Ascend</h1>
-        </header>               
-        <Menu className={ 'nav-menu' }>
-            <Link id='plan' className='menu-item' to='/plan'>Plan</Link>
-            <Link id='track' className='menu-item' to='/track'>Track</Link>
-            <Link id='add' className='menu-item' to='/add'>Add</Link>
-            <Link id='stats' className='menu-item' to='/stats'>Stats</Link>
-            <Link id='home' className='menu-item' to='/'>Home</Link>
-            {TokenService.hasAuthToken()
-                ? this.renderLogoutLink()
-                : this.renderLoginLink()}
-        </Menu>
-        <main className='app-main' id='page-wrap'>
-          {this.state.hasError && <p className='error'>Error - please go back to the previous page and try again</p>}
-          <Switch>
-            <Route
-              exact path='/'
-              component={LandingPage}
-            />
-            <Route
-              path='/plan'
-              component={ClimbingPlan}
-            />
-            <PrivateRoute
-              path='/track'
-              component={ClimbingTrack}
-            />
-            <PrivateRoute
-              path='/add'
-              component={AddClimb}
-            />
-            <PrivateRoute
-              path='/stats'
-              component={ClimbingStats}
-            />
-            <Route
-              path='/climbdetails'
-              component={ClimbDetails}
-            />
-            <Route
-              path='/signuplogin'
-              component={SignUpLogIn}
-            />
-            <Route
-              component={NotFoundPage}
-            />
-          </Switch>
-        </main>
-        <footer>
-          <p className='copyright'>&copy; Jennifer Gonzalez 2019</p>
-        </footer>
+          <header className='app-header'>
+            <h1>-Ascend-</h1>
+          </header>               
+          <Menu className='nav-menu'>
+              <Link id='home' className='menu-item' to='/'> 
+                <img src={mountains} alt='mountains icon' className='mountain-icon'/>
+              </Link>
+              <Link id='plan' className='menu-item' to='/plan'>Plan</Link>
+              <Link id='track' className='menu-item' to='/track'>Track</Link>
+              <Link id='add' className='menu-item' to='/add'>Add</Link>
+              <Link id='stats' className='menu-item' to='/stats'>Stats</Link>
+              {TokenService.hasAuthToken()
+                  ? this.renderLogoutLink()
+                  : this.renderLoginLink()}
+          </Menu>
+          <main className='app-main' id='page-wrap'>
+            {this.state.hasError && <p className='error'>Error - please go back to the previous page and try again</p>}
+            <Switch>
+              <Route
+                exact path='/'
+                component={LandingPage}
+              />
+              <Route
+                path='/plan'
+                component={ClimbingPlan}
+              />
+              <PrivateRoute
+                path='/track'
+                component={ClimbingTrack}
+              />
+              <PrivateRoute
+                path='/add'
+                component={AddClimb}
+              />
+              <PrivateRoute
+                path='/stats'
+                component={ClimbingStats}
+              />
+              <Route
+                path='/climbdetails'
+                component={ClimbDetails}
+              />
+              <Route
+                path='/signuplogin'
+                component={SignUpLogIn}
+              />
+              <Route
+                component={NotFoundPage}
+              />
+            </Switch>
+          </main>
+          <footer>
+            <p className='copyright'>&copy; Jennifer Gonzalez 2019</p>
+          </footer>
         </AuthContext.Provider>
       </div>
     )
