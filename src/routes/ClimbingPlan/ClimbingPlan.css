@@ -1,3 +1,10 @@
+.loading {
+  font-family: 'Angeline_Vintage';
+  font-size: 26px;
+  color: white;
+  text-align: center;
+}
+
 .climbing-plan {
     margin-top: 90px;
     text-align: center;
@@ -120,4 +127,23 @@
   list-style: none;
   font-size: 12px;
   line-height: 0.75;
+}
+
+.selected-climb {
+  background-color:rgb(4, 42, 53, 0.75);
+  color: yellow;
+  padding: 20px;
+  height: 80px;
+  border-top: 1px dashed white;
+  border-bottom: 1px dashed white;
+}
+
+.selected-climb-name {
+  font-family: 'BeKindToTheEarth';
+}
+
+.selected-climb a {
+  color: white;
+  font-size: 10px;
+  text-decoration: none;
 }

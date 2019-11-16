@@ -205,47 +205,52 @@ export default class ClimbingPlan extends Component {
     render() {
         // const humidity = (this.context.weather.humidity)*100
         return (
-            <div className='climbing-plan'>
-                {this.state.loading && <p className='loading'>Loading ...</p>}
-               
-                <div className='weather-container'>
-                    {this.renderWeather()}
-                </div>
-
-                {this.context.selectedClimb &&
-                    <div className='selected-climb'>
-                        {this.context.selectedClimb.name} -
-                        <Link to={{
-                            pathname: '/add',
-                            state: {
-                                location: this.context.selectedClimb.location,
-                                name: this.context.selectedClimb.name,
-                                type: this.context.selectedClimb.type,
-                                grade: this.context.selectedClimb.grade,
-                                image: this.context.selectedClimb.image
+            <div className='plan-page-container'>
+                {this.state.loading
+                    ? <p className='loading'>Loading Info for Nearby Climbs ...</p>
+                    : <div className='climbing-plan'>
+                        <div className='weather-container'>
+                            {this.renderWeather()}
+                        </div>
+                        {/* <div className='map-and-list'> */}
+                        {/* TODO: need this container for flex to desktop to work?? */}
+                        <div className='list'>
+                            <h2>Nearby Climbing Areas</h2>
+                            {this.renderLocations()}
+                        </div>
+                        {this.context.selectedClimb &&
+                            <div className='selected-climb'>
+                                <span className='selected-climb-name'>
+                                    "{this.context.selectedClimb.name.toUpperCase()}"
+                                </span>
+                                <br />
+                                <Link to={{
+                                    pathname: '/add',
+                                    state: {
+                                        location: this.context.selectedClimb.location,
+                                        name: this.context.selectedClimb.name,
+                                        type: this.context.selectedClimb.type,
+                                        grade: this.context.selectedClimb.grade,
+                                        image: this.context.selectedClimb.image
+                                    }
+                                }}>
+                                    Track This Climb
+                                </Link>
+                            </div>
+                        }
+                        <div className='map'>
+                            {this.state.location &&
+                                <MapsContainer
+                                    selectedPlace={this.state.location}
+                                    climbLocs={this.state.climbLocs}
+                                    lat={this.state.lat}
+                                    lng={this.state.lng}
+                                />
                             }
-                        }}>
-                            Track This Climb
-                        </Link>
+                        </div>
+                        {/* </div> */}
                     </div>
                 }
-                {/* <div className='map-and-list'> */}
-                {/* TODO: need this container for flex to desktop to work?? */}
-                    <div className='list'>
-                        <h2>Nearby Climbing Areas</h2>
-                        {this.renderLocations()}
-                    </div>
-                    <div className='map'>
-                        {this.state.location &&
-                            <MapsContainer
-                                selectedPlace={this.state.location}
-                                climbLocs={this.state.climbLocs}
-                                lat={this.state.lat}
-                                lng={this.state.lng}
-                            />
-                        }
-                    </div>
-                {/* </div> */}
             </div>
         )
     }
