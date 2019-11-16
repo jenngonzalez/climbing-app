@@ -1,21 +1,26 @@
 .climbing-stats {
-    margin-top: 80px;
+    margin-top: 90px;
     text-align: center;
     line-height: 1.5;
 }
 
 .stats {
-  background-color: #666;
+  background-color: rgb(4, 42, 53, 0.75);
   color: white;
-  width: 75%;
+  width: 80%;
   margin: auto;
   padding: 2px;
   margin-bottom: 10px;
 }
 
+.best,
+.average {
+  display: flex;
+  flex-direction: column;
+}
+
 .grade {
   font-size: 40px;
-  background: #aaa;
   width: 100px;
   margin: auto;
   margin-bottom: 15px;
@@ -25,7 +30,7 @@
 .graph {
   width: 75%;
   height: 200px;
-  background-color: #444;
+  background-color: rgb(4, 42, 53, 0.75);
   color: white;
   padding: 70px 0;
   text-align: center;

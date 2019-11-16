@@ -1,33 +1,24 @@
-.climbing-track {
-    margin-top: 80px;
+.user-climbs-container {
+    margin-top: 90px;
     text-align: center;
     line-height: 1.5;
 }
 
-.climbs {
-  background-color: #666;
+.user-climbs-container h2 {
+  font-family: 'Angeline_Vintage';
   color: white;
-  width: 75%;
-  height: 300px;
-  margin: auto;
-  padding: 2px;
-  margin-bottom: 10px;
-}
-
-.add-form-container {
-  background: #aaa;
-  margin-top: 20px;
-  text-align: center;
-  line-height: 1.5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  font-size: 26px;
 }
 
 .user-climbs {
-  line-height: 1;
-  border: 1px solid black;
+  border: 0.5px solid black;
+  border-bottom: 0.5px solid black;
+  background-color: rgb(4, 42, 53, 0.75);
+  color: white;
   width: 80%;
   margin: auto;
+}
+
+.user-climbs img {
+  border: 2px solid black;
 }

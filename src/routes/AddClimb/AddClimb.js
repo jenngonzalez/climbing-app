@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AddClimbForm from '../../components/AddClimbForm/AddClimbForm';
+import './AddClimb.css';
 
 export default class AddClimb extends Component {
 

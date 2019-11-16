@@ -126,7 +126,7 @@ export default class AddClimbForm extends Component {
     render() {
         const { error } = this.state
         return (
-            <form className='add-climbs-form' onSubmit={this.handleSubmit}>
+            <form className='add-climb-form' onSubmit={this.handleSubmit}>
                 {this.state.loading && <p className='loading'>Submitting Your Info ...</p>}
                 <div role='alert'>
                     {error && <p className='error'>{error}</p>}
@@ -175,10 +175,12 @@ export default class AddClimbForm extends Component {
                 />
                 <label htmlFor='climbType'>
                     Type of Climb:
+                    <br/>
                     <span className='small'>*support for other types coming soon!*</span>
                 </label>
                 <select
                     name='climbType'
+                    className='select-menu'
                     id='climbType'
                     aria-label='type of climb'
                     aria-required='true'
@@ -191,6 +193,7 @@ export default class AddClimbForm extends Component {
                 <label htmlFor='climbGrade'>Route/Problem Grade:</label>
                 <select
                     name='climbGrade'
+                    className='select-menu'
                     id='climbGrade'
                     aria-label='the grade of the route or problem that you climbed'
                     aria-required='true'
@@ -218,6 +221,7 @@ export default class AddClimbForm extends Component {
                 <label htmlFor='climbStatus'>Your Status:</label>
                 <select
                     name='climbStatus'
+                    className='select-menu'
                     id='climbStatus'
                     aria-label='completion status of the route you climbed'
                     aria-required='true'
@@ -240,8 +244,10 @@ export default class AddClimbForm extends Component {
                     value={this.state.climbImage}
                     onChange={this.handleChangeImage}
                 />
-                <button type='submit'>Submit</button>
-                <button type='button' onClick={this.props.onCancel}>Cancel</button>
+                <div className='add-climb-form-button'>
+                    <button type='submit'>Submit</button>
+                    {/* <button type='button' onClick={this.props.onCancel}>Cancel</button> */}
+                </div>
             </form>
         )
     }

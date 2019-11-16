@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import GetUserClimbs from '../../services/get-user-climbs-api-service';
-import AddClimbForm from '../../components/AddClimbForm/AddClimbForm';
+// import AddClimbForm from '../../components/AddClimbForm/AddClimbForm';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import DeleteClimbApiService from '../../services/delete-climb-api-service';
 import './ClimbingTrack.css';
@@ -85,17 +85,9 @@ export default class ClimbingTrack extends Component {
     render() {
         console.log('context userClimbs', this.context.userClimbs)
         return (
-            <div className='climbing-track'>
-                {/* <div className='add-form-container'>
-                    <button onClick={this.showAddForm}>
-                        Click to Add a Climb!
-                    </button>
-                    {this.state.showAddForm && <AddClimbForm onAddSuccess={this.handleSubmitSuccess} onCancel={this.handleCancel}  />}
-                </div> */}
-                <div className='user-climbs-container'>
-                    SHOW (get) CLIMBS
-                    {this.renderUserClimbs()}
-                </div>
+            <div className='user-climbs-container'>
+                <h2>Your Completed Climbs</h2>
+                {this.renderUserClimbs()}
             </div>
         )
     }

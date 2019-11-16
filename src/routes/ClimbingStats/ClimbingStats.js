@@ -49,9 +49,8 @@ export default class ClimbingStats extends Component {
 
         return (
             <div className='climbing-stats'>
-                <h2>STATS</h2>
                 <div className='stats'>
-                    <h3>OVERALL &#9660;</h3>
+                    <h3>YOUR OVERALL &#9660;</h3>
                     <section className='best'>
                         BEST
                         <span className='grade'>
@@ -65,7 +64,7 @@ export default class ClimbingStats extends Component {
                         </span>
                     </section>
                 </div>
-                <div className="graph">GRAPH</div>
+                <div className="graph">graph coming soon!</div>
             </div>
         )
     }
