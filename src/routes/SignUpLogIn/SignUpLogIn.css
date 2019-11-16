@@ -1,7 +1,9 @@
 .signuplogin-forms {
-  background: #aaa;
-  margin-top: 20px;
+  background: rgb(4, 42, 53, 0.75);
+  margin-top: 100px;
   text-align: center;
+  color: white;
+  font-size: 14px;
   line-height: 1.5;
   display: flex;
   flex-direction: column;
@@ -21,26 +23,14 @@
     margin-bottom: 30px;
 }
 
-.signuplogin-forms label, input, button {
-    display: block;
-    margin: auto;
-    padding: 2px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
-
-.signuplogin-forms input {
-    height: 30px;
-    padding: 2px;
-    width: 50vw;
-}
-
 .exists {
     font-size: 15px;
 }
 
 .signuplogin-forms h2 {
-    font-size: 20px;
+    font-size: 16px;
+    font-family: 'BeKindToTheEarth';
+    text-transform: uppercase;
 }
 
 .login-form h2 {
