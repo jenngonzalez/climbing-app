@@ -32,7 +32,6 @@ export class MapContainer extends Component {
        this.setState({
             currentMarkers: this.renderMarkers()
         })
-        
     }
 
     componentDidUpdate(prevProps) {
@@ -41,6 +40,10 @@ export class MapContainer extends Component {
                 currentMarkers: this.renderMarkers()
             })
         }
+    }
+
+    componentWillUnmount() {
+        this.context.selectClimb(null)
     }
 
     onMarkerClick = (props, marker, e) => {
