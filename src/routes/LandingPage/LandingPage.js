@@ -41,6 +41,14 @@ export default class LandingPage extends Component {
                             <li>After planning out your trip, save it and get a shareable link to invite friends along.</li>
                         </ul>
                     </div>
+                    <div className='landing-info try'>
+                        <h3>Try It Out!</h3>
+                        <p>Feel free to try out the tracking and statistics features &#9786;</p>
+                        <span className='login-password'>
+                            <p>Login: testuser@email.com</p>
+                            <p>Password: Password1</p>
+                        </span>
+                    </div>
                 </div>
             </div>
         )
