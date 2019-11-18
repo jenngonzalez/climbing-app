@@ -54,6 +54,9 @@ export default class ClimbingStats extends Component {
         const avgGrade = Math.round(sumOfGrades/gradeNumbers.length)
         const maxGrade =  Math.max(...gradeNumbers);
 
+        console.log('avgGrade', avgGrade)
+        console.log('maxGrade', maxGrade)
+
         return (
             <div className='climbing-stats'>
                 {this.state.loading && <p className='loading'>Loading ...</p>}
@@ -63,13 +66,13 @@ export default class ClimbingStats extends Component {
                     <section className='best'>
                         BEST
                         <span className='grade'>
-                            V{!this.context.userClimbs.length ? '?' : {maxGrade}}
+                            V{!this.context.userClimbs.length ? '?' : maxGrade}
                         </span>
                     </section>
                     <section className='average'>
                         AVERAGE
                         <span className='grade'>
-                            V{!this.context.userClimbs.length ? '?' : {avgGrade}}
+                            V{!this.context.userClimbs.length ? '?' : avgGrade}
                         </span>
                     </section>
                 </div>
