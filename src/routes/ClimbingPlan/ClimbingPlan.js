@@ -39,8 +39,6 @@ export default class ClimbingPlan extends Component {
           
           getPosition()
             .then((position) => {
-                // const lat = 40
-                // const lng = 52
                 const lat = position.coords.latitude
                 const lng = position.coords.longitude
                 this.setState({
@@ -150,12 +148,8 @@ export default class ClimbingPlan extends Component {
     }
 
     renderLocations = () => {
-        const visible = this.state.seeDetails
-        const location = this.state.location
         const climbs = this.context.nearbyClimbs
-        
         const sortedClimbs = Object.keys(climbs).map(key => ({location: key, climbs: climbs[key]}));
-
         const displayClimbs = sortedClimbs.map((climb, i) => {
             const climbArea = climb.location.toUpperCase()
     
@@ -192,10 +186,6 @@ export default class ClimbingPlan extends Component {
                     }}>
                         See Location Info
                     </Link>
-                    {/* <div className='location-details'> */}
-                        {/* working but can only have one menu open at a time
-                        {(visible && location === climbArea) && <div>climbData</div>}
-                    </div> */}
                 </div>
             )
         })
