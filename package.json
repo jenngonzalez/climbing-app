@@ -1,5 +1,5 @@
 {
-  "name": "climbing-app",
+  "name": "ascend-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,7 +24,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "now --prod ./build"
+    "deploy": "now --prod ./build",
+    "postdeploy": "now alias -A ./build/now.json"
   },
   "eslintConfig": {
     "extends": "react-app"
