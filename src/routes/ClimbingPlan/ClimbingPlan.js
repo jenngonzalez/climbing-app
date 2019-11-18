@@ -38,6 +38,8 @@ export default class ClimbingPlan extends Component {
           
           getPosition()
             .then((position) => {
+                // const lat = 40
+                // const lng = 52
                 const lat = position.coords.latitude
                 const lng = position.coords.longitude
                 this.setState({
@@ -66,6 +68,9 @@ export default class ClimbingPlan extends Component {
                     })
                 GetClimbsApiService.getClimbs(lat, lng)
                 .then(climbData => {
+                    if(!climbData.length) {
+                        this.setState({ error: 'No climbing areas found nearby'})
+                    }
                     // create an array of the unique locations so we can sort them for the user
                     const climbLocations = []
                     climbData.routes.forEach(climb => {
@@ -96,7 +101,7 @@ export default class ClimbingPlan extends Component {
                         return climbsObj
                     })
                     this.context.addNearbyClimbs(climbsObj)
-                    this.setState({ loading: false })
+                    this.setState({ loading: false, error: null })
                 })
             })
             .catch((err) => {
@@ -216,6 +221,7 @@ export default class ClimbingPlan extends Component {
                         {/* TODO: need this container for flex to desktop to work?? */}
                         <div className='list'>
                             <h2>Nearby Climbing Areas</h2>
+                            {this.state.error && <p>{this.state.error}</p>}
                             {this.renderLocations()}
                         </div>
                         {this.context.selectedClimb &&
