@@ -1,0 +1,47 @@
+.details-container {
+    margin-top: 90px;
+}
+
+.selected-location-details {
+    text-align: center;
+    margin: auto;
+}
+
+.selected-location-details h2 {
+    color: white;
+    font-family: 'BeKindToTheEarth';
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.location-details {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: rgb(4, 42, 53, 0.75);
+    padding: 5px;
+}
+
+.details-image {
+    margin-right: 50px;
+}
+
+.details-image img {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.details-text {
+    text-align: left;
+}
+
+.details-text a {
+    text-decoration: none;
+    color: #00FFC4;
+}

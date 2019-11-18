@@ -1,47 +1,145 @@
-p {
-  margin: 0 auto;
-  max-width: 650px;
-}
-
-p + p {
-  margin-top: 15px;
+.loading {
+  font-family: 'Angeline_Vintage';
+  font-size: 26px;
+  color: white;
+  text-align: center;
 }
 
 .climbing-plan {
-    margin-top: 80px;
+    margin-top: 90px;
     text-align: center;
-    line-height: 1.5;
+    /* line-height: 1.5; */
 }
 
-.weather {
-  background-color: #666;
+.weather-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 12px;
   color: white;
-  width: 75%;
-  height: 80px;
-  margin: auto;
+  background-color: rgb(4, 42, 53, 0.75);
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.weather-container p {
+  font-size: 12px;
   padding: 2px;
+}
+
+.daily-weather {
+  display: flex;
+  flex-direction: column;
+  width: 12.5%;
+}
+
+.weekday {
   margin-bottom: 10px;
 }
 
-.forecast {
-  margin-top: 50px;
+.temp-high {
+  font-weight: bold;
+  color: #00FFC4;
+}
+
+.temp-low {
+  color: gray;
+}
+
+#weather-icon {
+  max-height: 128;
+  max-width: 128;
+  margin: auto;
+}
+
+.skycon {
+  margin: auto;
+  text-align: center;
+  max-height: 40vw;
+  max-width: 40vw;
+  margin-top: 10px;
+}
+
+.map-and-list {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .map {
   font-size: 40px;
-  background: #aaa;
-  width: 75%;
-  height: 200px;
+  height: 400px;
   margin: auto;
-  margin-bottom: 15px;
-  padding: 10px;
 }
 
 .list {
-  background-color: #666;
+  background-color: rgb(4, 42, 53, 0.75);
   color: white;
-  width: 75%;
-  height: 100px;
+  /* height: 200px; */
   margin: auto;
   padding: 2px;
+}
+
+.list h2 {
+  font-family: 'BeKindToTheEarth';
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.area-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.location-and-link {
+  color: white;
+  font-size: 10px;
+  width: 30%;
+  margin: auto;
+  padding: 2px;
+}
+
+.location-and-link a {
+  text-decoration: none;
+  color: white;
+}
+
+.location-and-link p {
+  font-size: 12px;
+  color: #00FFC4;
+}
+
+.location-and-link button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: white;
+}
+
+.climb-list {
+  list-style: none;
+  font-size: 12px;
+  line-height: 0.75;
+}
+
+.selected-climb {
+  background-color:rgb(4, 42, 53, 0.75);
+  color: yellow;
+  padding: 20px;
+  height: 80px;
+  border-top: 1px dashed white;
+  border-bottom: 1px dashed white;
+}
+
+.selected-climb-name {
+  font-family: 'BeKindToTheEarth';
+}
+
+.selected-climb a {
+  color: white;
+  font-size: 10px;
+  text-decoration: none;
 }

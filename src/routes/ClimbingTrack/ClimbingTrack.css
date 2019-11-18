@@ -1,25 +1,31 @@
-.climbing-track {
-    margin-top: 80px;
+.user-climbs-container {
+    margin-top: 50px;
     text-align: center;
-    line-height: 1.5;
 }
 
-.climbs {
-  background-color: #666;
+.user-climbs-container h2 {
+  font-family: 'Angeline_Vintage';
   color: white;
-  width: 75%;
-  height: 300px;
-  margin: auto;
-  padding: 2px;
-  margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: normal;
 }
-.add {
-  border-radius: 50%;
-  background-color: #666;
+
+.user-climbs {
+  border: 0.5px solid black;
+  border-radius: 3px;
+  background-color: rgb(4, 42, 53, 0.75);
   color: white;
-  font-size: 30px;
-  width: 50px;
-  height: 50px;
-  margin: auto;
-  margin-top: 20px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.user-climbs img {
+  border: 1px solid black;
+  max-width: 250px;
+  max-height: 200px;
+}
+
+.stats, .graph {
+  border: 0.5 px solid black;
+  border-radius: 3px;
 }
