@@ -41,8 +41,8 @@ footer {
   margin-top: 10px;
 }
 
-.copyright {
-  font-size: 10px;
+footer p {
+  font-size: 8px;
 }
 
 footer a {

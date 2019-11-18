@@ -153,8 +153,8 @@ export default class App extends Component {
             </Switch>
           </main>
           <footer>
-            <p className='copyright'>&copy; Jennifer Gonzalez 2019</p>
-            <p className-='weather-credit'>Weather powered by <a href='https://darksky.net/poweredby/'>Dark Sky</a></p>
+            <p>&copy; Jennifer Gonzalez 2019</p>
+            <p>Weather powered by <a href='https://darksky.net/poweredby/'>Dark Sky</a></p>
           </footer>
         </AuthContext.Provider>
       </div>

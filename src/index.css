@@ -45,6 +45,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url(./el-capitan-mobile.jpg);
+  /* background-image: url(./half-dome-portrait.jpg); */
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center top;
