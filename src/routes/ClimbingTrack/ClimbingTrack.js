@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import GetUserClimbs from '../../services/get-user-climbs-api-service';
-// import AddClimbForm from '../../components/AddClimbForm/AddClimbForm';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import DeleteClimbApiService from '../../services/delete-climb-api-service';
 import './ClimbingTrack.css';
 
-const moment = require('moment');
-moment().format();
 
 export default class ClimbingTrack extends Component {
 
@@ -16,7 +13,8 @@ export default class ClimbingTrack extends Component {
         super(props)
         this.state = {
             showAddForm: false,
-            loading: false
+            loading: false,
+            error: null
         }
     }
 
@@ -46,9 +44,8 @@ export default class ClimbingTrack extends Component {
                     })
                     this.context.addUserClimbs(userClimbs)
                     this.setState({ loading: false })
-                }).catch(err => {
-                    console.log(err)
-                    throw err
+                }).catch(res => {
+                    this.setState({ loading: false, error: res.error })
                 })
         // }
     }
@@ -83,9 +80,14 @@ export default class ClimbingTrack extends Component {
     }
 
     render() {
-        console.log('context userClimbs', this.context.userClimbs)
+
+        const { error } = this.state
+
         return (
             <div className='user-climbs-container'>
+                <div role='alert'>
+                    {error && <p className='error'>{error}</p>}
+                </div>
                 <h2>Your Completed Climbs</h2>
                 {this.renderUserClimbs()}
             </div>

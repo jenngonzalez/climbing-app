@@ -10,7 +10,8 @@ export default class ClimbingStats extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            loading: false
+            loading: false,
+            error: null
         }
     }
 
@@ -35,9 +36,8 @@ export default class ClimbingStats extends Component {
                     })
                     this.context.addUserClimbs(userClimbs)
                     this.setState({ loading: false })
-                }).catch(err => {
-                    console.log(err)
-                    throw err
+                }).catch(res => {
+                    this.setState({ loading: false, error: res.error })
                 })
         }
     }
@@ -54,11 +54,13 @@ export default class ClimbingStats extends Component {
         const avgGrade = Math.round(sumOfGrades/gradeNumbers.length)
         const maxGrade =  Math.max(...gradeNumbers);
 
-        console.log('avgGrade', avgGrade)
-        console.log('maxGrade', maxGrade)
+        const { error } = this.state
 
         return (
             <div className='climbing-stats'>
+                <div role='alert'>
+                    {error && <p className='error'>{error}</p>}
+                </div>
                 {this.state.loading && <p className='loading'>Loading ...</p>}
                 {!this.context.userClimbs.length && <p className='add-message'>Add a few of your completed climbs to see your stats!</p>}
                 <div className='stats'>

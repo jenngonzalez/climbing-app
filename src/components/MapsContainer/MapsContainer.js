@@ -5,7 +5,6 @@ import ClimbingContext from '../../contexts/ClimbingContext';
 import './MapsContainer.css';
 
 // TODO - add marker clusters to group climbs by location
-
 // TODO - add PropTypes
 
 export class MapContainer extends Component {

@@ -14,10 +14,9 @@ export default class ClimbDetails extends Component {
                         <img src={climb.climbImage} alt={climb.climbName}/>
                     </div>
                     <div className='details-text'>
-                        <p><span className='climb-name'>{climb.climbName}</span></p>
+                        <p><span className='climb-name'>"{climb.climbName}"</span></p>
                         <p>{climb.climbType}</p>
                         <p>{climb.climbGrade}</p>
-
                         <a href={climb.climbUrl}>More Info</a>
                     </div>
                 </div>

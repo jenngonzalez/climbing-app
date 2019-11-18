@@ -3,16 +3,6 @@
 }
 
 @font-face {
-  font-family: 'TheyPerished';
-  src: local('TheyPerished'), url(./assets/fonts/TheyPerished.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: 'HimalayanSalt-Regular';
-  src: local('HimalayanSalt-Regular'), url(./assets/fonts/HimalayanSalt-Regular.ttf) format('truetype');
-}
-
-@font-face {
   font-family: 'Angeline_Vintage';
   src: local('Angeline_Vintage_Demo'), url(./assets/fonts/Angeline_Vintage_Demo.ttf) format('truetype');
 }
@@ -20,16 +10,6 @@
 @font-face {
   font-family: 'BeKindToTheEarth';
   src: local('BeKindToTheEarth'), url(./assets/fonts/BeKindToTheEarth.woff) format('woff');
-}
-
-@font-face {
-  font-family: 'vtks-chalk';
-  src: local('vtks-chalk'), url(./assets/fonts/vtks-chalk.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: 'Charcoal';
-  src: local('Charcoal'), url(./assets/fonts/Charcoal.otf) format('opentype');
 }
 
 @font-face {
@@ -56,10 +36,6 @@ body {
 p {
   margin:0;
 }
-
-/* p + p {
-  margin-top:10px;
-} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

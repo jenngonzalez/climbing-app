@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import Moment from 'react-moment';
-import 'moment-timezone';
 import "react-datepicker/dist/react-datepicker.css";
 import AddClimbApiService from '../../services/add-climb-api-service';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import TokenService from '../../services/token-service';
 import placeholder from './girl-climber.jpg';
 import './AddClimbForm.css';
-
-
-// TODO - DatePicker has an issue with daylight savings? - date is off by a day
-// look for fix
 
 
 
@@ -24,7 +18,6 @@ export default class AddClimbForm extends Component {
         this.state = {
             loading: false,
             error: null,
-            // climbDate: Moment.globalMoment().format()
             climbDate: new Date(),
             climbLocation: this.props.climbDetails.location,
             climbName: this.props.climbDetails.name,
@@ -92,15 +85,12 @@ export default class AddClimbForm extends Component {
         e.preventDefault()
         this.setState({ loading: true })
         const { climbLocation, climbName, climbType, climbGrade, climbStatus, climbImage } = e.target
-
-        // const { climbLocation, climbName, climbType, climbGrade, climbStatus, climbImage } = this.state
      
         // const climbDateToString = this.state.climbDate.toString()
         // formatting to include time not working, .toString() throws an error
 
         const climbDateToDateString = this.state.climbDate.toDateString()
    
-
         const hasToken = TokenService.hasAuthToken()
         if(!hasToken) {
             alert('You must be logged in to save a climb')
@@ -247,7 +237,6 @@ export default class AddClimbForm extends Component {
                 />
                 <div className='add-climb-form-button'>
                     <button type='submit'>Submit</button>
-                    {/* <button type='button' onClick={this.props.onCancel}>Cancel</button> */}
                 </div>
             </form>
         )

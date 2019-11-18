@@ -19,10 +19,6 @@ header img {
   padding-top: 3px;
 }
 
-/* .mountains {
-  font-family: 'HimalayanSalt-Regular', regular;
-} */
-
 .app {
   width: 100vw;
   height: 100vh;
@@ -59,14 +55,6 @@ footer a:hover {
 footer a:visited {
   color: rgb(23, 104, 82);
 }
-
-/* menu {
-    display: block;
-} */
-
-/* nav {
-    display: block;
-} */
 
 .nav-menu {
     width: 100%;

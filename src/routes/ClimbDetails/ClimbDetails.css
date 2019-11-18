@@ -36,3 +36,12 @@
     max-height: 200px;
     max-width: 200px;
 }
+
+.details-text {
+    text-align: left;
+}
+
+.details-text a {
+    text-decoration: none;
+    color: #00FFC4;
+}

@@ -103,9 +103,9 @@ export default class ClimbingPlan extends Component {
                     this.setState({ loading: false, error: null })
                 })
             })
-            .catch((err) => {
-              console.error(err.message);
-            });
+            .catch(res => {
+                this.setState({ loading: false, error: res.error })
+            })
     }
 
 
@@ -200,8 +200,13 @@ export default class ClimbingPlan extends Component {
 
     render() {
         // const humidity = (this.context.weather.humidity)*100
+        const { error } = this.state
+
         return (
             <div className='plan-page-container'>
+                <div role='alert'>
+                    {error && <p className='error'>{error}</p>}
+                </div>
                 {this.state.loading
                     ? <p className='loading'>Loading Info for Nearby Climbs ...</p>
                     : <div className='climbing-plan'>

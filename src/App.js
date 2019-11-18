@@ -96,8 +96,6 @@ export default class App extends Component {
       loggedIn: this.loggedIn
     }
 
-    console.log('app state', this.state)
-
     return (
       <div className='app'>
         <AuthContext.Provider value={contextValue}>

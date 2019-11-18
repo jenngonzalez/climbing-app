@@ -4,7 +4,6 @@ import TokenService from '../services/token-service'
 const GetUserClimbsApiService = {
     getClimbs() {
         const userEmail = TokenService.getEmail()
-        console.log('userEmail', userEmail)
         return fetch(`${config.SERVER_ENDPOINT}/climbs/${userEmail}`, {
             method: 'GET',
             headers: {
