@@ -33,7 +33,7 @@ export default class ClimbDetails extends Component {
                     ? <p>Click on a climbing area from the "plan" page to see details here!</p>
                     : (
                         <div className='selected-location-details'>
-                            <h1>{this.props.location.state.climbArea}</h1>
+                            <h2>{this.props.location.state.climbArea}</h2>
                             {this.renderDetails()}
                         </div>
                     )

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import config from '../../config';
 import ClimbingContext from '../../contexts/ClimbingContext';
+import './MapsContainer.css';
 
 // TODO - add marker clusters to group climbs by location
 

@@ -7,6 +7,7 @@ import MapsContainer from '../../components/MapsContainer/MapsContainer';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import GetWeatherApiService from '../../services/getWeather-api-service';
 import GetClimbsApiService from '../../services/getClimbs-api-service';
+import placeholder from './girl-climber.jpg';
 import './ClimbingPlan.css';
 
 
@@ -93,7 +94,7 @@ export default class ClimbingPlan extends Component {
                             type: climb.type,
                             rating: climb.rating,
                             location: climb.location,
-                            image: climb.imgSmall,
+                            image: climb.imgSmall || placeholder,
                             url: climb.url,
                             climbLat: climb.latitude,
                             climbLng: climb.longitude

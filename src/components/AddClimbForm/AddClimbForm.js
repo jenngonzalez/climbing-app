@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import AddClimbApiService from '../../services/add-climb-api-service';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import TokenService from '../../services/token-service';
+import placeholder from './girl-climber.jpg';
 import './AddClimbForm.css';
 
 
@@ -111,7 +112,7 @@ export default class AddClimbForm extends Component {
             climb_type: climbType.value,
             climb_grade: climbGrade.value,
             user_status: climbStatus.value,
-            image: climbImage.value,
+            image: climbImage.value.length ? climbImage.value : placeholder,
             }
             AddClimbApiService.postClimb(newClimb)
                 .then(this.context.addUserClimb)

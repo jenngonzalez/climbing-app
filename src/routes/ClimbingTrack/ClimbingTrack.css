@@ -1,7 +1,6 @@
 .user-climbs-container {
-    margin-top: 90px;
+    margin-top: 50px;
     text-align: center;
-    line-height: 1.5;
 }
 
 .user-climbs-container h2 {
@@ -16,10 +15,12 @@
   border-bottom: 0.5px solid black;
   background-color: rgb(4, 42, 53, 0.75);
   color: white;
-  width: 80%;
-  margin: auto;
+  margin: 5px;
+  padding: 5px;
 }
 
 .user-climbs img {
-  border: 2px solid black;
+  border: 1px solid black;
+  max-width: 250px;
+  max-height: 200px;
 }
