@@ -4,38 +4,71 @@
     line-height: 1.5;
 }
 
-/* p {
-  margin: 0 auto;
-  max-width: 650px;
-}
-
-p + p {
-  margin-top: 15px;
-} */
-
 .info-section {
   height: 40vh;
   text-align: center;
-  /* line-height: 70vh; */
   color: white;
-  font-size: 26px;
-  font-family: 'Angeline_Vintage';
-  /* position: fixed;
-  right: 12px; */
-  /* background-image: url(./el-capitan-922758_1920.jpg);
-  background-repeat: no-repeat;
-  background-size: cover; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.info-section h2 {
+  font-size: 28px;
+  font-weight: normal;
+  font-family: 'Angeline_Vintage'
+}
+
+.info-section p {
+  font-family: 'BeKindToTheEarth';
+  font-size: 20px;
+}
+
+.call-to-action {
+  margin-top: 15vh;
+}
+
+.call-to-action a {
+  text-decoration: none;
+  color: #00FFC4;
+  font-size: 28px;
+}
+
+.call-to-action a:hover {
+  color: rgb(255, 172, 19);
+  text-shadow: 4px 0px yellow;
 }
 
 .landing-info {
-  width: 85%;
-  border-bottom: 1px solid black;
-  margin: auto;
+  width: 90%;
+  color: white;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 10px;
-  background: rgb(4, 42, 53, 0.5)
+  background: rgb(4, 42, 53, 0.75);
 }
 
 .landing-info h3 {
   font-family: 'BeKindToTheEarth';
   text-transform: uppercase;
+  color: #00FFC4;
+  text-shadow: 2px 2px rgb(4, 42, 53);
+}
+
+.landing-info p {
+  text-align: left;
+  font-weight: bold;
+}
+
+.landing-info ul, .landing-info li {
+  margin-left: 2vw;
+  padding: 0;
+}
+
+.landing-info li {
+  text-align: left;
+  list-style-type: square;
 }
