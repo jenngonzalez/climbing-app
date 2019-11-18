@@ -24,19 +24,6 @@ export default class AddClimb extends Component {
         }
     }
 
-    componentDidMount() {
-        // setState from context after mounting?
-        // logical OR not working if this.props.location.state DNE
-
-        // this.setState({
-        //     location: this.props.location.state.location || '',
-        //     name: this.props.location.state.name || '',
-        //     type: this.props.location.state.type || '',
-        //     grade: this.props.location.state.grade || '',
-        //     image: this.props.location.state.image || ''
-        // })
-    }
-
     static defaultProps = {
         location: {},
         history: {
@@ -61,9 +48,12 @@ export default class AddClimb extends Component {
             grade: this.state.grade,
             image: this.state.image
         }
-        console.log('props from link', this.props.location.state)
         return (
-            <AddClimbForm climbDetails={climbDetails} onAddSuccess={this.handleAddClimbSuccess} onCancel={this.handleCancel}/>
+            <AddClimbForm
+                climbDetails={climbDetails}
+                onAddSuccess={this.handleAddClimbSuccess}
+                onCancel={this.handleCancel}
+            />
         )
     }
 }

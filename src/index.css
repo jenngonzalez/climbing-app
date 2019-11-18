@@ -3,18 +3,18 @@
 }
 
 @font-face {
-  font-family: 'TheyPerished';
-  src: local('TheyPerished'), url(./assets/fonts/TheyPerished.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: 'HimalayanSalt-Regular';
-  src: local('HimalayanSalt-Regular'), url(./assets/fonts/HimalayanSalt-Regular.ttf) format('truetype');
+  font-family: 'Angeline_Vintage';
+  src: local('Angeline_Vintage_Demo'), url(./assets/fonts/Angeline_Vintage_Demo.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'BeKindToTheEarth';
   src: local('BeKindToTheEarth'), url(./assets/fonts/BeKindToTheEarth.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Gobsmacked';
+  src: local('Gobsmacked'), url(./assets/fonts/Gobsmacked.otf) format('opentype');
 }
 
 body {
@@ -24,7 +24,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #EFE7D1;
+  background-image: url(./el-capitan-mobile.jpg);
+  /* background-image: url(./half-dome-portrait.jpg); */
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center top;
+  background-color: rgb(208, 188, 188); /* Used if the image is unavailable */
+  background-size: 100% auto;
+}
+
+p {
+  margin:0;
 }
 
 code {

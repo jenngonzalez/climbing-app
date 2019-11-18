@@ -4,21 +4,79 @@
     line-height: 1.5;
 }
 
-section {
-  min-height: 200px;
-  padding: 30px 15px;
-  background-color: #bbb;
+.info-section {
+  height: 40vh;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-section:nth-child(even) {
-  background-color: #ddd;
+.info-section h2 {
+  font-size: 28px;
+  font-weight: normal;
+  font-family: 'Angeline_Vintage'
 }
 
-p {
-  margin: 0 auto;
-  max-width: 650px;
+.info-section p {
+  font-family: 'BeKindToTheEarth';
+  font-size: 20px;
 }
 
-p + p {
-  margin-top: 15px;
+.call-to-action {
+  margin-top: 15vh;
+}
+
+.call-to-action a {
+  text-decoration: none;
+  color: #00FFC4;
+  font-size: 28px;
+}
+
+.call-to-action a:hover {
+  color: rgb(255, 172, 19);
+  text-shadow: 4px 0px yellow;
+}
+
+.landing-info {
+  width: 90%;
+  color: white;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  background: rgb(4, 42, 53, 0.75);
+}
+
+.landing-info h3 {
+  font-family: 'BeKindToTheEarth';
+  text-transform: uppercase;
+  color: #00FFC4;
+  text-shadow: 2px 2px rgb(4, 42, 53);
+}
+
+.landing-info p {
+  text-align: left;
+  font-weight: bold;
+}
+
+.landing-info ul, .landing-info li {
+  margin-left: 2vw;
+  padding: 0;
+}
+
+.landing-info li {
+  text-align: left;
+  list-style-type: square;
+}
+
+.try p {
+  font-weight: normal;
+}
+
+.login-password p {
+  text-align: center;
 }

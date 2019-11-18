@@ -1,0 +1,56 @@
+.signup-form label, input, button,
+.login-form label, input, button {
+    display: block;
+    margin: auto;
+    padding: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+
+.signup-form input,
+.login-form input {
+    height: 30px;
+    padding: 2px;
+    width: 50vw;
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border: 1px solid #FFC2DC;
+    outline: none;
+    padding: 5px 8px 5px 8px;
+	box-shadow: inset 1px 1px 4px #FFD5E7;
+	-moz-box-shadow: inset 1px 1px 4px #FFD5E7;
+    width:50%;
+    -webkit-box-shadow: 0 0 0 30px rgb(208, 188, 188) inset !important;
+}
+
+.signup-form button,
+.login-form button {
+    background-color: rgb(4, 42, 53);
+    color: white;
+    margin: auto;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.signup-form button:hover,
+.login-form button:hover,
+.signup-form button:focus,
+.login-form button:focus {
+    color: #00FFC4;
+}
+
+.error {
+    color: yellow;
+    text-transform: uppercase;
+    font-weight: bold;
+}

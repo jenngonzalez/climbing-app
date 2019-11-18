@@ -14,10 +14,9 @@ export default class ClimbDetails extends Component {
                         <img src={climb.climbImage} alt={climb.climbName}/>
                     </div>
                     <div className='details-text'>
-                        <p><span className='climb-name'>{climb.climbName}</span></p>
+                        <p><span className='climb-name'>"{climb.climbName}"</span></p>
                         <p>{climb.climbType}</p>
                         <p>{climb.climbGrade}</p>
-
                         <a href={climb.climbUrl}>More Info</a>
                     </div>
                 </div>
@@ -33,7 +32,7 @@ export default class ClimbDetails extends Component {
                     ? <p>Click on a climbing area from the "plan" page to see details here!</p>
                     : (
                         <div className='selected-location-details'>
-                            <h1>{this.props.location.state.climbArea}</h1>
+                            <h2>{this.props.location.state.climbArea}</h2>
                             {this.renderDetails()}
                         </div>
                     )

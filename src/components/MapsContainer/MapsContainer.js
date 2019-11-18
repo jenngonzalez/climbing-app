@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import config from '../../config';
 import ClimbingContext from '../../contexts/ClimbingContext';
+import './MapsContainer.css';
 
 // TODO - add marker clusters to group climbs by location
-
 // TODO - add PropTypes
 
 export class MapContainer extends Component {
@@ -31,7 +31,6 @@ export class MapContainer extends Component {
        this.setState({
             currentMarkers: this.renderMarkers()
         })
-        
     }
 
     componentDidUpdate(prevProps) {
@@ -42,9 +41,11 @@ export class MapContainer extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.context.selectClimb(null)
+    }
+
     onMarkerClick = (props, marker, e) => {
-    console.log('onMarkerClick props', props)
-    console.log('onMarkerClick marker', marker)
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
@@ -61,7 +62,7 @@ export class MapContainer extends Component {
             })
         }
         this.context.selectClimb(null)
-    };
+    }
 
 
     renderMarkers = () => {
@@ -86,6 +87,7 @@ export class MapContainer extends Component {
             )
         })
     }
+  
 
     render() {
 
@@ -101,11 +103,11 @@ export class MapContainer extends Component {
             <Map
                 google={this.props.google}
                 style={style}
-                initialCenter={{
+                center={{
                     lat: this.props.climbLocs[0].climbLat,
                     lng: this.props.climbLocs[0].climbLng
                 }}
-                zoom={7}
+                zoom={8}
                 onClick={this.onMapClicked}
             >
 

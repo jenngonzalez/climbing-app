@@ -7,6 +7,14 @@ export default class ClimbingStats extends Component {
 
     static contextType = ClimbingContext
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: false,
+            error: null
+        }
+    }
+
     componentDidMount() {
         if(!this.context.userClimbs.length) {
             this.setState({
@@ -28,9 +36,8 @@ export default class ClimbingStats extends Component {
                     })
                     this.context.addUserClimbs(userClimbs)
                     this.setState({ loading: false })
-                }).catch(err => {
-                    console.log(err)
-                    throw err
+                }).catch(res => {
+                    this.setState({ loading: false, error: res.error })
                 })
         }
     }
@@ -47,25 +54,31 @@ export default class ClimbingStats extends Component {
         const avgGrade = Math.round(sumOfGrades/gradeNumbers.length)
         const maxGrade =  Math.max(...gradeNumbers);
 
+        const { error } = this.state
+
         return (
             <div className='climbing-stats'>
-                <h2>STATS</h2>
+                <div role='alert'>
+                    {error && <p className='error'>{error}</p>}
+                </div>
+                {this.state.loading && <p className='loading'>Loading ...</p>}
+                {!this.context.userClimbs.length && <p className='add-message'>Add a few of your completed climbs to see your stats!</p>}
                 <div className='stats'>
-                    <h3>OVERALL &#9660;</h3>
+                    <h3>YOUR OVERALL &#9660;</h3>
                     <section className='best'>
                         BEST
                         <span className='grade'>
-                            V{maxGrade}
+                            V{!this.context.userClimbs.length ? '?' : maxGrade}
                         </span>
                     </section>
                     <section className='average'>
                         AVERAGE
                         <span className='grade'>
-                            V{avgGrade}
+                            V{!this.context.userClimbs.length ? '?' : avgGrade}
                         </span>
                     </section>
                 </div>
-                <div className="graph">GRAPH</div>
+                <div className="graph">graph coming soon!</div>
             </div>
         )
     }
