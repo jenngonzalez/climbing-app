@@ -9,12 +9,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-radius: 3px;
 }
 
 .signup-form, .login-form {
     display: block;
     margin: auto;
-    width: 80vw;
+    width: 90vw;
     padding: 5px;
     text-align: center;
 }

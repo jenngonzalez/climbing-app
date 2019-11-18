@@ -48,3 +48,9 @@ input:-webkit-autofill:active  {
 .login-form button:focus {
     color: #00FFC4;
 }
+
+.error {
+    color: yellow;
+    text-transform: uppercase;
+    font-weight: bold;
+}
