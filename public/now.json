@@ -1,7 +1,6 @@
 {
     "version": 2,
     "name": "ascend-app",
-    "alias": "ascend",
     "routes": [
         {
           "src": "^/static/(.*)",
@@ -11,5 +10,10 @@
           "src": ".*",
           "dest": "/index.html"
         }
-    ]
+    ],
+    "build": {
+      "env": {
+          "SERVER_ENDPOINT": "https://ascend-app-server.herokuapp.com/"
+      }
+  }
   }
