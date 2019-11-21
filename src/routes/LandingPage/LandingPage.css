@@ -16,7 +16,8 @@
 .info-section h2 {
   font-size: 28px;
   font-weight: normal;
-  font-family: 'Angeline_Vintage'
+  font-family: 'Angeline_Vintage';
+  text-shadow: 2px 2px 1px rgb(4, 42, 53);
 }
 
 .call-to-action {
@@ -83,4 +84,45 @@
 
 .login-password p {
   text-align: center;
+  color: #00FFC4;
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+
+  .info-section {
+    height: 30vh;
+  }
+
+  .info-section h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: 32px;
+    /* text-shadow: 3px 3px 2px rgb(4, 42, 53); */
+  }
+  .call-to-action {
+    margin-top: 5vh;
+  }
+
+  .call-to-action a {
+    font-size: 28px;
+  }
+
+  .landing-info-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+
+  .landing-info {
+    width: 48%;
+    padding: 20px;
+    margin-bottom: 50px;
+  }
+
+  .try p {
+    text-align: center;
+  }
 }

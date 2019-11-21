@@ -47,6 +47,7 @@ input:-webkit-autofill:active  {
 .signup-form button:focus,
 .login-form button:focus {
     color: #00FFC4;
+    border: 2px solid #00FFC4;
 }
 
 .error {

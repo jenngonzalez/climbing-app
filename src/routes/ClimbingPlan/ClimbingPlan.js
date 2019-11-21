@@ -9,6 +9,9 @@ import GetWeatherApiService from '../../services/getWeather-api-service';
 import GetClimbsApiService from '../../services/getClimbs-api-service';
 import placeholder from './climber.png';
 import './ClimbingPlan.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapMarkerAlt, faInfo } from '@fortawesome/free-solid-svg-icons'
+     
 
 
 export default class ClimbingPlan extends Component {
@@ -29,24 +32,6 @@ export default class ClimbingPlan extends Component {
         }
         this.mounted = false
     }
-
-
-    // componentDidMount(){
-    //     this.mounted = true;
-      
-    //     this.props.fetchData().then((response) => {
-    //       if(this.mounted) {
-    //         this.setState({ data: response })
-    //       }
-    //     })
-    //   }
-      
-    //   componentWillUnmount(){
-    //     this.mounted = false;
-    //   }
-
-
-
 
     componentDidMount() {
         this.mounted = true
@@ -194,21 +179,23 @@ export default class ClimbingPlan extends Component {
             return (
                 <div key={i} className='location-and-link'>
                     <p>{climbArea}</p>
-                    <button
-                        className='climb-location'
-                        onClick={() => this.seeDetails(climbArea, climbLatLng)}
-                    >
-                        See On Map
-                    </button>
-                    <Link to={{
-                        pathname: '/climbdetails',
-                        state: {
-                            climbArea: climbArea,
-                            climbLatLng: climbLatLng
-                        }
-                    }}>
-                        See Location Info
-                    </Link>
+                    <div className='icons-container'>
+                        <button
+                            className='climb-location'
+                            onClick={() => this.seeDetails(climbArea, climbLatLng)}
+                        >
+                            <FontAwesomeIcon icon={faMapMarkerAlt} alt='See On Map' className='icon' />
+                        </button>
+                        <Link to={{
+                            pathname: '/climbdetails',
+                            state: {
+                                climbArea: climbArea,
+                                climbLatLng: climbLatLng
+                            }
+                        }}>
+                            <FontAwesomeIcon icon={faInfo} alt='See Location Info' className='icon' />
+                        </Link>
+                    </div>
                 </div>
             )
         })
@@ -259,7 +246,7 @@ export default class ClimbingPlan extends Component {
                                         image: this.context.selectedClimb.image
                                     }
                                 }}>
-                                    Track This Climb
+                                    -Track This Climb-
                                 </Link>
                             </div>
                         }
