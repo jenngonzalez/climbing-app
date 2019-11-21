@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import { VictoryLine, VictoryChart, VictoryTheme, VictoryAxis } from 'victory';
 import moment from 'moment';
 
-// send props in when called from stats component
-
-  
 export default class StatsChart extends Component {
 
     render() {
-        console.log('data props', this.props.data)
       return (
         <VictoryChart
             theme={VictoryTheme.material}

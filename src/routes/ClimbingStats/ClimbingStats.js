@@ -86,7 +86,11 @@ export default class ClimbingStats extends Component {
                 {this.state.loading && <p className='loading'>Loading ...</p>}
                 {!this.context.userClimbs.length && <p className='add-message'>Add a few of your completed climbs to see your stats!</p>}
                 <div className='stats'>
-                    <h3>YOUR OVERALL &#9660;</h3>
+                    <h3>YOUR OVERALL
+                        <div className="tooltip">&#9660;
+                            <span className="tooltiptext">Date-based stat tracking coming soon!</span>
+                        </div>
+                    </h3>
                     <section className='best'>
                         BEST
                         <span className='grade'>
