@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { VictoryLine, VictoryChart, VictoryTheme, VictoryAxis } from 'victory';
 import moment from 'moment';
 
+
 export default class StatsChart extends Component {
 
     render() {

@@ -8,6 +8,8 @@ import DeleteClimbApiService from '../../services/delete-climb-api-service';
 import './ClimbingTrack.css';
 
 
+// TO DO: date not rendering correctly, timezone is changing somewhere
+
 export default class ClimbingTrack extends Component {
 
     constructor(props) {
