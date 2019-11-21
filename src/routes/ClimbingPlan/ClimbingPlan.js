@@ -7,7 +7,7 @@ import MapsContainer from '../../components/MapsContainer/MapsContainer';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import GetWeatherApiService from '../../services/getWeather-api-service';
 import GetClimbsApiService from '../../services/getClimbs-api-service';
-import placeholder from './girl-climber.jpg';
+import placeholder from './climber.png';
 import './ClimbingPlan.css';
 
 

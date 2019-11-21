@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import AddClimbApiService from '../../services/add-climb-api-service';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import TokenService from '../../services/token-service';
-import placeholder from './girl-climber.jpg';
 import './AddClimbForm.css';
 
 
@@ -23,7 +22,7 @@ export default class AddClimbForm extends Component {
             climbName: this.props.climbDetails.name,
             climbType: this.props.climbDetails.type,
             climbGrade: this.props.climbDetails.grade,
-            climbStatus: '',
+            climbStatus: null,
             climbImage: this.props.climbDetails.image
         }
     }
@@ -84,25 +83,26 @@ export default class AddClimbForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.setState({ loading: true })
-        const { climbLocation, climbName, climbType, climbGrade, climbStatus, climbImage } = e.target
-     
-        // const climbDateToString = this.state.climbDate.toString()
-        // formatting to include time not working, .toString() throws an error
-
-        const climbDateToDateString = this.state.climbDate.toDateString()
-   
         const hasToken = TokenService.hasAuthToken()
         if(!hasToken) {
             alert('You must be logged in to save a climb')
         } else {
+            // add missing field errors for other req fields
+            if(!this.state.climbStatus) {
+                this.setState({
+                    error: 'Missing Field: "Status"',
+                    loading: false
+                })
+                return false
+            }
             const newClimb = {
-            date: climbDateToDateString,
-            location: climbLocation.value,
-            climb_name: climbName.value,
-            climb_type: climbType.value,
-            climb_grade: climbGrade.value,
-            user_status: climbStatus.value,
-            image: climbImage.value.length ? climbImage.value : placeholder,
+                date: this.state.climbDate,
+                location: this.state.climbLocation,
+                climb_name: this.state.climbName,
+                climb_type: this.state.climbType,
+                climb_grade: this.state.climbGrade,
+                user_status: this.state.climbStatus,
+                image: this.state.climbImage
             }
             AddClimbApiService.postClimb(newClimb)
                 .then(this.context.addUserClimb)
@@ -217,13 +217,14 @@ export default class AddClimbForm extends Component {
                     aria-label='completion status of the route you climbed'
                     aria-required='true'
                     required
-                    value={this.state.climbStatus}
+                    defaultValue='select-message'
                     onChange={this.handleChangeStatus}
                 >
-                    <option value='On-Sight'>On-Sight</option>
-                    <option value='Flash'>Flash</option>
-                    <option value='Send'>Send</option>
+                    <option disabled value='select-message'>Select a status:</option>
                     <option value='Attempt'>Attempt</option>
+                    <option value='Send'>Send</option>
+                    <option value='Flash'>Flash</option>
+                    <option value='On-Sight'>On-Sight</option>
                 </select>
                 <label htmlFor='climbImage'>Climb Image:</label>
                 <input
