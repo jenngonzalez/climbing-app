@@ -223,8 +223,6 @@ export default class ClimbingPlan extends Component {
                         <div className='weather-container'>
                             {this.renderWeather()}
                         </div>
-                        {/* <div className='map-and-list'> */}
-                        {/* TODO: need this container for flex to desktop to work?? */}
                         <div className='list'>
                             <h2>Nearby Climbing Areas</h2>
                             {this.state.error && <p>{this.state.error}</p>}
@@ -251,16 +249,18 @@ export default class ClimbingPlan extends Component {
                             </div>
                         }
                         <div className='map'>
-                            {this.state.location &&
-                                <MapsContainer
+                            {this.state.location
+                             ?   <MapsContainer
                                     selectedPlace={this.state.location}
                                     climbLocs={this.state.climbLocs}
                                     lat={this.state.lat}
                                     lng={this.state.lng}
                                 />
+                             :   <div className='map-message'>
+                                    <p>Click a map icon in the above list to see the climbs in that area on a map!</p>
+                                </div>
                             }
                         </div>
-                        {/* </div> */}
                     </div>
                 }
             </div>

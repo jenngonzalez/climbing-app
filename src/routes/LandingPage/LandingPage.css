@@ -126,3 +126,9 @@
     text-align: center;
   }
 }
+
+@media screen and (max-height: 500px) {
+  .info-section {
+    margin-bottom: 20vh;
+  }
+}

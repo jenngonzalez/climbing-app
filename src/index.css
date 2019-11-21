@@ -27,8 +27,9 @@ body {
   background-image: url(./el-capitan-mobile.jpg);
   /* background-image: url(./half-dome-portrait.jpg); */
   background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-position: center top;
+  /* background-attachment: scroll;
+  background-position: center top; */
+  background-attachment: fixed;
   background-color: rgb(208, 188, 188); /* Used if the image is unavailable */
   background-size: 100% auto;
 }
@@ -52,7 +53,9 @@ button:hover {
 /* Medium devices (landscape tablets, 768px and up) */
 @media screen and (min-width: 768px) {
   body {
-    background-image: url(./el-capitan-full.jpg)
+    background-image: url(./el-capitan-full.jpg);
+    background-size: cover;
+    background-attachment: fixed;
   }
 
 }
