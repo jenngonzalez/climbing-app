@@ -73,6 +73,19 @@
   margin: auto;
 }
 
+.map-message {
+  margin-top: 80px;
+  color: white;
+  background-color: rgb(4, 42, 53, 0.75);
+  width: 70%;
+  font-size: 30px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 3px;
+}
+
 .list {
   background-color: rgb(4, 42, 53, 0.75);
   color: white;
