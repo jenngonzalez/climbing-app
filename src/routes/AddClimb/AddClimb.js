@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
 import AddClimbForm from '../../components/AddClimbForm/AddClimbForm';
+import placeholder from './climber.png';
 
 export default class AddClimb extends Component {
 
+    // constructor(props) {
+    //     super(props)
+    //     if(this.props.location.state) {
+    //         this.state = {
+    //             location: this.props.location.state.location,
+    //             name: this.props.location.state.name,
+    //             type: this.props.location.state.type,
+    //             grade: this.props.location.state.grade,
+    //             image: this.props.location.state.image,
+    //         }
+    //     } else {
+    //         this.state = {
+    //             location: '',
+    //             name: '',
+    //             type: '',
+    //             grade: '',
+    //             image: ''
+    //         }
+    //     }
+    // }
+
     constructor(props) {
         super(props)
-        if(this.props.location.state) {
-            this.state = {
-                location: this.props.location.state.location,
-                name: this.props.location.state.name,
-                type: this.props.location.state.type,
-                grade: this.props.location.state.grade,
-                image: this.props.location.state.image,
-            }
-        } else {
-            this.state = {
-                location: '',
-                name: '',
-                type: '',
-                grade: '',
-                image: ''
-            }
+        this.state = {
+            location: this.props.location.state ? this.props.location.state.location : '',
+            name: this.props.location.state ? this.props.location.state.name : '',
+            type: this.props.location.state ? this.props.location.state.type : '',
+            grade: this.props.location.state ? this.props.location.state.grade : 'V0',
+            image: this.props.location.state ? this.props.location.state.image : placeholder
         }
     }
 
