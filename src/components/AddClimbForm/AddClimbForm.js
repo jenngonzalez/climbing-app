@@ -87,7 +87,6 @@ export default class AddClimbForm extends Component {
         if(!hasToken) {
             alert('You must be logged in to save a climb')
         } else {
-            // add missing field errors for other req fields
             if(!this.state.climbStatus) {
                 this.setState({
                     error: 'Missing Field: "Status"',
@@ -95,6 +94,7 @@ export default class AddClimbForm extends Component {
                 })
                 return false
             }
+
             const newClimb = {
                 date: this.state.climbDate,
                 location: this.state.climbLocation,

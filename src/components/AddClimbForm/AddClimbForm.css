@@ -95,4 +95,27 @@
 .add-climb-form-button button:hover,
 .add-climb-form-button button:focus {
     color: #00FFC4;
+    border: 2px solid #00FFC4;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+
+    .add-climb-form {
+        width: 70vw;
+        margin-bottom: 170px;
+    }
+
+    .add-climb-form input {
+        width: 40vw;
+    }
+
+    .select-menu {
+        width: 40vw;
+    }
+
+    .add-climb-form-button button {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
 }

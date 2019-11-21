@@ -45,3 +45,19 @@ code {
 button:hover {
   cursor: pointer;
 }
+
+
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+  body {
+    background-image: url(./el-capitan-full.jpg)
+  }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+
+}
