@@ -27,10 +27,31 @@ export default class ClimbingPlan extends Component {
             loading: false,
             dailyData: null
         }
+        this.mounted = false
     }
 
+
+    // componentDidMount(){
+    //     this.mounted = true;
+      
+    //     this.props.fetchData().then((response) => {
+    //       if(this.mounted) {
+    //         this.setState({ data: response })
+    //       }
+    //     })
+    //   }
+      
+    //   componentWillUnmount(){
+    //     this.mounted = false;
+    //   }
+
+
+
+
     componentDidMount() {
-        this.setState({ loading: true })
+        this.mounted = true
+        this.mounted && this.setState({ loading: true })
+    
         const getPosition = function (options) {
             return new Promise(function (resolve, reject) {
               navigator.geolocation.getCurrentPosition(resolve, reject, options);
@@ -41,10 +62,8 @@ export default class ClimbingPlan extends Component {
             .then((position) => {
                 const lat = position.coords.latitude
                 const lng = position.coords.longitude
-                this.setState({
-                    lat: lat,
-                    lng: lng
-                })
+                this.mounted && this.setState({lat: lat, lng: lng})
+                
                 GetWeatherApiService.getWeather(lat, lng)
                     .then(weatherData => {
                         const { timezone } = weatherData
@@ -68,7 +87,7 @@ export default class ClimbingPlan extends Component {
                 GetClimbsApiService.getClimbs(lat, lng)
                 .then(climbData => {
                     if(!climbData.length) {
-                        this.setState({ error: 'No climbing areas found nearby'})
+                        this.mounted && this.setState({ error: 'No climbing areas found nearby'})
                     }
                     // create an array of the unique locations so we can sort them for the user
                     const climbLocations = []
@@ -100,12 +119,16 @@ export default class ClimbingPlan extends Component {
                         return climbsObj
                     })
                     this.context.addNearbyClimbs(climbsObj)
-                    this.setState({ loading: false, error: null })
+                    this.mounted && this.setState({ loading: false, error: null })
                 })
             })
             .catch(res => {
-                this.setState({ loading: false, error: res.error })
+                this.mounted && this.setState({ loading: false, error: res.error })
             })
+    }
+
+    componentWillUnmount() {
+        this.mounted = false
     }
 
 

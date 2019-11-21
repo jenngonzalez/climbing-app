@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+// import Moment from 'react-moment';
+import moment from 'moment';
+import StatsChart from '../../components/StatsChart/StatsChart';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import GetUserClimbs from '../../services/get-user-climbs-api-service';
 import './ClimbingStats.css';
@@ -42,6 +45,23 @@ export default class ClimbingStats extends Component {
         }
     }
 
+    renderChartData = () => {
+        const userData = this.context.userClimbs.sort(function compare(a, b) {
+            var dateA = new Date(a.date);
+            var dateB = new Date(b.date);
+            return dateA - dateB;
+        })
+
+        const data = []
+        userData.map(climb => {
+            return data.push({
+                x: moment(climb.date).format(),
+                y: parseInt(climb.climb_grade.slice(1, 3))
+            })
+        })
+        return data
+    }
+
 
     render() {
         const userGrades = this.context.userClimbs.map(climb => {
@@ -53,6 +73,8 @@ export default class ClimbingStats extends Component {
         const sumOfGrades =  gradeNumbers.reduce((a,b) => a + b, 0)
         const avgGrade = Math.round(sumOfGrades/gradeNumbers.length)
         const maxGrade =  Math.max(...gradeNumbers);
+
+        const data = this.renderChartData()
 
         const { error } = this.state
 
@@ -78,7 +100,9 @@ export default class ClimbingStats extends Component {
                         </span>
                     </section>
                 </div>
-                <div className="graph">graph coming soon!</div>
+                <div className="chart">
+                    <StatsChart data={data} />
+                </div>
             </div>
         )
     }

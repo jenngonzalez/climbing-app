@@ -1,7 +1,7 @@
 .landing-page {
-    margin-top: 20px;
-    text-align: center;
-    line-height: 1.5;
+  margin-top: 20px;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .info-section {
@@ -19,22 +19,26 @@
   font-family: 'Angeline_Vintage'
 }
 
-.info-section p {
-  font-family: 'BeKindToTheEarth';
-  font-size: 20px;
-}
-
 .call-to-action {
   margin-top: 15vh;
 }
 
 .call-to-action a {
+  font-family: 'BeKindToTheEarth';
   text-decoration: none;
   color: #00FFC4;
-  font-size: 28px;
+  font-size: 20px;
 }
 
 .call-to-action a:hover {
+  font-style: italic;
+}
+
+.call-to-action .arrow {
+  font-size: 28px;
+}
+
+.call-to-action a:hover .arrow {
   color: rgb(255, 172, 19);
   text-shadow: 4px 0px yellow;
 }

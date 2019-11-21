@@ -8,7 +8,7 @@ export default class LandingPage extends Component {
             <div className="landing-page">
                 <div className='info-section'>
                     <h2>Take Your Climbs Outside</h2>
-                    <span className='call-to-action'><p>See Nearby Bouldering Spots! <Link to='/plan'>&#8608;</Link></p></span>
+                    <span className='call-to-action'><Link to='/plan'>See Nearby Bouldering Spots! <span className='arrow'>&#8608;</span></Link></span>
                 </div>
                 <div className='landing-info-container'>
                     <div className='landing-info'>
