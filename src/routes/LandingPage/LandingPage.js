@@ -28,11 +28,12 @@ export default class LandingPage extends Component {
                         <h3>Track Your Progress</h3>
                         <ul>
                             <li>Keep track of your achievements - save your completed climbs and see your overall statistics for average and best grade climbed.</li>
+                            <li>See how your climbing abliity has improved by checking out the graph component.</li>
                         </ul>
                         
                         <p>IN DEVELOPMENT:</p>
                         <ul>
-                            <li>Filter your statistics by day/week/month/year</li>
+                            <li>Filter your statistics by day, week, month, or year.</li>
                         </ul>
                     </div>
                     <div className='landing-info'>

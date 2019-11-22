@@ -20,8 +20,11 @@ Ascend is a one-stop app for rock climbers who want to venture outside. Using yo
 
 ## Build Status - Features In Development
 * Support for other locations: users will be able to enter a city name rather than just seeing nearby climbs
+* Support for other types of climbing: bouldering is currently the only supported climb format, but soon we will add sport/trad/lead.
 * Sorted statistics: along with the current "overall" view, users will be able to see their stats by day/week/month/year.
 * Authentication: upcoming support for JWT refresh, as well as password change
+* Maps: add marker clusters to group climbs by locations
+* Add PropTypes, Error Boundaries
 
 ## API Docs
 * Express Server provides methods for account creation and login with JWT, as well as for getting all of a user's saved climbs, adding climbs to a user's list, and deleting climbs belonging to a user.

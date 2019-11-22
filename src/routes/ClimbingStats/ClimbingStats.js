@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Moment from 'react-moment';
 import moment from 'moment';
 import StatsChart from '../../components/StatsChart/StatsChart';
 import ClimbingContext from '../../contexts/ClimbingContext';
