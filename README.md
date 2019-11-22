@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Ascend
 
-## Available Scripts
+## Live App: https://ascend.now.sh/
+### Try it out:
+login: testuser@email.com
 
-In the project directory, you can run:
+password: Password1
 
-### `npm start`
+## Summary
+Ascend is a one-stop app for rock climbers who want to venture outside. Using your browser location, see nearby climbing areas, routes, and weather. Clicking a route's map marker will give you the option to add the route to your tracked climbs - where (once you've created an account and logged in) you can save all of the details for the route as well as your status (whether you successfully completed the climb or just attempted it). After saving completed climbs to your list, you can check out the "Stats" component to see your average and best grades climbed, as well as a graph visual showing your improvement.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tech Used
+* Front-End: React, HTML5, CSS3
+* Back-End: Node.js, Express, PostgreSQL
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Credit
+* Weather is from Dark Sky
+* Nearby climb data is from Mountain Project
+* Maps are from Google Maps
 
-### `npm test`
+## Build Status - Features In Development
+* Support for other locations: users will be able to enter a city name rather than just seeing nearby climbs
+* Sorted statistics: along with the current "overall" view, users will be able to see their stats by day/week/month/year.
+* Authentication: upcoming support for JWT refresh, as well as password change
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## API Docs
+* Express Server provides methods for account creation and login with JWT, as well as for getting all of a user's saved climbs, adding climbs to a user's list, and deleting climbs belonging to a user.
 
-### `npm run build`
+## Screenshots
+Plan Page:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Plan Page](screenshots/AscendScreenshot1.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Stats Page:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Stats Page](screenshots/AscendScreenshot2.png)
 
-### `npm run eject`
+Location Details Page:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![Location Details Page](screenshots/AscendScreenshot3.png)
