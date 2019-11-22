@@ -4,16 +4,19 @@
 
 @font-face {
   font-family: 'Angeline_Vintage';
+  font-display: auto;
   src: local('Angeline_Vintage_Demo'), url(./assets/fonts/Angeline_Vintage_Demo.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'BeKindToTheEarth';
+  font-display: auto;
   src: local('BeKindToTheEarth'), url(./assets/fonts/BeKindToTheEarth.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Gobsmacked';
+  font-display: auto;
   src: local('Gobsmacked'), url(./assets/fonts/Gobsmacked.otf) format('opentype');
 }
 
