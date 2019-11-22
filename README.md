@@ -14,9 +14,9 @@ Ascend is a one-stop app for rock climbers who want to venture outside. Using yo
 * Back-End: Node.js, Express, PostgreSQL
 
 ## Credit
-* Weather is from ![Dark Sky](https://darksky.net/dev)
-* Nearby climb data is from ![Mountain Project](https://www.mountainproject.com/data)
-* Maps are from ![Google Maps](https://developers.google.com/maps/documentation)
+* Weather is from [Dark Sky](https://darksky.net/dev)
+* Nearby climb data is from [Mountain Project](https://www.mountainproject.com/data)
+* Maps are from [Google Maps](https://developers.google.com/maps/documentation)
 
 ## Build Status - Features In Development
 * Support for other locations: users will be able to enter a city name rather than just seeing nearby climbs
