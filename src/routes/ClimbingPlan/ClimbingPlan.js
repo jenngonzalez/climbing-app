@@ -89,7 +89,6 @@ export default class ClimbingPlan extends Component {
 
                     // add climb data to each location array based on climb.location matching the climbObj key
                     climbData.routes.forEach(climb => {
-                        // Object.keys(climbsObj).find(key => climbsObj[key] === climb.location[3]);
                         climbsObj[climb.location[3]].push({
                             id: climb.id,
                             name: climb.name,
@@ -125,15 +124,6 @@ export default class ClimbingPlan extends Component {
         })
     }
 
-    // TO DO :
-    // hideDetails = () => {
-        // if already open and clicked --->
-    //     this.setState({
-    //         seeDetails: false,
-    //         location: null
-    //     })
-    //     console.log('this.state.location', this.state.location)
-    // }
 
     renderWeather = () => {
         return this.context.dailyWeather.map((day, i) => 
@@ -209,7 +199,6 @@ export default class ClimbingPlan extends Component {
 
 
     render() {
-        // const humidity = (this.context.weather.humidity)*100
         const { error } = this.state
 
         return (

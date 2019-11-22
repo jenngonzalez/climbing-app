@@ -42,7 +42,6 @@
     width: 60vw;
 }
 
-
 .add-climb-form input:-webkit-autofill,
 .add-climb-form input:-webkit-autofill:hover, 
 .add-climb-form input:-webkit-autofill:focus, 
@@ -76,7 +75,6 @@
     padding: .6em 1.4em .5em .8em;
     width: 60vw;
     height: 30px;
-    /* max-width: 60vw;  */
     border: 1px solid #FFC2DC;
     box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
     border-radius: 3px;

@@ -1,12 +1,10 @@
 header {
   text-align: center;
-  /* position: fixed; */
   position: absolute;
   top: 0;
   margin: auto;
   height: 75px;
   width: 100%;
-  /* background-color: rgb(193, 179, 179); */
   font-family: 'Gobsmacked';
   font-size: 22px;
   color: rgb(4, 42, 53)
@@ -90,9 +88,7 @@ footer a:hover {
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-  /* position: fixed; */
   position: absolute;
-  /* float: left; */
   width: 25px;
   height: 20px;
   left: 2vw;
@@ -103,10 +99,6 @@ footer a:hover {
 .bm-burger-bars {
   background: rgb(4, 42, 53);
 }
-
-/* .bm-burger-bars:focus {
-  background: #00FFC4;
-} */
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
@@ -119,22 +111,11 @@ footer a:hover {
   width: 24px;
 }
 
-/* .bm-cross-button:hover {
-  background: #00FFC4;
-} */
-
 /* Color/shape of close button cross */
 .bm-cross {
   background: white;
 }
 
-/* .bm-cross:hover {
-  background: #00FFC4;
-}
-
-.bm-cross:focus{
-  border: 1px solid #00FFC4;
-} */
 
 /*
 Sidebar wrapper styles
@@ -147,7 +128,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  /* background: #373a47; */
   background: rgb(4, 42, 53);
   opacity: 0.85;
   padding: 2.5em 1.5em 0;
@@ -162,19 +142,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Wrapper for item list */
 .bm-item-list {
   background-color: rgb(4, 42, 53);
-  /* opacity: 0.9; */
   padding: 0.8em;
   display: block;
 }
 
 /* Individual item */
 .bm-item {
-  /* display: inline-block; */
   display: block;
 }
 
 /* Styling of overlay */
 .bm-overlay {
-  /* background: rgba(0, 0, 0, 0.3); */
   background: orange;
 }

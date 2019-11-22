@@ -9,7 +9,6 @@
 .climbing-plan {
     margin-top: 90px;
     text-align: center;
-    /* line-height: 1.5; */
 }
 
 .weather-container {
@@ -89,7 +88,6 @@
 .list {
   background-color: rgb(4, 42, 53, 0.75);
   color: white;
-  /* height: 200px; */
   margin: auto;
   padding: 2px;
 }
@@ -132,7 +130,6 @@
 .location-and-link a:focus,
 .location-and-link button:hover,
 .location-and-link button:focus {
-  /* color: rgb(252, 169, 61); */
   color: rgb(255, 153, 0);
   font-weight: bold;
 }
@@ -199,7 +196,6 @@
   }
 
   .selected-climb a {
-    /* padding-top: 5px; */
     font-size: 14px;
   }
 
