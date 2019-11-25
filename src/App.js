@@ -19,9 +19,13 @@ import './App.css';
 
 export default class App extends Component {
 
-  state = {
-    hasError: false,
-    loggedIn: TokenService.hasAuthToken() ? true : false
+  constructor(props) {
+    super(props)
+    this.state = {
+      hasError: false,
+      loggedIn: TokenService.hasAuthToken() ? true : false,
+      menuOpen: false
+    }
   }
 
   static contextType = AuthContext
@@ -90,6 +94,14 @@ export default class App extends Component {
     })
   }
 
+  handleStateChange (state) {
+    this.setState({menuOpen: state.isOpen})  
+  }
+  
+  closeMenu () {
+    this.setState({menuOpen: false})
+  }
+
   render() {
 
     const contextValue = {
@@ -102,14 +114,18 @@ export default class App extends Component {
           <header className='app-header'>
             <h1>-Ascend-</h1>
           </header>               
-          <Menu className='nav-menu'>
-              <Link id='home' className='menu-item' to='/'> 
+          <Menu
+            className='nav-menu'
+            isOpen={this.state.menuOpen}
+            onStateChange={(state) => this.handleStateChange(state)}
+          >
+              <Link id='home' className='menu-item' to='/' onClick={() => this.closeMenu()}> 
                 <img src={mountains} alt='mountains icon' className='mountain-icon'/>
               </Link>
-              <Link id='plan' className='menu-item' to='/plan'>Plan</Link>
-              <Link id='track' className='menu-item' to='/track'>Track</Link>
-              <Link id='add' className='menu-item' to='/add'>Add</Link>
-              <Link id='stats' className='menu-item' to='/stats'>Stats</Link>
+              <Link id='plan' className='menu-item' to='/plan' onClick={() => this.closeMenu()}>Plan</Link>
+              <Link id='track' className='menu-item' to='/track' onClick={() => this.closeMenu()}>Track</Link>
+              <Link id='add' className='menu-item' to='/add' onClick={() => this.closeMenu()}>Add</Link>
+              <Link id='stats' className='menu-item' to='/stats' onClick={() => this.closeMenu()}>Stats</Link>
               {TokenService.hasAuthToken()
                   ? this.renderLogoutLink()
                   : this.renderLoginLink()}
