@@ -27,11 +27,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(./el-capitan-mobile.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   background-color: rgb(208, 188, 188); /* Used if the image is unavailable */
   background-size: 100% auto;
+  background: url(./el-capitan-mobile.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 p {
@@ -55,6 +57,7 @@ button:hover {
   body {
     background-image: url(./el-capitan-full.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
   }
 
