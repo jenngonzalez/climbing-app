@@ -36,79 +36,80 @@ export default class ClimbingPlan extends Component {
     componentDidMount() {
         this.mounted = true
         this.mounted && this.setState({ loading: true })
-    
-        const getPosition = function (options) {
+
+        const getPosition = function() {
             return new Promise(function (resolve, reject) {
-              navigator.geolocation.getCurrentPosition(resolve, reject, options);
-            });
-          }
-          
-          getPosition()
-            .then((position) => {
-                const lat = position.coords.latitude
-                const lng = position.coords.longitude
-                this.mounted && this.setState({lat: lat, lng: lng})
-                
-                GetWeatherApiService.getWeather(lat, lng)
-                    .then(weatherData => {
-                        const { timezone } = weatherData
-                        const { time, temperature, summary, humidity } = weatherData.currently
-                        const currentIcon = weatherData.currently.icon.toUpperCase().replace(/-/g, '_')
-                        const currentData = { timezone, time, temperature, summary, humidity, currentIcon}
-                        const dailyData = weatherData.daily.data.map(day => {
-                            return {
-                                timezone: timezone,
-                                date: day.time,
-                                dailySummary: day.summary,
-                                dailyIcon: day.icon.toUpperCase().replace(/-/g, '_'),
-                                dailyTempHigh: day.temperatureHigh,
-                                dailyTempLow: day.temperatureLow,
-                                dailyHumidity: day.humidity
-                            }
-                        })
-                        this.context.addCurrentWeather(currentData)
-                        this.context.addDailyWeather(dailyData)
-                    })
-                GetClimbsApiService.getClimbs(lat, lng)
-                .then(climbData => {
-                    if(!climbData.length) {
-                        this.mounted && this.setState({ error: 'No climbing areas found nearby'})
-                    }
-                    // create an array of the unique locations so we can sort them for the user
-                    const climbLocations = []
-                    climbData.routes.forEach(climb => {
-                        if(!climbLocations.includes(climb.location[3])) {
-                            climbLocations.push(climb.location[3])
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            })
+        }
+
+        getPosition()
+        .then((position) => {
+            console.log('getting here?')
+            const lat = position.coords.latitude
+            const lng = position.coords.longitude
+            this.mounted && this.setState({lat: lat, lng: lng})
+            
+            GetWeatherApiService.getWeather(lat, lng)
+                .then(weatherData => {
+                    const { timezone } = weatherData
+                    const { time, temperature, summary, humidity } = weatherData.currently
+                    const currentIcon = weatherData.currently.icon.toUpperCase().replace(/-/g, '_')
+                    const currentData = { timezone, time, temperature, summary, humidity, currentIcon}
+                    const dailyData = weatherData.daily.data.map(day => {
+                        return {
+                            timezone: timezone,
+                            date: day.time,
+                            dailySummary: day.summary,
+                            dailyIcon: day.icon.toUpperCase().replace(/-/g, '_'),
+                            dailyTempHigh: day.temperatureHigh,
+                            dailyTempLow: day.temperatureLow,
+                            dailyHumidity: day.humidity
                         }
                     })
-  
-                    this.context.addLocations(climbLocations)
-
-                    // turn array of locations into an object (keys will be the locations) which we will use to sort our climbs
-                    const climbsObj = climbLocations.reduce((a, key) => Object.assign(a, { [key]: [] }), {});
-
-                    // add climb data to each location array based on climb.location matching the climbObj key
-                    climbData.routes.forEach(climb => {
-                        climbsObj[climb.location[3]].push({
-                            id: climb.id,
-                            name: climb.name,
-                            type: climb.type,
-                            rating: climb.rating,
-                            location: climb.location,
-                            image: climb.imgSmall || placeholder,
-                            url: climb.url,
-                            climbLat: climb.latitude,
-                            climbLng: climb.longitude
-                        })
-                        return climbsObj
-                    })
-                    this.context.addNearbyClimbs(climbsObj)
-                    this.mounted && this.setState({ loading: false, error: null })
+                    this.context.addCurrentWeather(currentData)
+                    this.context.addDailyWeather(dailyData)
                 })
+            GetClimbsApiService.getClimbs(lat, lng)
+            .then(climbData => {
+                if(!climbData.length) {
+                    this.mounted && this.setState({ error: 'No climbing areas found nearby'})
+                }
+                // create an array of the unique locations so we can sort them for the user
+                const climbLocations = []
+                climbData.routes.forEach(climb => {
+                    if(!climbLocations.includes(climb.location[3])) {
+                        climbLocations.push(climb.location[3])
+                    }
+                })
+
+                this.context.addLocations(climbLocations)
+
+                // turn array of locations into an object (keys will be the locations) which we will use to sort our climbs
+                const climbsObj = climbLocations.reduce((a, key) => Object.assign(a, { [key]: [] }), {});
+
+                // add climb data to each location array based on climb.location matching the climbObj key
+                climbData.routes.forEach(climb => {
+                    climbsObj[climb.location[3]].push({
+                        id: climb.id,
+                        name: climb.name,
+                        type: climb.type,
+                        rating: climb.rating,
+                        location: climb.location,
+                        image: climb.imgSmall || placeholder,
+                        url: climb.url,
+                        climbLat: climb.latitude,
+                        climbLng: climb.longitude
+                    })
+                    return climbsObj
+                })
+                this.context.addNearbyClimbs(climbsObj)
+                this.mounted && this.setState({ loading: false, error: null })
             })
-            .catch(res => {
-                this.mounted && this.setState({ loading: false, error: res.error })
-            })
+        })
+        .catch(res => {
+            this.mounted && this.setState({ loading: false, error: res.error })
+        })
     }
 
     componentWillUnmount() {
@@ -196,10 +197,21 @@ export default class ClimbingPlan extends Component {
         )
     }
 
-
+    watchLocation = () => {
+        navigator.geolocation.watchPosition(function(position) {
+            console.log('position', position);
+          },
+          function(error) {
+            if (error.code === error.PERMISSION_DENIED) {
+            //   console.log("you denied me :-(");
+                this.setState({error: `You will need to allow your location if you'd like to see nearby climbing areas`})
+            }
+          })
+    }
 
     render() {
         const { error } = this.state
+        this.watchLocation()
 
         return (
             <div className='plan-page-container'>
