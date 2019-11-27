@@ -28,7 +28,8 @@ export default class ClimbingPlan extends Component {
             location: null,
             error: null,
             loading: false,
-            dailyData: null
+            dailyData: null,
+            locAllowed: null
         }
         this.mounted = false
     }
@@ -45,7 +46,6 @@ export default class ClimbingPlan extends Component {
 
         getPosition()
         .then((position) => {
-            console.log('getting here?')
             const lat = position.coords.latitude
             const lng = position.coords.longitude
             this.mounted && this.setState({lat: lat, lng: lng})
@@ -72,8 +72,8 @@ export default class ClimbingPlan extends Component {
                 })
             GetClimbsApiService.getClimbs(lat, lng)
             .then(climbData => {
-                if(!climbData.length) {
-                    this.mounted && this.setState({ error: 'No climbing areas found nearby'})
+                if(!climbData.routes.length) {
+                    this.mounted && this.setState({ error: 'No nearby locations found'})
                 }
                 // create an array of the unique locations so we can sort them for the user
                 const climbLocations = []
@@ -104,7 +104,7 @@ export default class ClimbingPlan extends Component {
                     return climbsObj
                 })
                 this.context.addNearbyClimbs(climbsObj)
-                this.mounted && this.setState({ loading: false, error: null })
+                this.mounted && this.setState({ loading: false })
             })
         })
         .catch(res => {
@@ -130,7 +130,6 @@ export default class ClimbingPlan extends Component {
         return this.context.dailyWeather.map((day, i) => 
             <div className='daily-weather' key={i}>
                 <Moment unix tz={day.timezone} format='ddd' className='weekday'>{day.date}</Moment>
-                {/* {day.dailySummary} */}
                 <p className='temp-high'>{Math.round(day.dailyTempHigh)}&deg;</p>
                 <p className='temp-low'>{Math.round(day.dailyTempLow)}&deg;</p>
                 <div className='skycon'>
@@ -197,74 +196,74 @@ export default class ClimbingPlan extends Component {
         )
     }
 
-    watchLocation = () => {
-        navigator.geolocation.watchPosition(function(position) {
-            console.log('position', position);
-          },
-          function(error) {
-            if (error.code === error.PERMISSION_DENIED) {
-            //   console.log("you denied me :-(");
-                this.setState({error: `You will need to allow your location if you'd like to see nearby climbing areas`})
-            }
-          })
-    }
+
 
     render() {
-        const { error } = this.state
-        this.watchLocation()
 
-        return (
-            <div className='plan-page-container'>
-                <div role='alert'>
-                    {error && <p className='error'>{error}</p>}
+        const { error } = this.state
+
+        if(!this.state.loading && !this.state.lat) {
+            return (
+                <div className='location-declined'>
+                    <p>Sorry - You need to allow your location to see nearby climbs!</p>
                 </div>
-                {this.state.loading
-                    ? <p className='loading'>Loading Info for Nearby Climbs ...</p>
-                    : <div className='climbing-plan'>
-                        <div className='weather-container'>
-                            {this.renderWeather()}
-                        </div>
-                        <div className='list'>
-                            <h2>Nearby Climbing Areas</h2>
-                            {this.state.error && <p>{this.state.error}</p>}
-                            {this.renderLocations()}
-                        </div>
-                        {this.context.selectedClimb &&
-                            <div className='selected-climb'>
-                                <span className='selected-climb-name'>
-                                    "{this.context.selectedClimb.name.toUpperCase()}"
-                                </span>
-                                <br />
-                                <Link to={{
-                                    pathname: '/add',
-                                    state: {
-                                        location: this.context.selectedClimb.location,
-                                        name: this.context.selectedClimb.name,
-                                        type: this.context.selectedClimb.type,
-                                        grade: this.context.selectedClimb.grade,
-                                        image: this.context.selectedClimb.image
-                                    }
-                                }}>
-                                    -Track This Climb-
-                                </Link>
+            )
+        }
+
+        else {
+            return (
+                <div className='plan-page-container'>
+                    {error &&
+                    <div role='alert' className='plan-page-error'><p className='error'>{error}</p></div>}
+                    {this.state.loading
+                        ? <p className='loading'>Loading Info for Nearby Climbs ...</p>
+                        : <div className='climbing-plan'>
+                            <div className='weather-container'>
+                                {this.renderWeather()}
                             </div>
-                        }
-                        <div className='map'>
-                            {this.state.location
-                             ?   <MapsContainer
-                                    selectedPlace={this.state.location}
-                                    climbLocs={this.state.climbLocs}
-                                    lat={this.state.lat}
-                                    lng={this.state.lng}
-                                />
-                             :   <div className='map-message'>
-                                    <p>Click a map icon in the above list to see the climbs in that area on a map!</p>
+                            <div className='list'>
+                                <h2>Nearby Climbing Areas</h2>
+                                    {error === 'No nearby locations found'
+                                    && <p className='no-locs-err'>Sorry - No climbing areas found nearby. Check <a href={`http://maps.google.com/?ll=${this.state.lat},${this.state.lng}&q=climbing+gyms`} target='blank'>google maps</a> for indoor climbing gyms near you.</p>}
+                                    {this.renderLocations()}
+                            </div>
+                            {this.context.selectedClimb &&
+                                <div className='selected-climb'>
+                                    <span className='selected-climb-name'>
+                                        "{this.context.selectedClimb.name.toUpperCase()}"
+                                    </span>
+                                    <br />
+                                    <Link to={{
+                                        pathname: '/add',
+                                        state: {
+                                            location: this.context.selectedClimb.location,
+                                            name: this.context.selectedClimb.name,
+                                            type: this.context.selectedClimb.type,
+                                            grade: this.context.selectedClimb.grade,
+                                            image: this.context.selectedClimb.image
+                                        }
+                                    }}>
+                                        -Track This Climb-
+                                    </Link>
                                 </div>
                             }
+                            <div className='map'>
+                                {this.state.location
+                                ?   <MapsContainer
+                                        selectedPlace={this.state.location}
+                                        climbLocs={this.state.climbLocs}
+                                        lat={this.state.lat}
+                                        lng={this.state.lng}
+                                    />
+                                :   <div className='map-message'>
+                                        <p>Click a map icon in the above list to see the climbs in that area on a map!</p>
+                                    </div>
+                                }
+                            </div>
                         </div>
-                    </div>
-                }
-            </div>
-        )
+                    }
+                </div>
+            )
+        }
     }
 }

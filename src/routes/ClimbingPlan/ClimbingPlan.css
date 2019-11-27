@@ -6,9 +6,9 @@
   text-align: center;
 }
 
-.climbing-plan {
-    margin-top: 90px;
-    text-align: center;
+.plan-page-container { 
+  margin-top: 90px;
+  text-align: center;
 }
 
 .weather-container {
@@ -76,7 +76,9 @@
   margin-top: 80px;
   color: white;
   background-color: rgb(4, 42, 53, 0.75);
-  width: 70%;
+  width: 80%;
+  font-family: BeKindToTheEarth;
+  text-transform: uppercase;
   font-size: 30px;
   text-align: center;
   margin-left: auto;
@@ -179,6 +181,42 @@
   color: rgb(255, 153, 0);
   font-weight: bold;
 }
+
+.location-declined {
+  background: rgb(4, 42, 53, 0.75);
+  color: white;
+  margin-top: 150px;
+  padding: 10px;
+  border-radius: 3px;
+  font-family: BeKindToTheEarth;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: center;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.plan-page-error {
+  background: rgb(4, 42, 53, 0.75);
+  text-align: center;
+  padding: 3px;
+}
+
+.no-locs-err {
+  padding: 10px;
+}
+
+.no-locs-err a {
+  color: #00FFC4;
+  text-decoration: none;
+}
+
+.no-locs-err a:hover {
+  color: rgb(255, 153, 0);
+}
+
+
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media screen and (min-width: 768px) {
