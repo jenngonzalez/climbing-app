@@ -3,6 +3,8 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import { Link } from 'react-router-dom';
 import Skycons from 'react-skycons';
+import { css } from '@emotion/core';
+import BarLoader from 'react-spinners/BarLoader';
 import MapsContainer from '../../components/MapsContainer/MapsContainer';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import GetWeatherApiService from '../../services/getWeather-api-service';
@@ -12,7 +14,13 @@ import './ClimbingPlan.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt, faInfo } from '@fortawesome/free-solid-svg-icons'
      
-
+// style for loading spinner:
+const override = css`
+    display: block;
+    margin: 0 auto;
+    color: '#00FFC4';
+    border-color: '#00FFC4';
+`;
 
 export default class ClimbingPlan extends Component {
 
@@ -216,7 +224,16 @@ export default class ClimbingPlan extends Component {
                     {error &&
                     <div role='alert' className='plan-page-error'><p className='error'>{error}</p></div>}
                     {this.state.loading
-                        ? <p className='loading'>Loading Info for Nearby Climbs ...</p>
+                        ? <div>
+                            <p className='loading'>Loading Info for Nearby Climbs ...</p>
+                            <BarLoader
+                                css={override}
+                                sizeUnit={"px"}
+                                size={150}
+                                color={'#00FFC4'}
+                                loading={this.state.loading}
+                            />
+                          </div>
                         : <div className='climbing-plan'>
                             <div className='weather-container'>
                                 {this.renderWeather()}
