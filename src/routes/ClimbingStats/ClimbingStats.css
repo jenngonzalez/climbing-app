@@ -25,6 +25,12 @@
   flex-direction: column;
 }
 
+.best,
+.average {
+  display: flex;
+  flex-direction: column;
+}
+
 .grade {
   font-size: 40px;
   color: #00FFC4;
@@ -48,7 +54,6 @@
   border-radius: 3px;
   margin-bottom: 50px;
 }
-
 
 /* Tooltip container */
 .tooltip {

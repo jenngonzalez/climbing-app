@@ -61,7 +61,6 @@ export default class ClimbingStats extends Component {
         return data
     }
 
-
     render() {
         const userGrades = this.context.userClimbs.map(climb => {
             return climb.climb_grade

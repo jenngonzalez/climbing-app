@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import AddClimbApiService from '../../services/add-climb-api-service';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import TokenService from '../../services/token-service';
+import placeholder from './girl-climber.jpg';
 import './AddClimbForm.css';
 
 
@@ -83,6 +84,13 @@ export default class AddClimbForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.setState({ loading: true })
+
+        const { climbLocation, climbName, climbType, climbGrade, climbStatus, climbImage } = e.target
+     
+        // const climbDateToString = this.state.climbDate.toString()
+        // formatting to include time not working, .toString() throws an error
+
+        const climbDateToDateString = this.state.climbDate.toDateString()
         const hasToken = TokenService.hasAuthToken()
         if(!hasToken) {
             alert('You must be logged in to save a climb')

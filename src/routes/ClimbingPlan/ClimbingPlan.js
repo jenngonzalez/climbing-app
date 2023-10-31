@@ -22,6 +22,7 @@ const override = css`
     border-color: '#00FFC4';
 `;
 
+
 export default class ClimbingPlan extends Component {
 
     static contextType = ClimbingContext
@@ -123,7 +124,6 @@ export default class ClimbingPlan extends Component {
     componentWillUnmount() {
         this.mounted = false
     }
-
 
     seeDetails = (climbArea, climbLatLng) => {
         this.setState({

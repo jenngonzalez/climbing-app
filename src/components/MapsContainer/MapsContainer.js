@@ -4,7 +4,6 @@ import config from '../../config';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import './MapsContainer.css';
 
-
 export class MapContainer extends Component {
 
     static contextType = ClimbingContext
