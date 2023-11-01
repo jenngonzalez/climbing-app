@@ -4,16 +4,19 @@
 
 @font-face {
   font-family: 'Angeline_Vintage';
+  font-display: auto;
   src: local('Angeline_Vintage_Demo'), url(./assets/fonts/Angeline_Vintage_Demo.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'BeKindToTheEarth';
+  font-display: auto;
   src: local('BeKindToTheEarth'), url(./assets/fonts/BeKindToTheEarth.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Gobsmacked';
+  font-display: auto;
   src: local('Gobsmacked'), url(./assets/fonts/Gobsmacked.otf) format('opentype');
 }
 
@@ -24,13 +27,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(./el-capitan-mobile.jpg);
-  /* background-image: url(./half-dome-portrait.jpg); */
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-position: center top;
   background-color: rgb(208, 188, 188); /* Used if the image is unavailable */
   background-size: 100% auto;
+  background: url(./el-capitan-mobile.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 p {
@@ -44,4 +47,23 @@ code {
 
 button:hover {
   cursor: pointer;
+}
+
+
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+  body {
+    background-image: url(./el-capitan-full.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+
 }

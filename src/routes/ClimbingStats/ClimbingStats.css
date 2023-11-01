@@ -1,7 +1,7 @@
 .climbing-stats {
-    margin-top: 90px;
-    text-align: center;
-    line-height: 1.5;
+  margin-top: 90px;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .stats {
@@ -11,6 +11,18 @@
   margin: auto;
   padding: 2px;
   margin-bottom: 10px;
+  border-radius: 3px;
+  max-width: 400px;
+}
+
+.stats h3 {
+  font-family: 'BeKindToTheEarth';
+}
+
+.best,
+.average {
+  display: flex;
+  flex-direction: column;
 }
 
 .best,
@@ -21,30 +33,88 @@
 
 .grade {
   font-size: 40px;
+  color: #00FFC4;
   width: 100px;
   margin: auto;
   margin-bottom: 15px;
   padding: 10px;
 }
 
-.graph {
+.chart {
   width: 80%;
-  height: 200px;
+  height: auto;
+  max-height: 400px;
+  max-width: 400px;
   background-color: rgb(4, 42, 53, 0.75);
   color: white;
-  padding: 70px 0;
+  padding: 15px;
   text-align: center;
   vertical-align: center;
   margin: auto;
+  border-radius: 3px;
   margin-bottom: 50px;
 }
 
-.add-message {
-  font-family: 'BeKindToTheEarth';
-  font-size: 20px;
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(4, 42, 53, 0.75);
+  color: #fff;
   text-transform: uppercase;
-  color: white;
-  width: 90%;
-  margin: auto;
-  margin-bottom: 10px; 
+  font-size: 12px;
+  font-weight: normal;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover {
+  cursor: pointer;
+  color: #00FFC4;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+  .climbing-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stats {
+    height: 400px;
+    width: 35%;
+    max-width: 300px;
+    padding-top: 30px;
+    margin: 0;
+    margin-right: 30px;
+    margin-bottom: 220px;
+  }
+
+  .chart {
+    width: 60%;
+    height: 400px;
+    margin: 0;
+    margin-bottom: 220px;
+  }
 }

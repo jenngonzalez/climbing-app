@@ -1,14 +1,14 @@
 .loading {
   font-family: 'Angeline_Vintage';
-  font-size: 26px;
+  font-size: 32px;
   color: white;
+  text-shadow: 2px 2px 1px rgb(4, 42, 53);
   text-align: center;
 }
 
-.climbing-plan {
-    margin-top: 90px;
-    text-align: center;
-    /* line-height: 1.5; */
+.plan-page-container { 
+  margin-top: 90px;
+  text-align: center;
 }
 
 .weather-container {
@@ -44,7 +44,7 @@
 }
 
 .temp-low {
-  color: gray;
+  color: rgb(155, 155, 155);
 }
 
 #weather-icon {
@@ -72,10 +72,24 @@
   margin: auto;
 }
 
+.map-message {
+  margin-top: 80px;
+  color: white;
+  background-color: rgb(4, 42, 53, 0.75);
+  width: 80%;
+  font-family: BeKindToTheEarth;
+  text-transform: uppercase;
+  font-size: 30px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 3px;
+}
+
 .list {
   background-color: rgb(4, 42, 53, 0.75);
   color: white;
-  /* height: 200px; */
   margin: auto;
   padding: 2px;
 }
@@ -94,17 +108,32 @@
   margin: auto;
 }
 
+.icons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .location-and-link {
-  color: white;
-  font-size: 10px;
   width: 30%;
   margin: auto;
+  margin-bottom: 15px;
   padding: 2px;
 }
 
 .location-and-link a {
   text-decoration: none;
   color: white;
+  font-size: 15px;
+}
+
+.location-and-link a:hover,
+.location-and-link a:focus,
+.location-and-link button:hover,
+.location-and-link button:focus {
+  color: rgb(255, 153, 0);
+  font-weight: bold;
 }
 
 .location-and-link p {
@@ -115,8 +144,11 @@
 .location-and-link button {
   background: none;
   border: none;
-  font-size: 10px;
+  font-size: 15px;
   color: white;
+  margin: 0;
+  margin-right: 15px;
+  padding: 0;
 }
 
 .climb-list {
@@ -142,4 +174,75 @@
   color: white;
   font-size: 10px;
   text-decoration: none;
+}
+
+.selected-climb a:hover,
+.selected-climb a:focus {
+  color: rgb(255, 153, 0);
+  font-weight: bold;
+}
+
+.location-declined {
+  background: rgb(4, 42, 53, 0.75);
+  color: white;
+  margin-top: 150px;
+  padding: 10px;
+  border-radius: 3px;
+  font-family: BeKindToTheEarth;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: center;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.plan-page-error {
+  background: rgb(4, 42, 53, 0.75);
+  text-align: center;
+  padding: 3px;
+}
+
+.no-locs-err {
+  padding: 10px;
+}
+
+.no-locs-err a {
+  color: #00FFC4;
+  text-decoration: none;
+}
+
+.no-locs-err a:hover {
+  color: rgb(255, 153, 0);
+}
+
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+  .location-and-link {
+    width: 15%;
+    margin-bottom: 20px;
+  }
+
+  .location-and-link p {
+    font-weight: bold;
+  }
+
+  .selected-climb-name {
+    font-size: 20px;
+  }
+
+  .selected-climb a {
+    font-size: 14px;
+  }
+
+  .weather-container {
+    font-size: 16px;
+  }
+
+  .weather-container p {
+    font-size: 16px;
+    padding: 2px;
+  }
 }

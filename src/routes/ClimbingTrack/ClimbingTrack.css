@@ -1,11 +1,15 @@
 .user-climbs-container {
-    margin-top: 50px;
-    text-align: center;
+  margin-top: 50px;
+  text-align: center;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .user-climbs-container h2 {
   font-family: 'Angeline_Vintage';
   color: white;
+  text-shadow: 2px 2px 1px rgb(4, 42, 53);
   font-size: 26px;
   font-weight: normal;
 }
@@ -16,7 +20,7 @@
   background-color: rgb(4, 42, 53, 0.75);
   color: white;
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
 }
 
 .user-climbs img {
@@ -25,7 +29,33 @@
   max-height: 200px;
 }
 
+.user-climbs button {
+  background-color: rgb(4, 42, 53);
+  color: white;
+  margin: auto;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+.user-climbs button:hover,
+.user-climbs button:focus {
+    color: #00FFC4;
+    border: 2px solid #00FFC4;
+}
+
 .stats, .graph {
   border: 0.5 px solid black;
   border-radius: 3px;
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+ 
+  .user-climbs-container {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

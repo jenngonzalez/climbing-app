@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+import StatsChart from '../../components/StatsChart/StatsChart';
 import ClimbingContext from '../../contexts/ClimbingContext';
 import GetUserClimbs from '../../services/get-user-climbs-api-service';
 import './ClimbingStats.css';
@@ -42,6 +44,22 @@ export default class ClimbingStats extends Component {
         }
     }
 
+    renderChartData = () => {
+        const userData = this.context.userClimbs.sort(function compare(a, b) {
+            var dateA = new Date(a.date);
+            var dateB = new Date(b.date);
+            return dateA - dateB;
+        })
+
+        const data = []
+        userData.map(climb => {
+            return data.push({
+                x: moment(climb.date).format(),
+                y: parseInt(climb.climb_grade.slice(1, 3))
+            })
+        })
+        return data
+    }
 
     render() {
         const userGrades = this.context.userClimbs.map(climb => {
@@ -54,6 +72,8 @@ export default class ClimbingStats extends Component {
         const avgGrade = Math.round(sumOfGrades/gradeNumbers.length)
         const maxGrade =  Math.max(...gradeNumbers);
 
+        const data = this.renderChartData()
+
         const { error } = this.state
 
         return (
@@ -64,7 +84,11 @@ export default class ClimbingStats extends Component {
                 {this.state.loading && <p className='loading'>Loading ...</p>}
                 {!this.context.userClimbs.length && <p className='add-message'>Add a few of your completed climbs to see your stats!</p>}
                 <div className='stats'>
-                    <h3>YOUR OVERALL &#9660;</h3>
+                    <h3>YOUR OVERALL
+                        <div className="tooltip">&#9660;
+                            <span className="tooltiptext">Date-based stat tracking coming soon!</span>
+                        </div>
+                    </h3>
                     <section className='best'>
                         BEST
                         <span className='grade'>
@@ -78,7 +102,9 @@ export default class ClimbingStats extends Component {
                         </span>
                     </section>
                 </div>
-                <div className="graph">graph coming soon!</div>
+                <div className="chart">
+                    <StatsChart data={data} />
+                </div>
             </div>
         )
     }

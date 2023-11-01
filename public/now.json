@@ -1,15 +1,27 @@
 {
     "version": 2,
-    "name": "climbing-app",
-    "alias": "approach-ascend",
+    "name": "ascend",
     "routes": [
-        {
-          "src": "^/static/(.*)",
-          "dest": "/static/$1"
-        },
-        {
-          "src": ".*",
-          "dest": "/index.html"
-        }
-    ]
+      {
+       "src": "^/static/(.*)",
+       "dest": "/static/$1"
+      },
+      {
+       "src": "^/favicon.ico$",
+       "dest": "/favicon.ico"
+      },
+      {
+       "src": "^/manifest.json$",
+       "dest": "/manifest.json"
+      },
+      {
+       "src": ".*",
+       "dest": "/index.html"
+      }
+    ],
+    "build": {
+      "env": {
+          "SERVER_ENDPOINT": "https://ascend-app-server.herokuapp.com/"
+      }
+  }
   }

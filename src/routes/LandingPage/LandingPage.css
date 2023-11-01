@@ -1,7 +1,7 @@
 .landing-page {
-    margin-top: 20px;
-    text-align: center;
-    line-height: 1.5;
+  margin-top: 20px;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .info-section {
@@ -16,25 +16,31 @@
 .info-section h2 {
   font-size: 28px;
   font-weight: normal;
-  font-family: 'Angeline_Vintage'
-}
-
-.info-section p {
-  font-family: 'BeKindToTheEarth';
-  font-size: 20px;
+  font-family: 'Angeline_Vintage';
+  text-shadow: 2px 2px 1px rgb(4, 42, 53);
 }
 
 .call-to-action {
   margin-top: 15vh;
+  text-transform: uppercase;
 }
 
 .call-to-action a {
+  font-family: 'BeKindToTheEarth';
   text-decoration: none;
   color: #00FFC4;
-  font-size: 28px;
+  font-size: 20px;
 }
 
 .call-to-action a:hover {
+  font-style: italic;
+}
+
+.call-to-action .arrow {
+  font-size: 28px;
+}
+
+.call-to-action a:hover .arrow {
   color: rgb(255, 172, 19);
   text-shadow: 4px 0px yellow;
 }
@@ -79,4 +85,51 @@
 
 .login-password p {
   text-align: center;
+  color: #00FFC4;
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+
+  .info-section {
+    height: 30vh;
+  }
+
+  .info-section h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: 32px;
+    /* text-shadow: 3px 3px 2px rgb(4, 42, 53); */
+  }
+  .call-to-action {
+    margin-top: 5vh;
+  }
+
+  .call-to-action a {
+    font-size: 28px;
+  }
+
+  .landing-info-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+
+  .landing-info {
+    width: 48%;
+    padding: 20px;
+    margin-bottom: 50px;
+  }
+
+  .try p {
+    text-align: center;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .info-section {
+    margin-bottom: 20vh;
+  }
 }

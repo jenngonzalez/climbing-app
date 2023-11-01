@@ -21,33 +21,28 @@ export default class ClimbingTrack extends Component {
     static contextType = ClimbingContext
 
     componentDidMount() {
-        // if(!this.context.userClimbs.length) {
-            // how else to conditionally make the server request?
-            // length doesn't work, after adding a climb the context has a length
-
-            this.setState({
-                loading: true
-            })
-            GetUserClimbs.getClimbs()
-                .then(climbData => {
-                    const userClimbs = climbData.map(climb => {
-                        return {
-                            id: climb.id,
-                            date: climb.date,
-                            location: climb.location,
-                            climb_name: climb.climb_name,
-                            climb_type: climb.climb_type,
-                            climb_grade: climb.climb_grade,
-                            user_status: climb.user_status,
-                            image: climb.image
-                        }
-                    })
-                    this.context.addUserClimbs(userClimbs)
-                    this.setState({ loading: false })
-                }).catch(res => {
-                    this.setState({ loading: false, error: res.error })
+        this.setState({
+            loading: true
+        })
+        GetUserClimbs.getClimbs()
+            .then(climbData => {
+                const userClimbs = climbData.map(climb => {
+                    return {
+                        id: climb.id,
+                        date: climb.date,
+                        location: climb.location,
+                        climb_name: climb.climb_name,
+                        climb_type: climb.climb_type,
+                        climb_grade: climb.climb_grade,
+                        user_status: climb.user_status,
+                        image: climb.image
+                    }
                 })
-        // }
+                this.context.addUserClimbs(userClimbs)
+                this.setState({ loading: false })
+            }).catch(res => {
+                this.setState({ loading: false, error: res.error })
+            })
     }
 
     deleteClimb = (climbId) => {
